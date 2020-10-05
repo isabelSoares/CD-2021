@@ -12,7 +12,8 @@ print(data.shape)
 
 plt.figure(figsize=(4,2))
 values = {'nr records': data.shape[0], 'nr variables': data.shape[1]}
-ds.bar_chart(values.keys(), values.values(), title='Nr of records vs nr of variables') 
+ds.bar_chart(values.keys(), values.values(), edgecolor="darkgreen", color="green") 
+plt.title('Nr of records vs nr of variables', color="green")
 plt.savefig(graphsDir + 'HFCR Dimensionality - NrRecords.png')
 
 print(data.dtypes)
