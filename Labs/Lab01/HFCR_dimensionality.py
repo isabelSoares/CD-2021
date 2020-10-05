@@ -24,7 +24,7 @@ data[cat_vars.columns] = data.select_dtypes(['object']).apply(lambda x: x.astype
 print(data.dtypes)
 data.dtypes.to_csv(graphsDir + 'HFCR Dimensionality - Types of variables - Improvement.csv')
 
-plt.figure()
+plt.figure(figsize=(20,3))
 mv = {}
 for var in data:
     mv[var] = data[var].isna().sum()

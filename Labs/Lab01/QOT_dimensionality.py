@@ -24,7 +24,7 @@ data[cat_vars.columns] = data.select_dtypes(['object']).apply(lambda x: x.astype
 print(data.dtypes)
 data.dtypes.to_csv(graphsDir + 'QOT Dimensionality - Types of variables - Improvement.csv')
 
-plt.figure()
+plt.figure(figsize=(5,3))
 mv = {}
 for var in data:
     mv[var] = data[var].isna().sum()
