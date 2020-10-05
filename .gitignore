@@ -1,2 +1,4 @@
 .vscode
 __pycache__
+Labs/Lab01/Results/*.png
+Labs/Lab01/Results/*.csv
