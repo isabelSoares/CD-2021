@@ -14,7 +14,9 @@ print()
 
 
 print('QOT Distribution - Numeric variables description')
+
 data = pd.read_csv('../../Dataset/qsar_oral_toxicity.csv', sep=';', header=None)
+
 print(data.describe())
 data.describe().to_csv(graphsDir + 'QOT Distribution - Numeric variables description.csv')
 print()
@@ -27,19 +29,24 @@ plt.savefig(graphsDir + 'QOT Distribution - Boxplot')
 print()
 
 """
+
 numeric_vars = data.select_dtypes(include='number').columns
-rows, cols = ds.choose_grid(len(numeric_vars))
-fig, axs = plt.subplots(rows, cols, figsize=(cols*ds.HEIGHT, rows*ds.HEIGHT))
+rows, cols = ds.choose_grid(len(numeric_vars)//10, 18)
+height_fix = ds.HEIGHT/1.7
+
+print('QOT Distribution - Boxplot for each variable')
+fig, axs = plt.subplots(rows, cols, figsize=(cols*height_fix, rows*height_fix))
 i, j = 0, 0
 for n in range(len(numeric_vars)):
     axs[i, j].set_title('Boxplot for %s'%numeric_vars[n])
     axs[i, j].boxplot(data[numeric_vars[n]].dropna().values)
     i, j = (i + 1, 0) if (n+1) % cols == 0 else (i, j + 1)
-plt.show()
+plt.suptitle('QOT Distribution - Boxplot for each variable')
+plt.savefig(graphsDir + 'QOT Distribution - Boxplot for each variable')
+print()
 
-
-
-fig, axs = plt.subplots(rows, cols, figsize=(cols*ds.HEIGHT, rows*ds.HEIGHT))
+print('QOT Distribution - Histograms')
+fig, axs = plt.subplots(rows, cols, figsize=(cols*height_fix, rows*height_fix))
 i, j = 0, 0
 for n in range(len(numeric_vars)):
     axs[i, j].set_title('Histogram for %s'%numeric_vars[n])
@@ -47,21 +54,25 @@ for n in range(len(numeric_vars)):
     axs[i, j].set_ylabel("nr records")
     axs[i, j].hist(data[numeric_vars[n]].dropna().values, 'auto')
     i, j = (i + 1, 0) if (n+1) % cols == 0 else (i, j + 1)
-plt.show()
+plt.suptitle('QOT Distribution - Histograms')
+plt.savefig(graphsDir + 'QOT Distribution - Histograms')
+print()
 
 
-
+print('QOT Distribution - Histograms with the best fit')
 import seaborn as sns
-fig, axs = plt.subplots(rows, cols, figsize=(cols*ds.HEIGHT, rows*ds.HEIGHT))
+fig, axs = plt.subplots(rows, cols, figsize=(cols*height_fix, rows*height_fix))
 i, j = 0, 0
 for n in range(len(numeric_vars)):
     axs[i, j].set_title('Histogram with trend for %s'%numeric_vars[n])
     sns.distplot(data[numeric_vars[n]].dropna().values, norm_hist=True, ax=axs[i, j], axlabel=numeric_vars[n])
     i, j = (i + 1, 0) if (n+1) % cols == 0 else (i, j + 1)
-plt.show()
+plt.suptitle('QOT Distribution - Histograms with the best fit')
+plt.savefig(graphsDir + 'QOT Distribution - Histograms with the best fit')
+print()
 
 
-
+print('QOT Distribution - Histograms compared to known distributions')
 import scipy.stats as _stats
 import numpy as np
 def compute_known_distributions(x_values: list) -> dict:
@@ -83,12 +94,15 @@ def histogram_with_distributions(ax: plt.Axes, series: pd.Series, var: str):
     distributions = compute_known_distributions(values)
     ds.multiple_line_chart(values, distributions, ax=ax, title='Best fit for %s'%var, xlabel=var, ylabel='')
 
-fig, axs = plt.subplots(rows, cols, figsize=(cols*ds.HEIGHT, rows*ds.HEIGHT))
+fig, axs = plt.subplots(rows, cols, figsize=(cols*height_fix, rows*height_fix))
 i, j = 0, 0
-for n in range(len(numeric_vars)):
+for n in range(len(numeric_vars)//10):
     histogram_with_distributions(axs[i, j], data[numeric_vars[n]].dropna(), numeric_vars[n])
     i, j = (i + 1, 0) if (n+1) % cols == 0 else (i, j + 1)
-plt.show()
+plt.suptitle('QOT Distribution - Histograms compared to known distributions')
+plt.savefig(graphsDir + 'QOT Distribution - Histograms compared to known distributions')
+print()
+
 """
 
 print('QOT Distribution - Object variables description')
@@ -104,7 +118,7 @@ print()
 
 
 
-print('QOT Distribution - Histograms')
+print('QOT Distribution (Object) - Histogram')
 rows, cols = ds.choose_grid(len(symbolic_vars))
 fig, axs = plt.subplots(rows, cols, figsize=(cols*ds.HEIGHT, rows*ds.HEIGHT), squeeze=False)
 i, j = 0, 0
@@ -113,9 +127,8 @@ for n in range(len(symbolic_vars)):
     ds.bar_chart(counts.index.to_list(), counts.values, ax=axs[i, j], title='Histogram for %s'%symbolic_vars[n],
                  xlabel=symbolic_vars[n], ylabel='nr records')
     i, j = (i + 1, 0) if (n+1) % cols == 0 else (i, j + 1)
-plt.suptitle('QOT Distribution - Histograms')
-plt.savefig(graphsDir + 'QOT Distribution - Histograms')
-
+plt.suptitle('QOT Distribution (Object) - Histogram')
+plt.savefig(graphsDir + 'QOT Distribution (Object) - Histogram')
 
 
 
