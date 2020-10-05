@@ -19,6 +19,7 @@ print()
 
 print('HFCR Distribution - Boxplot')
 data.boxplot(rot=45)
+plt.suptitle('HFCR Distribution - Boxplot')
 plt.savefig(graphsDir + 'HFCR Distribution - Boxplot')
 print()
 
@@ -31,6 +32,7 @@ for n in range(len(numeric_vars)):
     axs[i, j].set_title('Boxplot for %s'%numeric_vars[n])
     axs[i, j].boxplot(data[numeric_vars[n]].dropna().values)
     i, j = (i + 1, 0) if (n+1) % cols == 0 else (i, j + 1)
+plt.suptitle('HFCR Distribution - Boxplot for each variable')
 plt.savefig(graphsDir + 'HFCR Distribution - Boxplot for each variable')
 print()
 
@@ -43,6 +45,7 @@ for n in range(len(numeric_vars)):
     axs[i, j].set_ylabel("nr records")
     axs[i, j].hist(data[numeric_vars[n]].dropna().values, 'auto')
     i, j = (i + 1, 0) if (n+1) % cols == 0 else (i, j + 1)
+plt.suptitle('HFCR Distribution - Histograms')
 plt.savefig(graphsDir + 'HFCR Distribution - Histograms')
 print()
 
@@ -54,6 +57,7 @@ for n in range(len(numeric_vars)):
     axs[i, j].set_title('Histogram with trend for %s'%numeric_vars[n])
     sns.distplot(data[numeric_vars[n]].dropna().values, norm_hist=True, ax=axs[i, j], axlabel=numeric_vars[n])
     i, j = (i + 1, 0) if (n+1) % cols == 0 else (i, j + 1)
+plt.suptitle('HFCR Distribution - Histograms with the best fit')
 plt.savefig(graphsDir + 'HFCR Distribution - Histograms with the best fit')
 print()
 
@@ -85,6 +89,7 @@ i, j = 0, 0
 for n in range(len(numeric_vars)):
     histogram_with_distributions(axs[i, j], data[numeric_vars[n]].dropna(), numeric_vars[n])
     i, j = (i + 1, 0) if (n+1) % cols == 0 else (i, j + 1)
+plt.suptitle('HFCR Distribution - Histograms compared to known distributions')
 plt.savefig(graphsDir + 'HFCR Distribution - Histograms compared to known distributions')
 
 print()

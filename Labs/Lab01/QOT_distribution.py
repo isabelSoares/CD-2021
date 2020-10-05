@@ -19,13 +19,14 @@ print(data.describe())
 data.describe().to_csv(graphsDir + 'QOT Distribution - Numeric variables description.csv')
 print()
 
+
+print('QOT Distribution - Boxplot')
+data.boxplot(rot=45, figsize=(150,3))
+plt.suptitle('QOT Distribution - Boxplot')
+plt.savefig(graphsDir + 'QOT Distribution - Boxplot')
+print()
+
 """
-
-data.boxplot(rot=45)
-plt.show()
-
-
-
 numeric_vars = data.select_dtypes(include='number').columns
 rows, cols = ds.choose_grid(len(numeric_vars))
 fig, axs = plt.subplots(rows, cols, figsize=(cols*ds.HEIGHT, rows*ds.HEIGHT))
@@ -112,6 +113,7 @@ for n in range(len(symbolic_vars)):
     ds.bar_chart(counts.index.to_list(), counts.values, ax=axs[i, j], title='Histogram for %s'%symbolic_vars[n],
                  xlabel=symbolic_vars[n], ylabel='nr records')
     i, j = (i + 1, 0) if (n+1) % cols == 0 else (i, j + 1)
+plt.suptitle('QOT Distribution - Histograms')
 plt.savefig(graphsDir + 'QOT Distribution - Histograms')
 
 
