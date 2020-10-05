@@ -16,11 +16,11 @@ NR_COLUMNS: int = 3
 HEIGHT: int = 4
 
 
-def choose_grid(nr):
-    if nr < NR_COLUMNS:
+def choose_grid(nr, graphsPerRow=NR_COLUMNS):
+    if nr < graphsPerRow:
         return 1, nr
     else:
-        return (nr // NR_COLUMNS, NR_COLUMNS) if nr % NR_COLUMNS == 0 else (nr // NR_COLUMNS + 1, NR_COLUMNS)
+        return (nr // graphsPerRow, graphsPerRow) if nr % graphsPerRow == 0 else (nr // graphsPerRow + 1, graphsPerRow)
 
 
 def set_axes(xvalues: list, ax: plt.Axes = None, title: str = '', xlabel: str = '', ylabel: str = '', percentage=False):
