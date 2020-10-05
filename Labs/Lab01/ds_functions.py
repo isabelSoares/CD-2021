@@ -70,9 +70,9 @@ def multiple_line_chart(xvalues: list, yvalues: dict, ax: plt.Axes = None, title
 
 
 def bar_chart(xvalues: list, yvalues: list, ax: plt.Axes = None, title: str = '',
-              xlabel: str = '', ylabel: str = '', percentage=False):
+              xlabel: str = '', ylabel: str = '', percentage=False, edgecolor=cfg.LINE_COLOR, color=cfg.FILL_COLOR):
     ax = set_axes(xvalues, ax=ax, title=title, xlabel=xlabel, ylabel=ylabel, percentage=percentage)
-    ax.bar(xvalues, yvalues, edgecolor=cfg.LINE_COLOR, color=cfg.FILL_COLOR)
+    ax.bar(xvalues, yvalues, edgecolor=edgecolor, color=color)
 
 
 def multiple_bar_chart(xvalues: list, yvalues: dict, ax: plt.Axes = None, title: str = '',
