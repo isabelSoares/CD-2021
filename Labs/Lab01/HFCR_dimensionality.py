@@ -12,8 +12,8 @@ print(data.shape)
 
 plt.figure(figsize=(4,2))
 values = {'nr records': data.shape[0], 'nr variables': data.shape[1]}
-ds.bar_chart(values.keys(), values.values(), edgecolor="darkgreen", color="green") 
-plt.title('Nr of records vs nr of variables', color="green")
+ds.bar_chart(values.keys(), values.values(), edgecolor="teal", color="turquoise") 
+plt.title('Nr of records vs nr of variables', color="teal")
 plt.savefig(graphsDir + 'HFCR Dimensionality - NrRecords.png')
 
 print(data.dtypes)
@@ -28,8 +28,10 @@ plt.figure()
 mv = {}
 for var in data:
     mv[var] = data[var].isna().sum()
-ds.bar_chart(mv.keys(), mv.values(), title='Nr of missing values per variable',
+ds.bar_chart(mv.keys(), mv.values(),
                xlabel='variables',
-               ylabel='nr missing values')
+               ylabel='nr missing values',
+               color="teal")
 print(mv.values())
+plt.title('Nr of missing values per variable', color="teal")
 plt.savefig(graphsDir + 'HFCR Dimensionality - NrMissingValues.png')
