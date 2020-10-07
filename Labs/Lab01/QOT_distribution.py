@@ -31,7 +31,7 @@ print()
 """
 
 numeric_vars = data.select_dtypes(include='number').columns
-rows, cols = ds.choose_grid(len(numeric_vars)//10, 18)
+rows, cols = ds.choose_grid(len(numeric_vars), 18)
 height_fix = ds.HEIGHT/1.7
 
 print('QOT Distribution - Boxplot for each variable')
@@ -96,7 +96,7 @@ def histogram_with_distributions(ax: plt.Axes, series: pd.Series, var: str):
 
 fig, axs = plt.subplots(rows, cols, figsize=(cols*height_fix, rows*height_fix))
 i, j = 0, 0
-for n in range(len(numeric_vars)//10):
+for n in range(len(numeric_vars)):
     histogram_with_distributions(axs[i, j], data[numeric_vars[n]].dropna(), numeric_vars[n])
     i, j = (i + 1, 0) if (n+1) % cols == 0 else (i, j + 1)
 plt.suptitle('QOT Distribution - Histograms compared to known distributions')
