@@ -2,9 +2,12 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import ds_functions as ds
 from pandas.plotting import register_matplotlib_converters
+import os
 
 register_matplotlib_converters()
 graphsDir = './Results/'
+if not os.path.exists(graphsDir):
+    os.makedirs(graphsDir)
 print('------------------------')
 print('-                      -')
 print('-   QOT Distribution   -')
@@ -15,7 +18,7 @@ print()
 
 print('QOT Distribution - Numeric variables description')
 
-data = pd.read_csv('../../Dataset/qsar_oral_toxicity.csv', sep=';', header=None)
+data = pd.read_csv('qsar_oral_toxicity.csv', sep=';', header=None)
 
 print(data.describe())
 data.describe().to_csv(graphsDir + 'QOT Distribution - Numeric variables description.csv')
@@ -26,9 +29,10 @@ print('QOT Distribution - Boxplot')
 data.boxplot(rot=45, figsize=(150,3))
 plt.suptitle('QOT Distribution - Boxplot')
 plt.savefig(graphsDir + 'QOT Distribution - Boxplot')
+plt.close()
 print()
 
-"""
+
 
 numeric_vars = data.select_dtypes(include='number').columns
 rows, cols = ds.choose_grid(len(numeric_vars), 18)
@@ -43,6 +47,7 @@ for n in range(len(numeric_vars)):
     i, j = (i + 1, 0) if (n+1) % cols == 0 else (i, j + 1)
 plt.suptitle('QOT Distribution - Boxplot for each variable')
 plt.savefig(graphsDir + 'QOT Distribution - Boxplot for each variable')
+plt.close()
 print()
 
 print('QOT Distribution - Histograms')
@@ -56,6 +61,7 @@ for n in range(len(numeric_vars)):
     i, j = (i + 1, 0) if (n+1) % cols == 0 else (i, j + 1)
 plt.suptitle('QOT Distribution - Histograms')
 plt.savefig(graphsDir + 'QOT Distribution - Histograms')
+plt.close()
 print()
 
 
@@ -69,12 +75,19 @@ for n in range(len(numeric_vars)):
     i, j = (i + 1, 0) if (n+1) % cols == 0 else (i, j + 1)
 plt.suptitle('QOT Distribution - Histograms with the best fit')
 plt.savefig(graphsDir + 'QOT Distribution - Histograms with the best fit')
+plt.close()
 print()
 
 
-print('QOT Distribution - Histograms compared to known distributions')
 import scipy.stats as _stats
 import numpy as np
+
+print('QOT Distribution - Histograms compared to known distributions')
+
+hist_known_dist_dir = './Results/QOT Distribution - Histograms compared to known distributions'
+if not os.path.exists(hist_known_dist_dir):
+    os.makedirs(hist_known_dist_dir)
+
 def compute_known_distributions(x_values: list) -> dict:
     distributions = dict()
     # Gaussian
@@ -94,16 +107,28 @@ def histogram_with_distributions(ax: plt.Axes, series: pd.Series, var: str):
     distributions = compute_known_distributions(values)
     ds.multiple_line_chart(values, distributions, ax=ax, title='Best fit for %s'%var, xlabel=var, ylabel='')
 
+rows, cols = ds.choose_grid(20, 5)
 fig, axs = plt.subplots(rows, cols, figsize=(cols*height_fix, rows*height_fix))
 i, j = 0, 0
-for n in range(len(numeric_vars)):
+numeric_vars_size = len(numeric_vars)
+count = 0
+for n in range(numeric_vars_size):
     histogram_with_distributions(axs[i, j], data[numeric_vars[n]].dropna(), numeric_vars[n])
     i, j = (i + 1, 0) if (n+1) % cols == 0 else (i, j + 1)
-plt.suptitle('QOT Distribution - Histograms compared to known distributions')
-plt.savefig(graphsDir + 'QOT Distribution - Histograms compared to known distributions')
+    if (n+1) == numeric_vars_size:
+        plt.suptitle('QOT Distribution - Histograms compared to known distributions ' + str(count))
+        plt.savefig(hist_known_dist_dir + 'QOT Distribution - Histograms compared to known distributions ' + str(count))
+        plt.close()
+    elif (n+1)%20 == 0:
+        plt.suptitle('QOT Distribution - Histograms compared to known distributions ' + str(count))
+        plt.savefig(hist_known_dist_dir + 'QOT Distribution - Histograms compared to known distributions ' + str(count))
+        count+=1
+        plt.close()
+        fig, axs = plt.subplots(rows, cols, figsize=(cols*height_fix, rows*height_fix))
+        i, j = 0, 0
 print()
 
-"""
+
 
 print('QOT Distribution - Object variables description')
 print(data.describe(include='object'))
