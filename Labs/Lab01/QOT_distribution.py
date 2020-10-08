@@ -84,7 +84,7 @@ import numpy as np
 
 print('QOT Distribution - Histograms compared to known distributions')
 
-hist_known_dist_dir = './Results/QOT Distribution - Histograms compared to known distributions'
+hist_known_dist_dir = './Results/QOT Distribution - Histograms compared to known distributions/'
 if not os.path.exists(hist_known_dist_dir):
     os.makedirs(hist_known_dist_dir)
 
