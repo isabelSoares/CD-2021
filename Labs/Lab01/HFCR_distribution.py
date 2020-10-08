@@ -18,7 +18,7 @@ data.describe().to_csv(graphsDir + 'HFCR Distribution - Numeric variables descri
 print()
 
 print('HFCR Distribution - Boxplot')
-data.boxplot(rot=45)
+data.boxplot(rot=45, figsize=(9,12))
 plt.suptitle('HFCR Distribution - Boxplot')
 plt.savefig(graphsDir + 'HFCR Distribution - Boxplot')
 print()
