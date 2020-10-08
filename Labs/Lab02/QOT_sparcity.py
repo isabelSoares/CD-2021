@@ -15,10 +15,11 @@ print('-                       -')
 print('-------------------------')
 
 data = pd.read_csv('../../Dataset/qsar_oral_toxicity.csv', sep=';', header=None)
+sample = data.sample(1)
 
 
 print('QOT Sparcity')
-columns = data.select_dtypes(include='number').columns
+columns = sample.select_dtypes(include='number').columns
 rows, cols = len(columns)-1, len(columns)-1
 plt.figure()
 fig, axs = plt.subplots(rows, cols, figsize=(cols*4, rows*4), squeeze=False)
@@ -29,6 +30,6 @@ for i in range(len(columns)):
 		axs[i, j-1].set_title("%s x %s"%(var1,var2))
 		axs[i, j-1].set_xlabel(var1)
 		axs[i, j-1].set_ylabel(var2)
-		axs[i, j-1].scatter(data[var1], data[var2])
+		axs[i, j-1].scatter(sample[var1], sample[var2])
 plt.title('QOT Sparcity')
 plt.savefig(graphsDir + 'QOT Sparcity')
