@@ -15,7 +15,7 @@ print('-                       -')
 print('-------------------------')
 
 data = pd.read_csv('../../Dataset/qsar_oral_toxicity.csv', sep=';', header=None)
-sample = data.sample(1)
+sample = data.sample(10)
 
 
 print('QOT Sparcity')
