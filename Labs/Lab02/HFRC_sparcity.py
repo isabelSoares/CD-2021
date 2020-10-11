@@ -29,5 +29,5 @@ for i in range(len(columns)):
         axs[i, j-1].set_xlabel(var1)
         axs[i, j-1].set_ylabel(var2)
         axs[i, j-1].scatter(data[var1], data[var2])
-plt.title('HFCR Sparcity')
+plt.suptitle('HFCR Sparcity')
 plt.savefig(graphsDir + 'HFCR Sparcity')

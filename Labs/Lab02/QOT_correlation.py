@@ -19,8 +19,13 @@ data = pd.read_csv('../../Dataset/qsar_oral_toxicity.csv', sep=';', header=None)
 sample = data.sample(10)
 
 print('QOT Correlation analysis')
-fig = plt.figure(figsize=[70, 70])
+fig = plt.figure(figsize=[165, 165])
 corr_mtx = sample.corr()
-sns.heatmap(corr_mtx, xticklabels=corr_mtx.columns, yticklabels=corr_mtx.columns, annot=True, cmap='Blues')
+
+# Generate a mask for the upper triangle
+mask = np.triu(np.ones_like(corr, dtype=bool))
+
+sns.heatmap(corr_mtx, mask=mask, xticklabels=corr_mtx.columns, yticklabels=corr_mtx.columns, annot=True, cmap='Blues')
 plt.title('QOT Correlation analysis')
-plt.savefig(graphsDir + 'QOT Correlation analysis')
+plt.tight_layout()
+plt.savefig(graphsDir + 'QOT Correlation analysis', dpi=300)
