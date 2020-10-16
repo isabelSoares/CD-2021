@@ -16,14 +16,15 @@ print('-                       -')
 print('-------------------------')
 
 data = pd.read_csv('../../Dataset/qsar_oral_toxicity.csv', sep=';', header=None)
-sampleSize = 1000;
+#All data
+sampleSize = data.shape[0];
 sample = data.sample(sampleSize)
 
 
 print('QOT Sparcity')
 columns = sample.select_dtypes(include='number').columns
 rows, cols = 35, 30
-for i in range(len(columns)):
+for i in range(1):
 	var1 = columns[i]
 	print("Dealing now the var: %s"%(var1))
 	plt.figure()
