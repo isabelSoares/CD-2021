@@ -8,8 +8,8 @@ graphsDir = './Results/'
 
 data: pd.DataFrame = pd.read_csv('../../Dataset/qsar_oral_toxicity.csv', sep=';', header=None)
 target = 1024
-positive = 1
-negative = 0
+positive = 'positive'
+negative = 'negative'
 values = {'Original': [len(data[data[target] == positive]), len(data[data[target] == negative])]}
 
 
