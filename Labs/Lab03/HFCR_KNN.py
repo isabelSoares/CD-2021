@@ -34,7 +34,6 @@ for d in dist:
 
 plt.figure()
 ds.multiple_line_chart(nvalues, values, title='KNN variants', xlabel='n', ylabel='accuracy', percentage=True)
-plt.suptitle('HFCR KNN Variants')
 plt.savefig(graphsDir + 'HFCR KNN Variants')
 print('Best results with %d neighbors and %s'%(best[0], best[1]))
 
@@ -43,5 +42,5 @@ clf.fit(trnX, trnY)
 prd_trn = clf.predict(trnX)
 prd_tst = clf.predict(tstX)
 ds.plot_evaluation_results(pd.unique(y), trnY, prd_trn, tstY, prd_tst)
-plt.suptitle('HFCR KNN - Performance & Confusion matrix')
-plt.savefig(graphsDir + 'HCFR KNN - Performance & Confusion matrix')
+plt.suptitle('HFCR KNN - Performance & Confusion matrix - %d neighbors and %s'%(best[0], best[1]))
+plt.savefig(graphsDir + 'HFCR KNN - Performance & Confusion matrix')
