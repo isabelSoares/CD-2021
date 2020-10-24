@@ -19,7 +19,7 @@ labels = pd.unique(y)
 trnX, tstX, trnY, tstY = train_test_split(X, y, train_size=0.7, stratify=y)
 
 min_impurity_decrease = [0.025, 0.01, 0.005, 0.0025, 0.001]
-max_depths = [50, 100, 150, 250, 550, 1100, 1600, 2200, 2600]
+max_depths = [2, 5, 10, 15, 20, 25, 30]
 criteria = ['entropy', 'gini']
 best = ('',  0, 0.0)
 last_best = 0
@@ -47,16 +47,16 @@ for k in range(len(criteria)):
                            xlabel='min_impurity_decrease', ylabel='accuracy', percentage=True)
 
 print('Best results achieved with %s criteria, depth=%d and min_impurity_decrease=%1.5f ==> accuracy=%1.5f'%(best[0], best[1], best[2], last_best))
-fig.text(0.5, 0.03, '%s criteria, depth=%d and min_impurity_decrease=%1.5f ==> accuracy=%1.5f'%(best[0], best[1], best[2], last_best), fontsize=7, ha='center', va='center')
+fig.text(0.5, 0.03, 'Best results with %s criteria, depth=%d and min_impurity_decrease=%1.5f ==> accuracy=%1.5f'%(best[0], best[1], best[2], last_best), fontsize=7, ha='center', va='center')
 plt.suptitle('QOT Decision Trees - parameters')
 plt.savefig(graphsDir + 'QOT Decision Trees - parameters')
 
 from sklearn.tree import export_graphviz
 
-dot_data = export_graphviz(tree, out_file=(graphsDir + 'dtree.dot'), filled=True, rounded=True, special_characters=True, class_names=['negative', 'positive'])
+dot_data = export_graphviz(best_tree, out_file=(graphsDir + 'QOT - dtree.dot'), filled=True, rounded=True, special_characters=True, class_names=['negative', 'positive'])
 # Convert to png
 from subprocess import call
-call(['dot', '-Tpng', (graphsDir + 'dtree.dot'), '-o', (graphsDir + 'QOT Decision Trees - tree representation.png'), '-Gdpi=600'])
+call(['dot', '-Tpng', (graphsDir + 'QOT - dtree.dot'), '-o', (graphsDir + 'QOT Decision Trees - tree representation.png'), '-Gdpi=600'])
 
 plt.figure(figsize = (14, 18))
 plt.imshow(plt.imread(graphsDir + 'QOT Decision Trees - tree representation.png'))
