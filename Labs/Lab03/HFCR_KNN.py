@@ -1,16 +1,42 @@
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
-import sklearn.metrics as metrics
-from sklearn.neighbors import KNeighborsClassifier
 import ds_functions as ds
+import matplotlib.pyplot as plt
+import sklearn.metrics as metrics
+from sklearn.impute import SimpleImputer
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 
 graphsDir = './Results/'
 
 data: pd.DataFrame = pd.read_csv('../../Dataset/heart_failure_clinical_records_dataset.csv')
-y: np.ndarray = data.pop('DEATH_EVENT').values
-X: np.ndarray = data.values
+
+data['DEATH_EVENT'] = data['DEATH_EVENT'].astype('category')
+sb_vars = data.select_dtypes(include='object')
+data[sb_vars.columns] = data.select_dtypes(['object']).apply(lambda x: x.astype('category'))
+
+cols_nr = data.select_dtypes(include='number')
+# print(cols_nr)
+cols_sb = data.select_dtypes(include='category')
+# print(cols_sb)
+
+imp_nr = SimpleImputer(strategy='mean', missing_values=np.nan, copy=True)
+imp_sb = SimpleImputer(strategy='most_frequent', missing_values='', copy=True)
+df_nr = pd.DataFrame(imp_nr.fit_transform(cols_nr), columns=cols_nr.columns)
+# df_sb = pd.DataFrame(imp_sb.fit_transform(cols_sb), columns=cols_sb.columns)
+
+transf = StandardScaler(with_mean=True, with_std=True, copy=True).fit(df_nr)
+df_nr = pd.DataFrame(transf.transform(df_nr), columns= df_nr.columns)
+norm_data_zscore = df_nr.join(cols_sb, how='right')
+#norm_data_zscore = df_nr
+norm_data_zscore['DEATH_EVENT'] = norm_data_zscore['DEATH_EVENT'].astype('int64')
+norm_data_zscore.describe(include='all')
+
+print(norm_data_zscore.dtypes)
+
+y: np.ndarray = norm_data_zscore.pop('DEATH_EVENT').values
+X: np.ndarray = norm_data_zscore.values
 labels = pd.unique(y)
 
 trnX, tstX, trnY, tstY = train_test_split(X, y, train_size=0.7, stratify=y)
