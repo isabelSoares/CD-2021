@@ -27,7 +27,13 @@ print()
 print('Outilers Imputation...')
 print()
 print('New description table')
+
+# Mean
+
+# Winsorization
 for var in data:
+	if var == 'DEATH_EVENT':
+		break
 	q1 = data[var].quantile(0.25)
 	q3 = data[var].quantile(0.75)
 	iqr = q3 - q1
@@ -35,10 +41,14 @@ for var in data:
 	higher_limit = q3+1.5*iqr
 
 	acceptable_values = data.loc[(data[var] >= lower_limit) & (data[var] <= higher_limit)]
-	
-	var_mean = acceptable_values[var].mean()
 
-	data.loc[(data[var] < lower_limit) | (data[var] > higher_limit)] = var_mean
+	var_mean = acceptable_values[var].mean()
+	max_value = acceptable_values[var].max()
+	min_value = acceptable_values[var].min()
+
+
+	data.loc[(data[var] < min_value), var] = min_value
+	data.loc[(data[var] > max_value), var] = max_value
 
 print(data.describe(include='all'))
 data.describe().to_csv(graphsDir + 'HFCR Outliers Imputation - Description.csv')
