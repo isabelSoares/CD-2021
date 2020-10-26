@@ -27,15 +27,20 @@ best = ('',  0, 0.0)
 best_model = ()
 last_best = 0
 best_tree = None
+overfit_values = {}
 
 plt.figure()
 fig, axs = plt.subplots(1, 2, figsize=(16, 5), squeeze=False)
 for k in range(len(criteria)):
     f = criteria[k]
-    values = {}
+    values = {} 
+    overfit_values[f] = {}
     for d in max_depths:
         yvalues = []
+        train_acc_values = []
+        test_acc_values = []
         for imp in min_impurity_decrease:
+            best_iteration_train_accuracy = 0
             best_iteration_accuracy = 0
             for model in splitList:
                 trnX, trnY = X[model[0]], y[model[0]]
@@ -44,13 +49,17 @@ for k in range(len(criteria)):
                 tree = DecisionTreeClassifier(min_samples_leaf=1, max_depth=d, criterion=f, min_impurity_decrease=imp)
                 tree.fit(trnX, trnY)
                 prdY = tree.predict(tstX)
+                prd_trainY = tree.predict(trnX)
 
                 iteration_accuracy = metrics.accuracy_score(tstY, prdY)
                 if iteration_accuracy > best_iteration_accuracy:
                     best_iteration_accuracy = iteration_accuracy
+                    best_iteration_train_accuracy = metrics.accuracy_score(trnY, prd_trainY)
                     model_sets = (trnX, trnY, tstX, tstY)
-                
+
             yvalues.append(best_iteration_accuracy)
+            train_acc_values.append(best_iteration_train_accuracy)
+            test_acc_values.append(best_iteration_accuracy)  
             if yvalues[-1] > last_best:
                 best = (f, d, imp)
                 best_model = tuple(model_sets)
@@ -58,6 +67,9 @@ for k in range(len(criteria)):
                 best_tree = tree
 
         values[d] = yvalues
+        overfit_values[f][d] = {}
+        overfit_values[f][d]['train'] = train_acc_values
+        overfit_values[f][d]['test'] = test_acc_values
     ds.multiple_line_chart(min_impurity_decrease, values, ax=axs[0, k], title='Decision Trees with %s criteria'%f,
                            xlabel='min_impurity_decrease', ylabel='accuracy', percentage=True)
 
@@ -65,6 +77,18 @@ print('Best results achieved with %s criteria, depth=%d and min_impurity_decreas
 fig.text(0.5, 0.03, 'Best results with %s criteria, depth=%d and min_impurity_decrease=%1.5f ==> accuracy=%1.5f'%(best[0], best[1], best[2], last_best), fontsize=7, ha='center', va='center')
 plt.suptitle('HFCR Decision Trees - parameters')
 plt.savefig(graphsDir + 'HFCR Decision Trees - parameters')
+
+plt.figure()
+fig, axs = plt.subplots(4, 4, figsize=(32, 16), squeeze=False)
+i = 0
+for k in range(len(criteria)):
+    f = criteria[k]
+    for d in max_depths:
+        ds.multiple_line_chart(min_impurity_decrease, overfit_values[f][d], ax=axs[i // 4, i % 4], title='Overfitting for max_depth = %d with %s criteria'%(d, f), xlabel='min_impurity_decrease', ylabel='accuracy', percentage=True)
+        i += 1
+    i += 1
+plt.suptitle('HFCR Overfitting')
+plt.savefig(graphsDir + 'HFCR Overfitting')
 
 from sklearn.tree import export_graphviz
 labels_features = list(data.columns.values)
