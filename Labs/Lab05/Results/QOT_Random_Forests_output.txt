@@ -1,0 +1,9 @@
+------------------------------
+-                            -
+-     QOT Random Forests     -
+-                            -
+------------------------------
+QOT Random Forests - Parameters Combinations
+Best results with depth=25, 0.10 features and 100 estimators, with accuracy=0.94
+
+QOT Random Forests - Performance & Confusion Matrix
