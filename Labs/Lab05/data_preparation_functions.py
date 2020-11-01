@@ -67,12 +67,16 @@ def data_balancing(data, target):
     df_class_max = data[data[target] != min_class]
 
     # By Undersampling
+    new_df = df_class_min.copy()
     df_under = df_class_max.sample(len(df_class_min))
-    datas['UnderSample'] = df_under
+    new_df = pd.concat([new_df, df_under], sort=False).sort_index()
+    datas['UnderSample'] = new_df
 
     #By Oversampling
+    new_df = df_class_max.copy()
     df_over = df_class_min.sample(len(df_class_max), replace=True)
-    datas['OverSample'] = df_over
+    new_df = pd.concat([new_df, df_over], sort=False).sort_index()
+    datas['OverSample'] = new_df
 
     #By SMOTE
     RANDOM_STATE = 42
