@@ -21,7 +21,7 @@ values = {}
 best = (0, '')
 last_best = 0
 for d in dist:
-    yvalues = []
+    yvalues = [] 
     for n in nvalues:
         knn = KNeighborsClassifier(n_neighbors=n, metric=d)
         knn.fit(trnX, trnY)
