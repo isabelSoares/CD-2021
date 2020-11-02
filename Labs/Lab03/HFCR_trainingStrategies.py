@@ -23,7 +23,7 @@ splitIterator = iter(skf.split(X, y))
 splitCounter = 1
 
 for model in splitIterator:
-    trnX = X[model[0]]
+    trnX = X[model[0]] 
     trnY = y[model[0]]
     tstX = X[model[1]]
     tstY = y[model[1]]
