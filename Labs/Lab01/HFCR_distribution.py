@@ -18,7 +18,7 @@ data.describe().to_csv(graphsDir + 'HFCR Distribution - Numeric variables descri
 print()
 
 print('HFCR Distribution - Boxplot')
-data.boxplot(rot=45, figsize=(9,12))
+data.boxplot(rot=45, figsize=(9,12), whis=1.5)
 plt.suptitle('HFCR Distribution - Boxplot')
 plt.savefig(graphsDir + 'HFCR Distribution - Boxplot')
 print()
@@ -30,7 +30,7 @@ fig, axs = plt.subplots(rows, cols, figsize=(cols*ds.HEIGHT, rows*ds.HEIGHT))
 i, j = 0, 0
 for n in range(len(numeric_vars)):
     axs[i, j].set_title('Boxplot for %s'%numeric_vars[n])
-    axs[i, j].boxplot(data[numeric_vars[n]].dropna().values)
+    axs[i, j].boxplot(data[numeric_vars[n]].dropna().values, whis=1.5)
     i, j = (i + 1, 0) if (n+1) % cols == 0 else (i, j + 1)
 plt.suptitle('HFCR Distribution - Boxplot for each variable')
 plt.savefig(graphsDir + 'HFCR Distribution - Boxplot for each variable')

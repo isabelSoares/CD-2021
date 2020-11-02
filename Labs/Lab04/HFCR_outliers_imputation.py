@@ -37,8 +37,8 @@ for var in data:
 	q1 = data[var].quantile(0.25)
 	q3 = data[var].quantile(0.75)
 	iqr = q3 - q1
-	lower_limit = q1 -  (1.5/2)*iqr
-	higher_limit = q3 + (1.5/2)*iqr
+	lower_limit = q1 -  1.5*iqr
+	higher_limit = q3 + 1.5*iqr
 
 	acceptable_values = data.loc[(data[var] >= lower_limit) & (data[var] <= higher_limit)]
 
@@ -55,7 +55,7 @@ data.describe().to_csv(graphsDir + 'HFCR Outliers Imputation - Description.csv')
 print()
 
 print('HFCR Outliers Imputation - Boxplot')
-data.boxplot(rot=45, figsize=(9,12))
+data.boxplot(rot=45, figsize=(9,12), whis=1.5)
 plt.suptitle('HFCR Outliers Imputation - Boxplot')
 plt.savefig(graphsDir + 'HFCR Outliers Imputation - Boxplot')
 print()
@@ -67,7 +67,7 @@ fig, axs = plt.subplots(rows, cols, figsize=(cols*ds.HEIGHT, rows*ds.HEIGHT))
 i, j = 0, 0
 for n in range(len(numeric_vars)):
     axs[i, j].set_title('Boxplot for %s'%numeric_vars[n])
-    axs[i, j].boxplot(data[numeric_vars[n]].dropna().values)
+    axs[i, j].boxplot(data[numeric_vars[n]].dropna().values, whis=1.5)
     i, j = (i + 1, 0) if (n+1) % cols == 0 else (i, j + 1)
 plt.suptitle('HFCR Outliers Imputation - Boxplot for each variable')
 plt.savefig(graphsDir + 'HFCR Outliers Imputation - Boxplot for each variable')

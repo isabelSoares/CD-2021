@@ -18,7 +18,7 @@ print()
 
 print('QOT Distribution - Numeric variables description')
 
-data = pd.read_csv('qsar_oral_toxicity.csv', sep=';', header=None)
+data = pd.read_csv('../../Dataset/qsar_oral_toxicity.csv', sep=';', header=None)
 
 print(data.describe())
 data.describe().to_csv(graphsDir + 'QOT Distribution - Numeric variables description.csv')
@@ -26,7 +26,7 @@ print()
 
 
 print('QOT Distribution - Boxplot')
-data.boxplot(rot=45, figsize=(150,3))
+data.boxplot(rot=45, figsize=(150,3), whis=1.5)
 plt.suptitle('QOT Distribution - Boxplot')
 plt.savefig(graphsDir + 'QOT Distribution - Boxplot')
 plt.close()
@@ -43,7 +43,7 @@ fig, axs = plt.subplots(rows, cols, figsize=(cols*height_fix, rows*height_fix))
 i, j = 0, 0
 for n in range(len(numeric_vars)):
     axs[i, j].set_title('Boxplot for %s'%numeric_vars[n])
-    axs[i, j].boxplot(data[numeric_vars[n]].dropna().values)
+    axs[i, j].boxplot(data[numeric_vars[n]].dropna().values, whis=1.5)
     i, j = (i + 1, 0) if (n+1) % cols == 0 else (i, j + 1)
 plt.suptitle('QOT Distribution - Boxplot for each variable')
 plt.savefig(graphsDir + 'QOT Distribution - Boxplot for each variable')
@@ -154,6 +154,3 @@ for n in range(len(symbolic_vars)):
     i, j = (i + 1, 0) if (n+1) % cols == 0 else (i, j + 1)
 plt.suptitle('QOT Distribution (Object) - Histogram')
 plt.savefig(graphsDir + 'QOT Distribution (Object) - Histogram')
-
-
-
