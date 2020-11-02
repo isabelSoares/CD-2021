@@ -19,7 +19,7 @@ print('-                                    -')
 print('--------------------------------------')
 
 data: pd.DataFrame = pd.read_csv('../../Dataset/heart_failure_clinical_records_dataset.csv')
-datas = prepfunctions.prepare_dataset(data, 'DEATH_EVENT', True, True)
+datas = prepfunctions.prepare_dataset(data, 'DEATH_EVENT', False, True)
 
 for key, value in datas.items():
     data = value
@@ -62,7 +62,7 @@ for key, value in datas.items():
 
     print('HFCR Naive Bayes - Comparison of Naive Bayes Models')
     estimators = {'GaussianNB': GaussianNB(),
-                  #'MultinomialNB': MultinomialNB(),
+                  'MultinomialNB': MultinomialNB(),
                   'BernoulyNB': BernoulliNB()}
 
     xvalues = []

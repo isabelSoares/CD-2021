@@ -14,12 +14,12 @@ if not os.path.exists(graphsDir):
 
 print('--------------------------------------')
 print('-                                    -')
-print('-     QOT Naive Bayes - Treated     -')
+print('-     QOT Naive Bayes - Treated      -')
 print('-                                    -')
 print('--------------------------------------')
 
-data: pd.DataFrame = pd.read_csv('../../Dataset/heart_failure_clinical_records_dataset.csv')
-datas = prepfunctions.prepare_dataset(data, 'DEATH_EVENT', True, True)
+data: pd.DataFrame = pd.read_csv('../../Dataset/qsar_oral_toxicity.csv', sep=';', header=None)
+datas = prepfunctions.prepare_dataset(data, 1024, False, False)
 
 for key, value in datas.items():
     data = value
@@ -28,7 +28,7 @@ for key, value in datas.items():
         os.makedirs(subDir) 
 
     print('QOT Naive Bayes - Performance & Confusion matrix')
-    y: np.ndarray = data.pop('DEATH_EVENT').values
+    y: np.ndarray = data.pop(1024).values
     X: np.ndarray = data.values
     labels = pd.unique(y)
     
@@ -45,7 +45,7 @@ for key, value in datas.items():
 
     print('QOT Naive Bayes - Comparison of Naive Bayes Models')
     estimators = {'GaussianNB': GaussianNB(),
-              #'MultinomialNB': MultinomialNB(),
+              'MultinomialNB': MultinomialNB(),
               'BernoulyNB': BernoulliNB()}
 
     xvalues = []
