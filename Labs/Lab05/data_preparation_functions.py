@@ -23,8 +23,8 @@ def outliers_removal(data, target):
         q1 = data[var].quantile(0.25)
         q3 = data[var].quantile(0.75)
         iqr = q3 - q1
-        lower_limit = q1 -  (1.5/2)*iqr
-        higher_limit = q3 + (1.5/2)*iqr
+        lower_limit = q1 -  1.5*iqr
+        higher_limit = q3 + 1.5*iqr
 
         acceptable_values = data.loc[(data[var] >= lower_limit) & (data[var] <= higher_limit)]
 
