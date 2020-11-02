@@ -83,7 +83,7 @@ for clf in estimators:
 		if iteration_accuracy > best_iteration_accuracy:
 			best_iteration_accuracy = iteration_accuracy
 
-	yvalues.append(iteration_accuracy)
+	yvalues.append(best_iteration_accuracy)
 
 plt.figure(figsize=(7,7))
 ds.bar_chart(xvalues, yvalues, title='Comparison of Naive Bayes Models', ylabel='accuracy', percentage=True)
