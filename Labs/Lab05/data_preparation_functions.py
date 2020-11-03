@@ -89,3 +89,29 @@ def data_balancing(data, target):
     datas['SMOTE'] = df_smote
 
     return datas
+
+def mask_feature_selection(datas, target, features_are_numbers, mask_file):
+    features_file = open(mask_file, 'r')
+    lines = features_file.readlines()
+    new_datas = {}
+  
+    count = 0
+    for line in lines:
+        if (line == "\n"): break
+        #print(line)
+        line = line.strip()
+        #print(line)
+        divided = line.split(sep = ": ")
+
+        key = divided[0]
+        list_of_features = (((divided[1])[1:-1]).replace("'", "")).split(sep = ", ")
+        if (features_are_numbers): list_of_features = [ int(x) for x in list_of_features ]
+        
+        data = datas[key]
+        target_collumn = data[target]
+        new_data = data[list_of_features]
+        print(key, ": ", data.shape, " -> ", new_data.shape)
+        new_data = new_data.join(target_collumn, how='right')
+        new_datas[key] = new_data
+    
+    return new_datas
