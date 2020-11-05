@@ -58,16 +58,17 @@ plt.savefig(graphsDir + 'HFCR Naive Bayes - Performance & Confusion matrix')
 
 
 print('HFCR Naive Bayes - Comparison of Naive Bayes Models')
-estimators = {'GaussianNB': GaussianNB(),
+estimators = {#'GaussianNB': GaussianNB(),
               'MultinomialNB': MultinomialNB(),
               'BernoulyNB': BernoulliNB()}
 
 xvalues = []
 yvalues = []
+xvalues.append('GaussianNB')
+yvalues.append(best_iteration_accuracy)
 for clf in estimators:
 	xvalues.append(clf)
 	splitIterator = iter(skf.split(X, y))
-
 	best_iteration_accuracy = 0
 	for model in splitIterator:
 		trnX = X[model[0]]
