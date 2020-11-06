@@ -40,7 +40,7 @@ for key in datas:
         splitList = list(skf.split(X, y))
         splitCounter = 1
 
-        min_impurity_decrease = [0.025, 0.01, 0.005, 0.0025, 0.001, 0.0005, 0.00025]
+        min_impurity_decrease = [0.025, 0.01, 0.005, 0.0025, 0.001, 0.0005, 0.00025, 0.0001, 0.00005, 0.000025]
         max_depths = [2, 5, 10, 15, 20, 25, 30]
         criteria = ['entropy', 'gini']
         best = ('',  0, 0.0)
@@ -107,18 +107,13 @@ for key in datas:
                 ds.multiple_line_chart(min_impurity_decrease, overfit_values[f][d], ax=axs[i // 4, i % 4], title='Overfitting for max_depth = %d with %s criteria'%(d, f), xlabel='min_impurity_decrease', ylabel='accuracy', percentage=True)
                 i += 1
             i += 1
-        plt.suptitle('HFCR Overfitting')
-        plt.savefig(subDir + 'HFCR Overfitting')
+        plt.suptitle('HFCR Overfitting - Decision Trees')
+        plt.savefig(subDir + 'HFCR Overfitting - Decision Trees')
         
         labels_features = list(data.columns.values)
         dot_data = export_graphviz(best_tree, out_file=(subDir + 'HFCR - ' + key + ' - dtree.dot'), filled=True, rounded=True, special_characters=True, feature_names=labels_features, class_names=['0', '1'])
         # Convert to png
         call(['dot', '-Tpng', (subDir + 'HFCR - ' + key + ' - dtree.dot'), '-o', (subDir + 'HFCR Decision Trees - ' + key + ' - tree representation.png'), '-Gdpi=600'])
-
-        plt.figure(figsize = (14, 18))
-        plt.imshow(plt.imread(subDir + 'HFCR Decision Trees - ' + key + ' - tree representation.png'))
-        plt.axis('off')
-        plt.savefig(subDir + 'HFCR Decision Trees - ' + key + ' - tree representation')
 
         trnX, trnY, tstX, tstY = best_model
         prd_trn = best_tree.predict(trnX)

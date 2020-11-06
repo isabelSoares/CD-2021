@@ -38,7 +38,7 @@ for key in datas:
 
         trnX, tstX, trnY, tstY = train_test_split(X, y, train_size=0.7, stratify=y)
 
-        min_impurity_decrease = [0.025, 0.01, 0.005, 0.0025, 0.001, 0.0005, 0.00025]
+        min_impurity_decrease = [0.025, 0.01, 0.005, 0.0025, 0.001, 0.0005, 0.00025, 0.0001, 0.00005, 0.000025]
         max_depths = [2, 5, 10, 15, 20, 25, 30]
         criteria = ['entropy', 'gini']
         best = ('',  0, 0.0)
@@ -90,17 +90,12 @@ for key in datas:
                 ds.multiple_line_chart(min_impurity_decrease, overfit_values[f][d], ax=axs[i // 4, i % 4], title='Overfitting for max_depth = %d with %s criteria'%(d, f), xlabel='min_impurity_decrease', ylabel='accuracy', percentage=True)
                 i += 1
             i += 1
-        plt.suptitle('QOT Overfitting')
-        plt.savefig(subDir + 'QOT Overfitting')
+        plt.suptitle('QOT Overfitting - Decision Trees')
+        plt.savefig(subDir + 'QOT Overfitting - Decision Trees')
 
         dot_data = export_graphviz(best_tree, out_file=(subDir + 'QOT - ' + key + ' - dtree.dot'), filled=True, rounded=True, special_characters=True, class_names=['negative', 'positive'])
         # Convert to png
         call(['dot', '-Tpng', (subDir + 'QOT - ' + key + ' - dtree.dot'), '-o', (subDir + 'QOT Decision Trees - ' + key + ' - tree representation.png'), '-Gdpi=600'])
-
-        plt.figure(figsize = (14, 18))
-        plt.imshow(plt.imread(subDir + 'QOT Decision Trees - ' + key + ' - tree representation.png'))
-        plt.axis('off')
-        plt.savefig(subDir + 'QOT Decision Trees - ' + key + ' - tree representation')
 
         prd_trn = best_tree.predict(trnX)
         prd_tst = best_tree.predict(tstX)
