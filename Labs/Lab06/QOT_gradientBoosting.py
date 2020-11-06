@@ -6,6 +6,7 @@ import sklearn.metrics as metrics
 from sklearn.ensemble import GradientBoostingClassifier
 import ds_functions as ds
 import os
+from datetime import datetime
 
 graphsDir = './Results/'
 if not os.path.exists(graphsDir):
@@ -29,16 +30,25 @@ cols = len(max_depths)
 plt.figure()
 fig, axs = plt.subplots(1, cols, figsize=(cols*ds.HEIGHT, ds.HEIGHT), squeeze=False)
 for k in range(len(max_depths)):
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    print('1st for' + current_time)
     d = max_depths[k]
     values = {}
     for lr in learning_rate:
+        now = datetime.now()
+        print('2nd for' + current_time)
         yvalues = []
         for n in n_estimators:
+            now = datetime.now()
+            print('3rd for' + current_time)
             gb = GradientBoostingClassifier(n_estimators=n, max_depth=d, learning_rate=lr)
             gb.fit(trnX, trnY)
             prdY = gb.predict(tstX)
             yvalues.append(metrics.accuracy_score(tstY, prdY))
             if yvalues[-1] > last_best:
+                now = datetime.now()
+                print('1st if' + current_time)
                 best = (d, lr, n)
                 last_best = yvalues[-1]
                 best_tree = gb
