@@ -46,8 +46,13 @@ for key in datas:
         values = {}
         best = (0, '')
         last_best = 0
+
+        overfitting_values = {}
         for d in dist:
             yvalues = []
+            overfitting_values[d] = {}
+            overfitting_values[d]['test'] = []
+            overfitting_values[d]['train'] = []
             for n in nvalues:
                 best_iteration_train_accuracy = 0
                 best_iteration_accuracy = 0
@@ -66,12 +71,15 @@ for key in datas:
                         best_iteration_accuracy = iteration_accuracy
                         best_iteration_train_accuracy = metrics.accuracy_score(trnY, prd_trainY)
                         model_sets = (trnX, trnY, tstX, tstY)
+                
+                overfitting_values[d]['train'].append(best_iteration_train_accuracy)
+                overfitting_values[d]['test'].append(best_iteration_accuracy)
                 yvalues.append(best_iteration_accuracy)
                 if yvalues[-1] > last_best:
                     best = (n, d)
                     last_best = yvalues[-1]
                     best_model = tuple(model_sets)             
-        values[d] = yvalues
+            values[d] = yvalues
 
             
         plt.figure()
@@ -80,6 +88,14 @@ for key in datas:
         plt.savefig(subDir + 'HFCR KNN - ' + key + ' - parameters')
         print('Best results with %d neighbors and %s'%(best[0], best[1]))
 
+        plt.figure()
+        fig, axs = plt.subplots(1, len(dist), figsize=(32, 8), squeeze=False)
+        i = 0
+        for k in range(len(dist)):
+            d = dist[k]
+            ds.multiple_line_chart(nvalues, overfitting_values[d], ax=axs[0, k], title='Overfitting for dist = %s'%(d), xlabel='K Neighbours', ylabel='accuracy', percentage=True)
+        plt.suptitle('HFCR Overfitting - KNN')
+        plt.savefig(subDir + 'HFCR Overfitting - KNN')
 
         trnX, trnY, tstX, tstY = best_model
         clf = knn = KNeighborsClassifier(n_neighbors=best[0], metric=best[1])

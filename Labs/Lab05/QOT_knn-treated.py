@@ -18,7 +18,7 @@ datas = prepfunctions.prepare_dataset(data, 1024, False, False)
 featured_datas = prepfunctions.mask_feature_selection(datas, 1024, True, './Results/QOT Feature Selection - Features')
 
 for key in datas:
-    for do_feature_eng in [True]:
+    for do_feature_eng in [False, True]:
         if (do_feature_eng):
             data = featured_datas[key]
             subDir = graphsDir + 'FeatureEng/' +  key + '/'
@@ -41,13 +41,24 @@ for key in datas:
         values = {}
         best = (0, '')
         last_best = 0
+
+        overfitting_values = {}
         for d in dist:
-            yvalues = [] 
+            yvalues = []
+            overfitting_values[d] = {}
+            overfitting_values[d]['test'] = []
+            overfitting_values[d]['train'] = []
             for n in nvalues:
                 knn = KNeighborsClassifier(n_neighbors=n, metric=d)
                 knn.fit(trnX, trnY)
                 prdY = knn.predict(tstX)
-                yvalues.append(metrics.accuracy_score(tstY, prdY))
+                prdTrainY = knn.predict(trnX)
+
+                test_accuracy = metrics.accuracy_score(tstY, prdY)
+                train_accuracy = metrics.accuracy_score(trnY, prdTrainY)
+                overfitting_values[d]['test'].append(test_accuracy)
+                overfitting_values[d]['train'].append(train_accuracy)
+                yvalues.append(test_accuracy)
                 if yvalues[-1] > last_best:
                     best = (n, d)
                     last_best = yvalues[-1]
@@ -58,6 +69,15 @@ for key in datas:
         plt.suptitle('QOT KNN - ' + key + ' - parameters')
         plt.savefig(subDir + 'QOT KNN - ' + key + ' - parameters')
         print('Best results with %d neighbors and %s'%(best[0], best[1]))
+
+        plt.figure()
+        fig, axs = plt.subplots(1, len(dist), figsize=(32, 8), squeeze=False)
+        i = 0
+        for k in range(len(dist)):
+            d = dist[k]
+            ds.multiple_line_chart(nvalues, overfitting_values[d], ax=axs[0, k], title='Overfitting for dist = %s'%(d), xlabel='K Neighbours', ylabel='accuracy', percentage=True)
+        plt.suptitle('QOT Overfitting - KNN')
+        plt.savefig(subDir + 'QOT Overfitting - KNN')
 
         clf = knn = KNeighborsClassifier(n_neighbors=best[0], metric=best[1])
         clf.fit(trnX, trnY)
