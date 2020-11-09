@@ -68,15 +68,15 @@ def data_balancing(data, target):
 
     # By Undersampling
     new_df = df_class_min.copy()
-    df_under = df_class_max.sample(len(df_class_min))
+    df_under = df_class_max.copy().sample(len(df_class_min))
     new_df = pd.concat([new_df, df_under], sort=False).sort_index()
     datas['UnderSample'] = new_df
 
     #By Oversampling
     new_df = df_class_max.copy()
-    df_over = df_class_min.sample(len(df_class_max), replace=True)
+    df_over = df_class_min.copy().sample(len(df_class_max), replace=True)
     new_df = pd.concat([new_df, df_over], sort=False).sort_index()
-    datas['OverSample'] = new_df
+    datas['OverSample'] = new_df.copy()
 
     #By SMOTE
     RANDOM_STATE = 42
@@ -86,7 +86,7 @@ def data_balancing(data, target):
     smote_X, smote_y = smote.fit_sample(X, y)
     df_smote = pd.DataFrame(smote_X, columns=data.columns)
     df_smote[target] = smote_y
-    datas['SMOTE'] = df_smote
+    datas['SMOTE'] = df_smote.copy()
 
     return datas
 
@@ -106,12 +106,12 @@ def mask_feature_selection(datas, target, features_are_numbers, mask_file):
         key = divided[0]
         list_of_features = (((divided[1])[1:-1]).replace("'", "")).split(sep = ", ")
         if (features_are_numbers): list_of_features = [ int(x) for x in list_of_features ]
+        list_of_features.append(target)
         
-        data = datas[key]
+        data = datas[key].copy()
         target_collumn = data[target]
         new_data = data[list_of_features]
         print(key, ": ", data.shape, " -> ", new_data.shape)
-        new_data = new_data.join(target_collumn, how='right')
         new_datas[key] = new_data
     
     return new_datas
