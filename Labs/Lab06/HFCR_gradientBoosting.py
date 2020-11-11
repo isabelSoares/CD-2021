@@ -1,12 +1,14 @@
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-from sklearn.model_selection import StratifiedKFold
-import sklearn.metrics as metrics
 import data_preparation_functions as prepfunctions
-from sklearn.ensemble import GradientBoostingClassifier
+import sklearn.metrics as metrics
+import matplotlib.pyplot as plt
 import ds_functions as ds
+import pandas as pd
+import numpy as np
 import os
+
+from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.model_selection import StratifiedKFold
+from datetime import datetime
 
 graphsDir = './Results/'
 if not os.path.exists(graphsDir):
@@ -29,6 +31,9 @@ for key in datas:
             if not os.path.exists(subDir):
                 os.makedirs(subDir)
 
+        now = datetime.now()
+        current_time = now.strftime("%H:%M:%S")
+        print(current_time, ": Key: ", key, ", feature eng: ", do_feature_eng)
         y: np.ndarray = data.pop('DEATH_EVENT').values
         X: np.ndarray = data.values
         labels = pd.unique(y)
@@ -51,11 +56,16 @@ for key in datas:
         for k in range(len(max_depths)):
             d = max_depths[k]
             values = {}
+            overfitting_values[d] = {}
+
+            now = datetime.now()
+            current_time = now.strftime("%H:%M:%S")
+            print(current_time, ": D: ", d)
             for lr in learning_rate:
+                now = datetime.now()
+                current_time = now.strftime("%H:%M:%S")
+                print(current_time, ": Lr: ", lr)
                 yvalues = []
-                overfitting_values[d] = {}
-                overfitting_values[d]['test'] = []
-                overfitting_values[d]['train'] = []
                 train_acc_values = []
                 test_acc_values = []
                 for n in n_estimators:
@@ -70,13 +80,12 @@ for key in datas:
                         gb.fit(trnX, trnY)
                         prdY = gb.predict(tstX)
                         prd_trainY = gb.predict(trnX)
-                        prdY = gb.predict(tstX)
 
                         iteration_accuracy = metrics.accuracy_score(tstY, prdY)
                         if iteration_accuracy > best_iteration_accuracy:
                             best_iteration_accuracy = iteration_accuracy
                             best_iteration_train_accuracy = metrics.accuracy_score(trnY, prd_trainY)
-                            model_sets = (trnX, trnY, tstX, tstY)
+                            model_sets = (trnX, trnY, tstX, tstY, prdY, prd_trainY)
                 
                     yvalues.append(best_iteration_accuracy)
                     train_acc_values.append(best_iteration_train_accuracy)
@@ -86,29 +95,35 @@ for key in datas:
                         best_model = tuple(model_sets)
                         last_best = yvalues[-1]
                         best_tree = gb
-                    values[lr] = yvalues
+                
+                values[lr] = yvalues
+                overfitting_values[d][lr] = {}
+                overfitting_values[d][lr]['train'] = train_acc_values
+                overfitting_values[d][lr]['test'] = test_acc_values
             ds.multiple_line_chart(n_estimators, values, ax=axs[0, k], title='Gradient Boorsting with max_depth=%d'%d,
                                 xlabel='nr estimators', ylabel='accuracy', percentage=True)
-        plt.figure()
+        
+        print('Best results with depth=%d, learning rate=%1.2f and %d estimators, with accuracy=%1.2f'%(best[0], best[1], best[2], last_best))
+        fig.text(0.5, 0.03, 'Best results with depth=%d, learning rate=%1.2f and %d estimators, with accuracy=%1.2f'%(best[0], best[1], best[2], last_best), fontsize=7, ha='center', va='center')
         plt.suptitle('HFCR Gradient Boosting - ' + key + ' - parameters')
         plt.savefig(subDir + 'HFCR Gradient Boosting - ' + key + ' - parameters')
-        print('Best results with depth=%d, learning rate=%1.2f and %d estimators, with accuracy=%1.2f'%(best[0], best[1], best[2], last_best))
 
         plt.figure()
-        fig, axs = plt.subplots(1, len(learning_rate), figsize=(32, 8), squeeze=False)
-        i = 0
-        for k in range(len(learning_rate)):
-            d = learning_rate[k]
-            ds.multiple_line_chart(n_estimators, overfitting_values[d], ax=axs[0, k], title='Overfitting for dist = %s'%(d), xlabel='Gradient Boosting', ylabel='accuracy', percentage=True)
+        fig, axs = plt.subplots(len(max_depths), len(learning_rate), figsize=(32, 8), squeeze=False)
+        for i in range(len(max_depths)):
+            d = max_depths[i]
+            for j in range(len(learning_rate)):
+                lr = learning_rate[j]
+                ds.multiple_line_chart(n_estimators, overfitting_values[d][lr], ax=axs[i, j], title='Overfitting for max_depth = %d, with learning rate = %1.2f'%(d, lr), xlabel='n_estimators', ylabel='accuracy', percentage=True)
+        
+        plt.subplots_adjust(hspace=0.5)
         plt.suptitle('HFCR Overfitting - Gradient Boosting')
         plt.savefig(subDir + 'HFCR Overfitting - Gradient Boosting')
         
-        trnX, trnY, tstX, tstY = best_model
-        prd_trn = best_tree.predict(trnX)
-        prd_tst = best_tree.predict(tstX)
-        ds.plot_evaluation_results(pd.unique(y), trnY, prd_trn, tstY, prd_tst)
+        trnX, trnY, tstX, tstY, prdY, prd_trainY = best_model
+        ds.plot_evaluation_results(pd.unique(y), trnY, prd_trainY, tstY, prdY)
         plt.suptitle('HFCR Gradient Boosting - ' + key + ' - Performance & Confusion matrix')
-        plt.savefig(graphsDir + 'HFCR Gradient Boosting - ' + key + ' - Performance & Confusion matrix')
+        plt.savefig(subDir + 'HFCR Gradient Boosting - ' + key + ' - Performance & Confusion matrix')
 
         plt.close("all")
 
