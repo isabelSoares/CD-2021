@@ -2,11 +2,14 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import ds_functions as ds
+import os
 from sklearn.model_selection import train_test_split
 
-graphsDir = './Results/'
+graphsDir = './Results/Training Strategies/'
+if not os.path.exists(graphsDir):
+    os.makedirs(graphsDir)
 
-data: pd.DataFrame = pd.read_csv('../../Dataset/qsar_oral_toxicity.csv', sep=';', header=None)
+data: pd.DataFrame = pd.read_csv('../Dataset/qsar_oral_toxicity.csv', sep=';', header=None)
 target = 1024
 positive = 'positive'
 negative = 'negative'

@@ -1,13 +1,14 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import ds_functions as ds
-from pandas.plotting import register_matplotlib_converters
 import os
+from pandas.plotting import register_matplotlib_converters
 
 register_matplotlib_converters()
-graphsDir = './Results/'
+graphsDir = './Results/Distribution/'
 if not os.path.exists(graphsDir):
     os.makedirs(graphsDir)
+
 print('------------------------')
 print('-                      -')
 print('-   QOT Distribution   -')
@@ -18,7 +19,7 @@ print()
 
 print('QOT Distribution - Numeric variables description')
 
-data = pd.read_csv('../../Dataset/qsar_oral_toxicity.csv', sep=';', header=None)
+data = pd.read_csv('../Dataset/qsar_oral_toxicity.csv', sep=';', header=None)
 
 print(data.describe())
 data.describe().to_csv(graphsDir + 'QOT Distribution - Numeric variables description.csv')
@@ -84,7 +85,7 @@ import numpy as np
 
 print('QOT Distribution - Histograms compared to known distributions')
 
-hist_known_dist_dir = './Results/QOT Distribution - Histograms compared to known distributions/'
+hist_known_dist_dir = './Results/Distribution/QOT Distribution - Histograms compared to known distributions/'
 if not os.path.exists(hist_known_dist_dir):
     os.makedirs(hist_known_dist_dir)
 

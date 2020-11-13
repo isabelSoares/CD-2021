@@ -1,0 +1,14 @@
+,0
+age,float64
+anaemia,int64
+creatinine_phosphokinase,int64
+diabetes,int64
+ejection_fraction,int64
+high_blood_pressure,int64
+platelets,float64
+serum_creatinine,float64
+serum_sodium,int64
+sex,int64
+smoking,int64
+time,int64
+DEATH_EVENT,int64

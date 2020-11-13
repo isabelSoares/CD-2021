@@ -7,7 +7,7 @@ from sklearn.preprocessing import StandardScaler, MinMaxScaler
 import ds_functions as ds
 import os
 
-graphsDir = './Results/'
+graphsDir = './Results/Scaling'
 if not os.path.exists(graphsDir):
     os.makedirs(graphsDir)
 
@@ -19,7 +19,7 @@ print('-                          -')
 print('----------------------------')
 
 register_matplotlib_converters()
-original = pd.read_csv('../../Dataset/heart_failure_clinical_records_dataset.csv')
+original = pd.read_csv('../Dataset/heart_failure_clinical_records_dataset.csv')
 
 original['DEATH_EVENT'] = original['DEATH_EVENT'].astype('category')
 sb_vars = original.select_dtypes(include='object')

@@ -1,13 +1,16 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import ds_functions as ds
+import os
 
 from pandas.plotting import register_matplotlib_converters
 
-graphsDir = './Results/'
+graphsDir = './Results/Dimensionality/'
+if not os.path.exists(graphsDir):
+    os.makedirs(graphsDir)
 
 register_matplotlib_converters()
-data = pd.read_csv('../../Dataset/heart_failure_clinical_records_dataset.csv')
+data = pd.read_csv('../Dataset/heart_failure_clinical_records_dataset.csv')
 print(data.shape)
 
 plt.figure(figsize=(4,2))

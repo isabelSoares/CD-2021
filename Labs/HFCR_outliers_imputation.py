@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import ds_functions as ds
 import os
 
-graphsDir = './Results/'
+graphsDir = './Results/Outliers/'
 if not os.path.exists(graphsDir):
     os.makedirs(graphsDir)
 
@@ -17,7 +17,7 @@ print('-----------------------------------')
 
 
 
-data: pd.DataFrame = pd.read_csv('../../Dataset/heart_failure_clinical_records_dataset.csv')
+data: pd.DataFrame = pd.read_csv('../Dataset/heart_failure_clinical_records_dataset.csv')
 
 print('HFCR Outliers Imputation - Description')
 print()

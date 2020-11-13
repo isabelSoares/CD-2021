@@ -1,10 +1,13 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import ds_functions as ds
+import os
 
-graphsDir = './Results/'
+graphsDir = './Results/Granularity/'
+if not os.path.exists(graphsDir):
+    os.makedirs(graphsDir)
 
-data = pd.read_csv('../../Dataset/heart_failure_clinical_records_dataset.csv')
+data = pd.read_csv('../Dataset/heart_failure_clinical_records_dataset.csv')
 values = {'nr records': data.shape[0], 'nr variables': data.shape[1]}
 print(values)
 

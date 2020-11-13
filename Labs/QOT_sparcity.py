@@ -6,16 +6,17 @@ import config as cfg
 import os
 
 register_matplotlib_converters()
-graphsDir = './Results/'
+graphsDir = './Results/Sparcity/'
 if not os.path.exists(graphsDir):
     os.makedirs(graphsDir)
+
 print('-------------------------')
 print('-                       -')
 print('-      QOT Sparcity     -')
 print('-                       -')
 print('-------------------------')
 
-data = pd.read_csv('../../Dataset/qsar_oral_toxicity.csv', sep=';', header=None)
+data = pd.read_csv('../Dataset/qsar_oral_toxicity.csv', sep=';', header=None)
 #All data
 sampleSize = data.shape[0];
 sample = data.sample(sampleSize)
@@ -40,6 +41,6 @@ for i in range(1):
 
 	plt.suptitle('QOT Sparcity %s\n%d samples'%(var1, sampleSize))
 	print("Saving Figure")
-	plt.savefig(graphsDir + 'QOT Sparcity/Var' + "%s"%(var1))
+	plt.savefig(graphsDir + 'QOT Sparcity - Var' + "%s"%(var1))
 	print("Closing figure")
 	plt.close(fig)

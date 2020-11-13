@@ -5,11 +5,11 @@ import os
 
 from imblearn.over_sampling import SMOTE
 
-graphsDir = './Results/'
+graphsDir = './Results/Balancing/'
 if not os.path.exists(graphsDir):
     os.makedirs(graphsDir)
 
-unbal: pd.DataFrame = pd.read_csv('../../Dataset/heart_failure_clinical_records_dataset.csv')
+unbal: pd.DataFrame = pd.read_csv('../Dataset/heart_failure_clinical_records_dataset.csv')
 target_count = unbal['DEATH_EVENT'].value_counts()
 plt.figure()
 plt.title('Class balance')

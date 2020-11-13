@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import ds_functions as ds
 import os
 
-graphsDir = './Results/'
+graphsDir = './Results/Outliers/'
 if not os.path.exists(graphsDir):
     os.makedirs(graphsDir)
 
@@ -17,7 +17,7 @@ print('-----------------------------------')
 
 
 
-data: pd.DataFrame = pd.read_csv('../../Dataset/qsar_oral_toxicity.csv', sep=';', header=None)
+data: pd.DataFrame = pd.read_csv('../Dataset/qsar_oral_toxicity.csv', sep=';', header=None)
 
 
 print('QOT Outliers Imputation - Description')

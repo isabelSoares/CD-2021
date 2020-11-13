@@ -2,11 +2,14 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import ds_functions as ds
+import os
 from sklearn.model_selection import StratifiedKFold
 
-graphsDir = './Results/'
-
-data: pd.DataFrame = pd.read_csv('../../Dataset/heart_failure_clinical_records_dataset.csv')
+graphsDir = './Results/Training Strategies/'
+if not os.path.exists(graphsDir):
+    os.makedirs(graphsDir)
+    
+data: pd.DataFrame = pd.read_csv('../Dataset/heart_failure_clinical_records_dataset.csv')
 target = 'DEATH_EVENT'
 positive = 1
 negative = 0

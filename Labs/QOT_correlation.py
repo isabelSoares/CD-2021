@@ -7,16 +7,18 @@ import seaborn as sns
 import numpy as np
 
 register_matplotlib_converters()
-graphsDir = './Results/'
+
+graphsDir = './Results/Correlation/'
 if not os.path.exists(graphsDir):
     os.makedirs(graphsDir)
+
 print('---------------------------')
 print('-                         -')
 print('-     QOT Correlation     -')
 print('-                         -')
 print('---------------------------')
 
-data = pd.read_csv('../../Dataset/qsar_oral_toxicity.csv', sep=';', header=None)
+data = pd.read_csv('../Dataset/qsar_oral_toxicity.csv', sep=';', header=None)
 
 print('QOT Correlation analysis')
 corr_mtx = data.corr()

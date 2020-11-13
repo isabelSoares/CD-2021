@@ -6,16 +6,18 @@ import os
 import seaborn as sns
 
 register_matplotlib_converters()
-graphsDir = './Results/'
+
+graphsDir = './Results/Correlation/'
 if not os.path.exists(graphsDir):
     os.makedirs(graphsDir)
+
 print('----------------------------')
 print('-                          -')
 print('-     HFCR Correlation     -')
 print('-                          -')
 print('----------------------------')
 
-data = pd.read_csv('../../Dataset/heart_failure_clinical_records_dataset.csv')
+data = pd.read_csv('../Dataset/heart_failure_clinical_records_dataset.csv')
 
 print('HFCR Correlation analysis')
 corr_mtx = data.corr()

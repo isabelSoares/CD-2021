@@ -5,16 +5,17 @@ import config as cfg
 import os
 
 register_matplotlib_converters()
-graphsDir = './Results/'
+graphsDir = './Results/Sparcity/'
 if not os.path.exists(graphsDir):
     os.makedirs(graphsDir)
+
 print('-------------------------')
 print('-                       -')
 print('-     HFCR Sparcity     -')
 print('-                       -')
 print('-------------------------')
 
-data = pd.read_csv('../../Dataset/heart_failure_clinical_records_dataset.csv')
+data = pd.read_csv('../Dataset/heart_failure_clinical_records_dataset.csv')
 
 print('HFCR Sparcity')
 columns = data.select_dtypes(include='number').columns
