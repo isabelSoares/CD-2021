@@ -7,7 +7,7 @@ from sklearn.preprocessing import StandardScaler, MinMaxScaler
 import ds_functions as ds
 import os
 
-graphsDir = './Results/Scaling'
+graphsDir = './Results/Scaling/'
 if not os.path.exists(graphsDir):
     os.makedirs(graphsDir)
 
