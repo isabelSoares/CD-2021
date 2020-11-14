@@ -8,7 +8,7 @@ import data_preparation_functions as prepfunctions
 from sklearn.naive_bayes import GaussianNB, MultinomialNB, BernoulliNB
 from sklearn.model_selection import StratifiedKFold
 
-graphsDir = './Results/'
+graphsDir = './Results/Naive Bayes/'
 if not os.path.exists(graphsDir):
     os.makedirs(graphsDir)
 
@@ -18,9 +18,9 @@ print('-     HFCR Naive Bayes - Treated     -')
 print('-                                    -')
 print('--------------------------------------')
 
-data: pd.DataFrame = pd.read_csv('../../Dataset/heart_failure_clinical_records_dataset.csv')
+data: pd.DataFrame = pd.read_csv('../Dataset/heart_failure_clinical_records_dataset.csv')
 datas = prepfunctions.prepare_dataset(data, 'DEATH_EVENT', False, True)
-featured_datas = prepfunctions.mask_feature_selection(datas, 'DEATH_EVENT', False, './Results/HFCR Feature Selection - Features')
+featured_datas = prepfunctions.mask_feature_selection(datas, 'DEATH_EVENT', False, './Results/FeatureSelection/HFCR Feature Selection - Features')
 
 for key in datas:
     for do_feature_eng in [False, True]:

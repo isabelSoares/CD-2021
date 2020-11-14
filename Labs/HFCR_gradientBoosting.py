@@ -10,13 +10,13 @@ from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.model_selection import StratifiedKFold
 from datetime import datetime
 
-graphsDir = './Results/'
+graphsDir = './Results/GradientBoosting/'
 if not os.path.exists(graphsDir):
     os.makedirs(graphsDir)
 
-data: pd.DataFrame = pd.read_csv('../../Dataset/heart_failure_clinical_records_dataset.csv')
+data: pd.DataFrame = pd.read_csv('../Dataset/heart_failure_clinical_records_dataset.csv')
 datas = prepfunctions.prepare_dataset(data, 'DEATH_EVENT', True, True)
-featured_datas = prepfunctions.mask_feature_selection(datas, 'DEATH_EVENT', False, './Results/HFCR Feature Selection - Features')
+featured_datas = prepfunctions.mask_feature_selection(datas, 'DEATH_EVENT', False, './Results/FeatureSelection/HFCR Feature Selection - Features')
 
 for key in datas:
     for do_feature_eng in [False, True]:

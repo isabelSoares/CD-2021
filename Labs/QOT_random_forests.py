@@ -7,7 +7,7 @@ from sklearn.ensemble import RandomForestClassifier
 import ds_functions as ds
 import os
 
-graphsDir = './Results/'
+graphsDir = './Results/Random Forests/'
 if not os.path.exists(graphsDir):
     os.makedirs(graphsDir)
 
@@ -20,7 +20,7 @@ print('------------------------------')
 
 
 
-data: pd.DataFrame = pd.read_csv('../../Dataset/qsar_oral_toxicity.csv', sep=';', header=None)
+data: pd.DataFrame = pd.read_csv('../Dataset/qsar_oral_toxicity.csv', sep=';', header=None)
 
 print('QOT Random Forests - Parameters Combinations')
 y: np.ndarray = data.pop(1024).values

@@ -12,13 +12,13 @@ from sklearn.svm import SVC
 from sklearn.model_selection import StratifiedKFold
 from sklearn.feature_selection import RFECV
 
-graphsDir = './Results/'
+graphsDir = './Results/FeatureSelection/'
 if not os.path.exists(graphsDir):
     os.makedirs(graphsDir)
 
 features_file = open(graphsDir + 'QOT Feature Selection - Features', 'w')
 
-data: pd.DataFrame = pd.read_csv('../../Dataset/qsar_oral_toxicity.csv', sep=';', header=None)
+data: pd.DataFrame = pd.read_csv('../Dataset/qsar_oral_toxicity.csv', sep=';', header=None)
 datas = prepfunctions.prepare_dataset(data, 1024, False, False)
 for key, value in datas.items():
     print("Key: ", key)

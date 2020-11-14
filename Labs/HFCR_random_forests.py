@@ -7,7 +7,7 @@ from sklearn.ensemble import RandomForestClassifier
 import ds_functions as ds
 import os
 
-graphsDir = './Results/'
+graphsDir = './Results/Random Forests/'
 if not os.path.exists(graphsDir):
     os.makedirs(graphsDir)
 
@@ -20,7 +20,7 @@ print('-------------------------------')
 
 
 
-data: pd.DataFrame = pd.read_csv('../../Dataset/heart_failure_clinical_records_dataset.csv')
+data: pd.DataFrame = pd.read_csv('../Dataset/heart_failure_clinical_records_dataset.csv')
 
 print('HFCR Random Forests - Parameters Combinations')
 y: np.ndarray = data.pop('DEATH_EVENT').values

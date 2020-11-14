@@ -12,13 +12,13 @@ from sklearn.svm import SVC
 from sklearn.model_selection import StratifiedKFold
 from sklearn.feature_selection import RFECV
 
-graphsDir = './Results/'
+graphsDir = './Results/FeatureSelection/'
 if not os.path.exists(graphsDir):
     os.makedirs(graphsDir)
 
 features_file = open(graphsDir + 'HFCR Feature Selection - Features', 'w')
 
-data: pd.DataFrame = pd.read_csv('../../Dataset/heart_failure_clinical_records_dataset.csv')
+data: pd.DataFrame = pd.read_csv('../Dataset/heart_failure_clinical_records_dataset.csv')
 datas = prepfunctions.prepare_dataset(data, 'DEATH_EVENT', False, False)
 for key, value in datas.items():
     print("Key: ", key)

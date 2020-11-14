@@ -9,7 +9,7 @@ import data_preparation_functions as prepfunctions
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 
-graphsDir = './Results/'
+graphsDir = './Results/Log Regression/'
 if not os.path.exists(graphsDir):
     os.makedirs(graphsDir)
 
@@ -20,9 +20,9 @@ print('-                                    -')
 print('--------------------------------------')
 
 RANDOM_STATE = 42
-data: pd.DataFrame = pd.read_csv('../../Dataset/qsar_oral_toxicity.csv', sep=';', header=None)
+data: pd.DataFrame = pd.read_csv('../Dataset/qsar_oral_toxicity.csv', sep=';', header=None)
 datas = prepfunctions.prepare_dataset(data, 1024, False, False)
-featured_datas = prepfunctions.mask_feature_selection(datas, 1024, True, './Results/QOT Feature Selection - Features')
+featured_datas = prepfunctions.mask_feature_selection(datas, 1024, True, './Results/FeatureSelection/QOT Feature Selection - Features')
 
 for key in datas:
     for do_feature_eng in [False, True]:
