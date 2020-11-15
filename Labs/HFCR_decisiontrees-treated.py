@@ -18,6 +18,7 @@ if not os.path.exists(graphsDir):
 data: pd.DataFrame = pd.read_csv('../Dataset/heart_failure_clinical_records_dataset.csv')
 datas = prepfunctions.prepare_dataset(data, 'DEATH_EVENT', True, True)
 featured_datas = prepfunctions.mask_feature_selection(datas, 'DEATH_EVENT', False, './Results/FeatureSelection/HFCR Feature Selection - Features')
+best_accuracies = {}
 
 for key in datas:
     for do_feature_eng in [False, True]:
@@ -46,6 +47,7 @@ for key in datas:
         best = ('',  0, 0.0)
         best_model = ()
         last_best = 0
+        last_best_train = 0
         best_tree = None
         overfit_values = {}
 
@@ -84,6 +86,7 @@ for key in datas:
                         best = (f, d, imp)
                         best_model = tuple(model_sets)
                         last_best = yvalues[-1]
+                        last_best_train = train_acc_values[-1]
                         best_tree = tree
 
                 values[d] = yvalues
@@ -93,6 +96,10 @@ for key in datas:
             ds.multiple_line_chart(min_impurity_decrease, values, ax=axs[0, k], title='Decision Trees with %s criteria'%f,
                                 xlabel='min_impurity_decrease', ylabel='accuracy', percentage=True)
 
+        text = key
+        if (do_feature_eng): text += ' with FS'
+        best_accuracies[text] = [last_best_train, last_best]
+        
         print('Best results achieved with %s criteria, depth=%d and min_impurity_decrease=%1.5f ==> accuracy=%1.5f'%(best[0], best[1], best[2], last_best))
         fig.text(0.5, 0.03, 'Best results with %s criteria, depth=%d and min_impurity_decrease=%1.5f ==> accuracy=%1.5f'%(best[0], best[1], best[2], last_best), fontsize=7, ha='center', va='center')
         plt.suptitle('HFCR Decision Trees - ' + key + ' - parameters')
@@ -123,3 +130,8 @@ for key in datas:
         plt.savefig(subDir + 'HFCR Decision Trees - ' + key + ' - Performance & Confusion matrix')
 
         plt.close("all")
+
+plt.figure(figsize=(7,7))
+ds.multiple_bar_chart(['Train', 'Test'], best_accuracies, ylabel='Accuracy')
+plt.suptitle('HFCR Sampling & Feature Selection')
+plt.savefig(graphsDir + 'HFCR Sampling & Feature Selection')

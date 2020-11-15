@@ -19,6 +19,7 @@ if not os.path.exists(graphsDir):
 data: pd.DataFrame = pd.read_csv('../Dataset/heart_failure_clinical_records_dataset.csv')
 datas = prepfunctions.prepare_dataset(data, 'DEATH_EVENT', True, True)
 featured_datas = prepfunctions.mask_feature_selection(datas, 'DEATH_EVENT', False, './Results/FeatureSelection/HFCR Feature Selection - Features')
+best_accuracies = {}
 
 for key in datas:
     for do_feature_eng in [False, True]:
@@ -46,6 +47,7 @@ for key in datas:
         values = {}
         best = (0, '')
         last_best = 0
+        last_train_best = 0
 
         overfitting_values = {}
         for d in dist:
@@ -78,10 +80,14 @@ for key in datas:
                 if yvalues[-1] > last_best:
                     best = (n, d)
                     last_best = yvalues[-1]
+                    last_train_best = best_iteration_train_accuracy
                     best_model = tuple(model_sets)             
             values[d] = yvalues
 
-            
+        text = key
+        if (do_feature_eng): text += ' with FS'
+        best_accuracies[text] = [last_train_best, last_best]
+
         plt.figure()
         ds.multiple_line_chart(nvalues, values, title='KNN variants', xlabel='n', ylabel='accuracy', percentage=True)
         plt.suptitle('HFCR KNN - ' + key + ' - parameters')
@@ -108,3 +114,7 @@ for key in datas:
 
         plt.close("all")
 
+plt.figure(figsize=(7,7))
+ds.multiple_bar_chart(['Train', 'Test'], best_accuracies, ylabel='Accuracy')
+plt.suptitle('HFCR Sampling & Feature Selection')
+plt.savefig(graphsDir + 'HFCR Sampling & Feature Selection')

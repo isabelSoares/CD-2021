@@ -8,6 +8,7 @@ import data_preparation_functions as prepfunctions
 import ds_functions as ds
 import os
 from subprocess import call
+from datetime import datetime
 
 graphsDir = './Results/KNN/'
 if not os.path.exists(graphsDir):
@@ -16,6 +17,7 @@ if not os.path.exists(graphsDir):
 data: pd.DataFrame = pd.read_csv('../Dataset/qsar_oral_toxicity.csv', sep=';', header=None)
 datas = prepfunctions.prepare_dataset(data, 1024, False, False)
 featured_datas = prepfunctions.mask_feature_selection(datas, 1024, True, './Results/FeatureSelection/QOT Feature Selection - Features')
+best_accuracies = {}
 
 for key in datas:
     for do_feature_eng in [False, True]:
@@ -33,6 +35,9 @@ for key in datas:
         y: np.ndarray = data.pop(1024).values 
         X: np.ndarray = data.values
         labels = pd.unique(y)
+        now = datetime.now()
+        current_time = now.strftime("%H:%M:%S")
+        print(current_time, " : ", key)
 
         trnX, tstX, trnY, tstY = train_test_split(X, y, train_size=0.7, stratify=y)
 
@@ -41,15 +46,22 @@ for key in datas:
         values = {}
         best = (0, '')
         last_best = 0
+        last_train_best = 0
 
         overfitting_values = {}
         for d in dist:
+            now = datetime.now()
+            current_time = now.strftime("%H:%M:%S")
+            print(current_time, " : ", d)
             yvalues = []
             overfitting_values[d] = {}
             overfitting_values[d]['test'] = []
             overfitting_values[d]['train'] = []
             for n in nvalues:
-                knn = KNeighborsClassifier(n_neighbors=n, metric=d)
+                now = datetime.now()
+                current_time = now.strftime("%H:%M:%S")
+                print(current_time, " : ", n)
+                knn = KNeighborsClassifier(n_neighbors=n, metric=d, n_jobs=-1)
                 knn.fit(trnX, trnY)
                 prdY = knn.predict(tstX)
                 prdTrainY = knn.predict(trnX)
@@ -62,7 +74,12 @@ for key in datas:
                 if yvalues[-1] > last_best:
                     best = (n, d)
                     last_best = yvalues[-1]
+                    last_train_best = train_accuracy
             values[d] = yvalues
+
+        text = key
+        if (do_feature_eng): text += ' with FS'
+        best_accuracies[text] = [last_train_best, last_best]
 
         plt.figure()
         ds.multiple_line_chart(nvalues, values, title='KNN variants', xlabel='n', ylabel='accuracy', percentage=True)
@@ -87,9 +104,9 @@ for key in datas:
         plt.suptitle('QOT KNN - ' + key + '- Performance & Confusion matrix - %d neighbors and %s'%(best[0], best[1]))
         plt.savefig(subDir + 'QOT KNN - ' + key + ' - Performance & Confusion matrix')
 
-
         plt.close("all")
 
-
-
-
+plt.figure(figsize=(7,7))
+ds.multiple_bar_chart(['Train', 'Test'], best_accuracies, ylabel='Accuracy')
+plt.suptitle('QOT Sampling & Feature Selection')
+plt.savefig(graphsDir + 'QOT Sampling & Feature Selection')

@@ -6,8 +6,8 @@ from cycler import cycler
 plt.style.use('dslabs.mplstyle')
 
 my_palette = {'yellow': '#ECD474', 'pale orange': '#E9AE4E', 'salmon': '#E2A36B', 'orange': '#F79522', 'dark orange': '#D7725E',
-              'pale acqua': '#92C4AF', 'acqua': '#64B29E', 'marine': '#3D9EA9', 'green': '#10A48A', 'olive': '#99C244',
-              'pale blue': '#BDDDE0', 'blue2': '#199ED5', 'blue3': '#1DAFE5', 'dark blue': '#0C70B2',
+              'pale acqua': '#92C4AF', 'acqua': '#64B29E', 'marine': '#3D9EA9', 'green': '#45BF7E', 'pale green': '#A2F0AC', 'olive': '#99C244',
+              'pale blue': '#BDDDE0', 'blue2': '#199ED5', 'blue3': '#1DAFE5', 'dark blue': '#0C70A2',
               'pale pink': '#D077AC', 'pink': '#EA4799', 'lavender': '#E09FD5', 'lilac': '#B081B9', 'purple': '#923E97',
               'white': '#FFFFFF', 'light grey': '#D2D3D4', 'grey': '#939598', 'black': '#000000'}
 
@@ -22,8 +22,10 @@ cmap_blues = clrs.LinearSegmentedColormap.from_list("myCMPBlues", blues)
 LINE_COLOR = my_palette['dark blue']
 FILL_COLOR = my_palette['pale blue']
 DOT_COLOR = my_palette['blue3']
-ACTIVE_COLORS = [my_palette['pale blue'], my_palette['yellow'], my_palette['pale orange'],
-                 my_palette['acqua'], my_palette['pale pink'], my_palette['lavender']]
+ACTIVE_COLORS = [my_palette['pale blue'], my_palette['dark blue'],
+                 my_palette['yellow'], my_palette['pale orange'],
+                 my_palette['lavender'], my_palette['pale pink'],
+                 my_palette['pale green'], my_palette['green']]
 
 alpha = 0.3
 plt.rcParams['axes.prop_cycle'] = cycler('color', ACTIVE_COLORS)

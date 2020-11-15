@@ -21,6 +21,7 @@ print('--------------------------------------')
 data: pd.DataFrame = pd.read_csv('../Dataset/heart_failure_clinical_records_dataset.csv')
 datas = prepfunctions.prepare_dataset(data, 'DEATH_EVENT', False, True)
 featured_datas = prepfunctions.mask_feature_selection(datas, 'DEATH_EVENT', False, './Results/FeatureSelection/HFCR Feature Selection - Features')
+best_accuracies = {}
 
 for key in datas:
     for do_feature_eng in [False, True]:
@@ -60,8 +61,13 @@ for key in datas:
             iteration_accuracy = metrics.accuracy_score(tstY, prd_tst)
 
             if iteration_accuracy > best_iteration_accuracy:
+                best_train_accuracy = metrics.accuracy_score(trnY, prd_trn)
                 best_iteration_accuracy = iteration_accuracy
                 model_sets = (trnY, prd_trn, tstY, prd_tst)
+
+        text = key
+        if (do_feature_eng): text += ' with FS'
+        best_accuracies[text] = [best_train_accuracy, best_iteration_accuracy]
 
         ds.plot_evaluation_results(pd.unique(y), model_sets[0], model_sets[1], model_sets[2], model_sets[3])
         plt.suptitle('HFCR Naive Bayes - ' + key + ' - Performance & Confusion matrix')
@@ -104,3 +110,7 @@ for key in datas:
 
         plt.close("all")
 
+plt.figure(figsize=(7,7))
+ds.multiple_bar_chart(['Train', 'Test'], best_accuracies, ylabel='Accuracy')
+plt.suptitle('HFCR Sampling & Feature Selection')
+plt.savefig(graphsDir + 'HFCR Sampling & Feature Selection')

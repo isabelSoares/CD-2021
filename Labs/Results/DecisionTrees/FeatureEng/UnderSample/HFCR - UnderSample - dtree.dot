@@ -1,0 +1,13 @@
+digraph Tree {
+node [shape=box, style="filled, rounded", color="black", fontname=helvetica] ;
+edge [fontname=helvetica] ;
+0 [label=<time &le; -0.733<br/>entropy = 1.0<br/>samples = 154<br/>value = [77, 77]<br/>class = 0>, fillcolor="#ffffff"] ;
+1 [label=<entropy = 0.133<br/>samples = 54<br/>value = [1, 53]<br/>class = 1>, fillcolor="#3d9fe5"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label=<serum_creatinine &le; 0.513<br/>entropy = 0.795<br/>samples = 100<br/>value = [76, 24]<br/>class = 0>, fillcolor="#eda978"] ;
+0 -> 2 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+3 [label=<entropy = 0.569<br/>samples = 82<br/>value = [71, 11]<br/>class = 0>, fillcolor="#e99558"] ;
+2 -> 3 ;
+4 [label=<entropy = 0.852<br/>samples = 18<br/>value = [5, 13]<br/>class = 1>, fillcolor="#85c3ef"] ;
+2 -> 4 ;
+}

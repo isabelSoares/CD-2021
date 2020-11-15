@@ -21,6 +21,7 @@ print('--------------------------------------')
 data: pd.DataFrame = pd.read_csv('../Dataset/qsar_oral_toxicity.csv', sep=';', header=None)
 datas = prepfunctions.prepare_dataset(data, 1024, False, False)
 featured_datas = prepfunctions.mask_feature_selection(datas, 1024, True, './Results/FeatureSelection/QOT Feature Selection - Features')
+best_accuracies = {}
 
 for key in datas:
     for do_feature_eng in [False, True]:
@@ -46,10 +47,15 @@ for key in datas:
         clf.fit(trnX, trnY)
         prd_trn = clf.predict(trnX)
         prd_tst = clf.predict(tstX)
+        train_accuracy = metrics.accuracy_score(trnY, prd_trn)
+        test_accuracy = metrics.accuracy_score(tstY, prd_tst)
         ds.plot_evaluation_results(pd.unique(y), trnY, prd_trn, tstY, prd_tst)
         plt.suptitle('QOT Naive Bayes - ' + key + ' - Performance & Confusion matrix')
         plt.savefig(subDir + 'QOT Naive Bayes - ' + key + ' - Performance & Confusion matrix')
 
+        text = key
+        if (do_feature_eng): text += ' with FS'
+        best_accuracies[text] = [train_accuracy, test_accuracy]
 
         print('QOT Naive Bayes - Comparison of Naive Bayes Models')
         estimators = {'GaussianNB': GaussianNB(),
@@ -72,3 +78,7 @@ for key in datas:
 
         plt.close("all")
 
+plt.figure(figsize=(7,7))
+ds.multiple_bar_chart(['Train', 'Test'], best_accuracies, ylabel='Accuracy')
+plt.suptitle('QOT Sampling & Feature Selection')
+plt.savefig(graphsDir + 'QOT Sampling & Feature Selection')
