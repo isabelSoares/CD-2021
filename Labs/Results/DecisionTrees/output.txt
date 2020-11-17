@@ -1,0 +1,12 @@
+Original :  (299, 13)  ->  (299, 12)
+UnderSample :  (192, 13)  ->  (192, 12)
+OverSample :  (406, 13)  ->  (406, 12)
+SMOTE :  (406, 13)  ->  (406, 11)
+Best results achieved with entropy criteria, depth=2 and min_impurity_decrease=0.02500 ==> accuracy=0.84249
+Best results achieved with gini criteria, depth=2 and min_impurity_decrease=0.00250 ==> accuracy=0.84266
+Best results achieved with gini criteria, depth=25 and min_impurity_decrease=0.01000 ==> accuracy=0.83360
+Best results achieved with gini criteria, depth=15 and min_impurity_decrease=0.00500 ==> accuracy=0.84885
+Best results achieved with entropy criteria, depth=25 and min_impurity_decrease=0.00005 ==> accuracy=0.92123
+Best results achieved with entropy criteria, depth=30 and min_impurity_decrease=0.00100 ==> accuracy=0.91391
+Best results achieved with gini criteria, depth=30 and min_impurity_decrease=0.00025 ==> accuracy=0.85718
+Best results achieved with gini criteria, depth=20 and min_impurity_decrease=0.00500 ==> accuracy=0.85462

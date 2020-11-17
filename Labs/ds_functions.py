@@ -141,6 +141,33 @@ def plot_evaluation_results(labels: np.ndarray, trn_y, prd_trn, tst_y, prd_tst):
     multiple_bar_chart(['Train', 'Test'], evaluation, ax=axs[0], title="Model's performance over Train and Test sets")
     plot_confusion_matrix(cnf_mtx_tst, labels, ax=axs[1])
 
+def plot_evaluation_results_kfold(labels: np.ndarray, trn_y_lst, prd_trn_lst, tst_y_lst, prd_tst_lst):
+    n_folds = len(trn_y_lst)
+    k_evaluation = np.array([[0.0,0.0], [0.0,0.0], [0.0,0.0], [0.0,0.0]])
+    k_confusion_matrix = np.array([[0,0], [0,0]])
+    for ki in range(n_folds):
+        cnf_mtx_trn = metrics.confusion_matrix(trn_y_lst[ki], prd_trn_lst[ki], labels)
+        tn_trn, fp_trn, fn_trn, tp_trn = cnf_mtx_trn.ravel()
+        cnf_mtx_tst = metrics.confusion_matrix(tst_y_lst[ki], prd_tst_lst[ki], labels)
+        tn_tst, fp_tst, fn_tst, tp_tst = cnf_mtx_tst.ravel()
+
+        k_evaluation += np.array([[(tn_trn + tp_trn) / (tn_trn + tp_trn + fp_trn + fn_trn),(tn_tst + tp_tst) / (tn_tst + tp_tst + fp_tst + fn_tst)],
+                                [tp_trn / (tp_trn + fn_trn), tp_tst / (tp_tst + fn_tst)],
+                                [tn_trn / (tn_trn + fp_trn), tn_tst / (tn_tst + fp_tst)],
+                                [tp_trn / (tp_trn + fp_trn), tp_tst / (tp_tst + fp_tst)]])
+
+        k_confusion_matrix += np.array([[tn_tst, fp_tst], [fn_tst, tp_tst]])
+
+    evaluation = {'Accuracy': list(k_evaluation[0]/n_folds),
+                  'Recall': list(k_evaluation[1]/n_folds),
+                  'Specificity': list(k_evaluation[2]/n_folds),
+                  'Precision': list(k_evaluation[3]/n_folds)}
+
+    confusion_matrix = k_confusion_matrix/n_folds
+
+    fig, axs = plt.subplots(1, 2, figsize=(2 * HEIGHT, HEIGHT))
+    multiple_bar_chart(['Train', 'Test'], evaluation, ax=axs[0], title="Model's performance over Train and Test sets")
+    plot_confusion_matrix(np.round(confusion_matrix).astype(int), labels, ax=axs[1])
 
 def plot_roc_chart(models: dict, tstX: np.ndarray, tstY: np.ndarray, ax: plt.Axes = None, target: str = 'class'):
     if ax is None:
