@@ -37,9 +37,27 @@ for key in datas:
         y: np.ndarray = data.pop('DEATH_EVENT').values
         X: np.ndarray = data.values
         labels = pd.unique(y)
-        
+
         n_splits = 5
         skf = StratifiedKFold(n_splits=n_splits, shuffle=True)
+
+        trn_x_lst = []
+        trn_y_lst = []
+        tst_x_lst = []
+        tst_y_lst = []
+        for train_i, test_i in skf.split(X, y):
+            # Train
+            trn_X = X[train_i]
+            trn_y = y[train_i]
+
+            # Test
+            tst_X = X[test_i]
+            tst_y = y[test_i]
+
+            trn_x_lst.append(trn_X)
+            trn_y_lst.append(trn_y)
+            tst_x_lst.append(tst_X)
+            tst_y_lst.append(tst_y)
 
         nvalues = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
         dist = ['manhattan', 'euclidean', 'chebyshev']
@@ -56,21 +74,11 @@ for key in datas:
             overfitting_values[d]['test'] = []
             overfitting_values[d]['train'] = []
             for n in nvalues:
-                trn_y_lst = []
                 prd_trn_lst = []
-                tst_y_lst = []
                 prd_tst_lst = []
                 test_accuracy = 0
                 train_accuracy = 0
-                for train_i, test_i in skf.split(X, y):
-                    # Train
-                    trn_X = X[train_i]
-                    trn_y = y[train_i]
-
-                    # Test
-                    tst_X = X[test_i]
-                    tst_y = y[test_i]
-
+                for trn_X, trn_y, tst_X, tst_y in zip(trn_x_lst, trn_y_lst, tst_x_lst, tst_y_lst):
                     knn = KNeighborsClassifier(n_neighbors=n, metric=d)
                     knn.fit(trn_X, trn_y)
                     prd_trn = knn.predict(trn_X)
@@ -79,9 +87,7 @@ for key in datas:
                     train_accuracy += metrics.accuracy_score(trn_y, prd_trn)
                     test_accuracy += metrics.accuracy_score(tst_y, prd_tst)
 
-                    trn_y_lst.append(trn_y)
                     prd_trn_lst.append(prd_trn)
-                    tst_y_lst.append(tst_y)
                     prd_tst_lst.append(prd_tst)
 
                 test_accuracy /= n_splits
@@ -94,7 +100,7 @@ for key in datas:
                     best = (n, d)
                     last_best = yvalues[-1]
                     last_train_best = train_accuracy
-                    best_model = (trn_y_lst, prd_trn_lst, tst_y_lst, prd_tst_lst)
+                    best_model = (prd_trn_lst, prd_tst_lst)
             values[d] = yvalues
 
         text = key
@@ -116,10 +122,8 @@ for key in datas:
         plt.suptitle('HFCR Overfitting - KNN')
         plt.savefig(subDir + 'HFCR Overfitting - KNN')
 
-        trn_y_lst = best_model[0]
-        prd_trn_lst = best_model[1]
-        tst_y_lst = best_model[2]
-        prd_tst_lst = best_model[3]
+        prd_trn_lst = best_model[0]
+        prd_tst_lst = best_model[1]
         
         ds.plot_evaluation_results_kfold(pd.unique(y), trn_y_lst, prd_trn_lst, tst_y_lst, prd_tst_lst)
         plt.suptitle('HFCR KNN - ' + key + ' - Performance & Confusion matrix - %d neighbors and %s'%(best[0], best[1]))

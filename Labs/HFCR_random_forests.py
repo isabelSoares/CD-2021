@@ -47,6 +47,24 @@ for key in datas:
         n_splits = 5
         skf = StratifiedKFold(n_splits=n_splits, shuffle=True)
 
+        trn_x_lst = []
+        trn_y_lst = []
+        tst_x_lst = []
+        tst_y_lst = []
+        for train_i, test_i in skf.split(X, y):
+            # Train
+            trn_X = X[train_i]
+            trn_y = y[train_i]
+
+            # Test
+            tst_X = X[test_i]
+            tst_y = y[test_i]
+
+            trn_x_lst.append(trn_X)
+            trn_y_lst.append(trn_y)
+            tst_x_lst.append(tst_X)
+            tst_y_lst.append(tst_y)
+
         n_estimators = [5, 10, 25, 50, 75, 100, 150, 200, 250, 300]
         max_depths = [5, 10, 25]
         max_features = [.1, .3, .5, .7, .9, 1]
@@ -69,21 +87,11 @@ for key in datas:
                 train_acc_values = []
                 test_acc_values = []
                 for n in n_estimators:
-                    trn_y_lst = []
                     prd_trn_lst = []
-                    tst_y_lst = []
                     prd_tst_lst = []
                     test_accuracy = 0
                     train_accuracy = 0
-                    for train_i, test_i in skf.split(X, y):
-                        # Train
-                        trn_X = X[train_i]
-                        trn_y = y[train_i]
-
-                        # Test
-                        tst_X = X[test_i]
-                        tst_y = y[test_i]
-
+                    for trn_X, trn_y, tst_X, tst_y in zip(trn_x_lst, trn_y_lst, tst_x_lst, tst_y_lst):
                         rf = RandomForestClassifier(n_estimators=n, max_depth=d, max_features=f)
                         rf.fit(trn_X, trn_y)
                         prd_trn = rf.predict(trn_X)
@@ -92,9 +100,7 @@ for key in datas:
                         train_accuracy += metrics.accuracy_score(trn_y, prd_trn)
                         test_accuracy += metrics.accuracy_score(tst_y, prd_tst)
 
-                        trn_y_lst.append(trn_y)
                         prd_trn_lst.append(prd_trn)
-                        tst_y_lst.append(tst_y)
                         prd_tst_lst.append(prd_tst)
 
                     test_accuracy /= n_splits
@@ -108,7 +114,7 @@ for key in datas:
                         last_best = yvalues[-1]
                         last_best_train = train_acc_values[-1]
                         best_tree = rf
-                        best_model = (trn_y_lst, prd_trn_lst, tst_y_lst, prd_tst_lst)
+                        best_model = (prd_trn_lst, prd_tst_lst)
 
                 values[f] = yvalues
                 overfit_values[d][f]= {}
@@ -138,10 +144,8 @@ for key in datas:
         plt.savefig(subDir + 'HFCR Overfitting - Random Forests')
 
         print('HFCR Random Forests - Performance & Confusion Matrix')
-        trn_y_lst = best_model[0]
-        prd_trn_lst = best_model[1]
-        tst_y_lst = best_model[2]
-        prd_tst_lst = best_model[3]
+        prd_trn_lst = best_model[0]
+        prd_tst_lst = best_model[1]
 
         ds.plot_evaluation_results_kfold(pd.unique(y), trn_y_lst, prd_trn_lst, tst_y_lst, prd_tst_lst)
         plt.suptitle('HFCR Random Forests - ' + key + '- Performance & Confusion Matrix')

@@ -2,11 +2,11 @@ Original :  (299, 13)  ->  (299, 12)
 UnderSample :  (192, 13)  ->  (192, 12)
 OverSample :  (406, 13)  ->  (406, 12)
 SMOTE :  (406, 13)  ->  (406, 11)
-Best results with 5 neighbors and euclidean
-Best results with 15 neighbors and euclidean
-Best results with 19 neighbors and euclidean
-Best results with 17 neighbors and manhattan
-Best results with 1 neighbors and euclidean
-Best results with 1 neighbors and euclidean
+Best results with 11 neighbors and chebyshev
+Best results with 15 neighbors and manhattan
+Best results with 15 neighbors and manhattan
+Best results with 13 neighbors and euclidean
+Best results with 1 neighbors and manhattan
+Best results with 1 neighbors and manhattan
 Best results with 1 neighbors and euclidean
 Best results with 15 neighbors and manhattan

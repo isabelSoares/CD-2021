@@ -44,13 +44,10 @@ for key in datas:
         n_splits = 5
         skf = StratifiedKFold(n_splits=n_splits, shuffle=True)
 
-        clf = GaussianNB()
+        trn_x_lst = []
         trn_y_lst = []
-        prd_trn_lst = []
+        tst_x_lst = []
         tst_y_lst = []
-        prd_tst_lst = []
-        test_accuracy = 0
-        train_accuracy = 0
         for train_i, test_i in skf.split(X, y):
             # Train
             trn_X = X[train_i]
@@ -60,6 +57,17 @@ for key in datas:
             tst_X = X[test_i]
             tst_y = y[test_i]
 
+            trn_x_lst.append(trn_X)
+            trn_y_lst.append(trn_y)
+            tst_x_lst.append(tst_X)
+            tst_y_lst.append(tst_y)
+
+        clf = GaussianNB()
+        prd_trn_lst = []
+        prd_tst_lst = []
+        test_accuracy = 0
+        train_accuracy = 0
+        for trn_X, trn_y, tst_X, tst_y in zip(trn_x_lst, trn_y_lst, tst_x_lst, tst_y_lst):
             clf.fit(trn_X, trn_y)
             prd_trn = clf.predict(trn_X)
             prd_tst = clf.predict(tst_X)
@@ -67,9 +75,7 @@ for key in datas:
             train_accuracy += metrics.accuracy_score(trn_y, prd_trn)
             test_accuracy += metrics.accuracy_score(tst_y, prd_tst)
 
-            trn_y_lst.append(trn_y)
             prd_trn_lst.append(prd_trn)
-            tst_y_lst.append(tst_y)
             prd_tst_lst.append(prd_tst)
 
         text = key
@@ -93,15 +99,7 @@ for key in datas:
         accuracy = 0
         for clf in estimators:
             xvalues.append(clf)
-            for train_i, test_i in skf.split(X, y):
-                # Train
-                trn_X = X[train_i]
-                trn_y = y[train_i]
-
-                # Test
-                tst_X = X[test_i]
-                tst_y = y[test_i]
-
+            for trn_X, trn_y, tst_X, tst_y in zip(trn_x_lst, trn_y_lst, tst_x_lst, tst_y_lst):
                 estimators[clf].fit(trn_X, trn_y)
                 prd_tst = estimators[clf].predict(tst_X)
 
