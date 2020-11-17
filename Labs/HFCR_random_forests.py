@@ -69,37 +69,46 @@ for key in datas:
                 train_acc_values = []
                 test_acc_values = []
                 for n in n_estimators:
-                    best_iteration_train_accuracy = 0
-                    best_iteration_accuracy = 0
-                    model_sets = ([], [], [], [])
-                    splitIterator = iter(skf.split(X, y))
-                    for model in splitIterator:
-                        trnX = X[model[0]]
-                        trnY = y[model[0]]
-                        tstX = X[model[1]]
-                        tstY = y[model[1]]
+                    trn_y_lst = []
+                    prd_trn_lst = []
+                    tst_y_lst = []
+                    prd_tst_lst = []
+                    test_accuracy = 0
+                    train_accuracy = 0
+                    for train_i, test_i in skf.split(X, y):
+                        # Train
+                        trn_X = X[train_i]
+                        trn_y = y[train_i]
+
+                        # Test
+                        tst_X = X[test_i]
+                        tst_y = y[test_i]
 
                         rf = RandomForestClassifier(n_estimators=n, max_depth=d, max_features=f)
-                        rf.fit(trnX, trnY)
-                        prdY = rf.predict(tstX)
-                        prd_trainY = rf.predict(trnX)
-                    
-                        iteration_accuracy = metrics.accuracy_score(tstY, prdY)
+                        rf.fit(trn_X, trn_y)
+                        prd_trn = rf.predict(trn_X)
+                        prd_tst = rf.predict(tst_X)
 
-                        if iteration_accuracy > best_iteration_accuracy:
-                            best_iteration_accuracy = iteration_accuracy
-                            best_iteration_train_accuracy = metrics.accuracy_score(trnY, prd_trainY)
-                            model_sets = (trnX, trnY, tstX, tstY, prd_trainY, prdY)
+                        train_accuracy += metrics.accuracy_score(trn_y, prd_trn)
+                        test_accuracy += metrics.accuracy_score(tst_y, prd_tst)
 
-                    yvalues.append(best_iteration_accuracy)
-                    train_acc_values.append(best_iteration_train_accuracy)
-                    test_acc_values.append(best_iteration_accuracy)
+                        trn_y_lst.append(trn_y)
+                        prd_trn_lst.append(prd_trn)
+                        tst_y_lst.append(tst_y)
+                        prd_tst_lst.append(prd_tst)
+
+                    test_accuracy /= n_splits
+                    train_accuracy /= n_splits
+
+                    yvalues.append(test_accuracy)
+                    train_acc_values.append(train_accuracy)
+                    test_acc_values.append(test_accuracy)
                     if yvalues[-1] > last_best:
                         best = (d, f, n)
                         last_best = yvalues[-1]
                         last_best_train = train_acc_values[-1]
                         best_tree = rf
-                        best_model = model_sets
+                        best_model = (trn_y_lst, prd_trn_lst, tst_y_lst, prd_tst_lst)
 
                 values[f] = yvalues
                 overfit_values[d][f]= {}
@@ -129,13 +138,12 @@ for key in datas:
         plt.savefig(subDir + 'HFCR Overfitting - Random Forests')
 
         print('HFCR Random Forests - Performance & Confusion Matrix')
-        trnX = best_model[0]
-        trnY = best_model[1]
-        tstX = best_model[2]
-        tstY = best_model[3]
-        prd_trn = best_model[4]
-        prd_tst = best_model[5]
-        ds.plot_evaluation_results(pd.unique(y), trnY, prd_trn, tstY, prd_tst)
+        trn_y_lst = best_model[0]
+        prd_trn_lst = best_model[1]
+        tst_y_lst = best_model[2]
+        prd_tst_lst = best_model[3]
+
+        ds.plot_evaluation_results_kfold(pd.unique(y), trn_y_lst, prd_trn_lst, tst_y_lst, prd_tst_lst)
         plt.suptitle('HFCR Random Forests - ' + key + '- Performance & Confusion Matrix')
         plt.savefig(subDir + 'HFCR Random Forests - ' + key + '- Performance & Confusion Matrix')
         print()

@@ -21,7 +21,7 @@ print('--------------------------------------')
 data: pd.DataFrame = pd.read_csv('../Dataset/heart_failure_clinical_records_dataset.csv')
 datas = prepfunctions.prepare_dataset(data, 'DEATH_EVENT', False, True)
 featured_datas = prepfunctions.mask_feature_selection(datas, 'DEATH_EVENT', False, './Results/FeatureSelection/HFCR Feature Selection - Features')
-best_accuracies = {}
+accuracies = {}
 
 for key in datas:
     for do_feature_eng in [False, True]:
@@ -43,64 +43,71 @@ for key in datas:
         
         n_splits = 5
         skf = StratifiedKFold(n_splits=n_splits, shuffle=True)
-        splitIterator = iter(skf.split(X, y))
 
         clf = GaussianNB()
-        best_iteration_accuracy = 0
-        model_sets = ([], [], [], [])
-        for model in splitIterator:
-            trnX = X[model[0]]
-            trnY = y[model[0]]
-            tstX = X[model[1]]
-            tstY = y[model[1]]
+        trn_y_lst = []
+        prd_trn_lst = []
+        tst_y_lst = []
+        prd_tst_lst = []
+        test_accuracy = 0
+        train_accuracy = 0
+        for train_i, test_i in skf.split(X, y):
+            # Train
+            trn_X = X[train_i]
+            trn_y = y[train_i]
 
-            clf.fit(trnX, trnY)
-            prd_trn = clf.predict(trnX)
-            prd_tst = clf.predict(tstX)
+            # Test
+            tst_X = X[test_i]
+            tst_y = y[test_i]
 
-            iteration_accuracy = metrics.accuracy_score(tstY, prd_tst)
+            clf.fit(trn_X, trn_y)
+            prd_trn = clf.predict(trn_X)
+            prd_tst = clf.predict(tst_X)
 
-            if iteration_accuracy > best_iteration_accuracy:
-                best_train_accuracy = metrics.accuracy_score(trnY, prd_trn)
-                best_iteration_accuracy = iteration_accuracy
-                model_sets = (trnY, prd_trn, tstY, prd_tst)
+            train_accuracy += metrics.accuracy_score(trn_y, prd_trn)
+            test_accuracy += metrics.accuracy_score(tst_y, prd_tst)
+
+            trn_y_lst.append(trn_y)
+            prd_trn_lst.append(prd_trn)
+            tst_y_lst.append(tst_y)
+            prd_tst_lst.append(prd_tst)
 
         text = key
         if (do_feature_eng): text += ' with FS'
-        best_accuracies[text] = [best_train_accuracy, best_iteration_accuracy]
+        accuracies[text] = [train_accuracy/n_splits, test_accuracy/n_splits]
 
-        ds.plot_evaluation_results(pd.unique(y), model_sets[0], model_sets[1], model_sets[2], model_sets[3])
+        ds.plot_evaluation_results_kfold(pd.unique(y), trn_y_lst, prd_trn_lst, tst_y_lst, prd_tst_lst)
         plt.suptitle('HFCR Naive Bayes - ' + key + ' - Performance & Confusion matrix')
         plt.savefig(subDir + 'HFCR Naive Bayes - ' + key + ' - Performance & Confusion matrix')
 
 
         print('HFCR Naive Bayes - Comparison of Naive Bayes Models')
-        estimators = {'GaussianNB': GaussianNB(),
-                    'MultinomialNB': MultinomialNB(),
-                    'BernoulyNB': BernoulliNB()}
+        estimators = {#'GaussianNB': GaussianNB(),
+              'MultinomialNB': MultinomialNB(),
+              'BernoulyNB': BernoulliNB()}
 
         xvalues = []
         yvalues = []
+        xvalues.append('GaussianNB')
+        yvalues.append(test_accuracy/n_splits)
+        accuracy = 0
         for clf in estimators:
             xvalues.append(clf)
-            splitIterator = iter(skf.split(X, y))
+            for train_i, test_i in skf.split(X, y):
+                # Train
+                trn_X = X[train_i]
+                trn_y = y[train_i]
 
-            best_iteration_accuracy = 0
-            for model in splitIterator:
-                trnX = X[model[0]]
-                trnY = y[model[0]]
-                tstX = X[model[1]]
-                tstY = y[model[1]]
+                # Test
+                tst_X = X[test_i]
+                tst_y = y[test_i]
 
-                estimators[clf].fit(trnX, trnY)
-                prd_tst = estimators[clf].predict(tstX)
+                estimators[clf].fit(trn_X, trn_y)
+                prd_tst = estimators[clf].predict(tst_X)
 
-                iteration_accuracy = metrics.accuracy_score(tstY, prd_tst)
+                accuracy += metrics.accuracy_score(tst_y, prd_tst)
 
-                if iteration_accuracy > best_iteration_accuracy:
-                    best_iteration_accuracy = iteration_accuracy
-
-            yvalues.append(best_iteration_accuracy)
+            yvalues.append(accuracy/n_splits)
 
         plt.figure(figsize=(7,7))
         ds.bar_chart(xvalues, yvalues, title='Comparison of Naive Bayes Models', ylabel='accuracy', percentage=True)
@@ -111,6 +118,6 @@ for key in datas:
         plt.close("all")
 
 plt.figure(figsize=(7,7))
-ds.multiple_bar_chart(['Train', 'Test'], best_accuracies, ylabel='Accuracy')
+ds.multiple_bar_chart(['Train', 'Test'], accuracies, ylabel='Accuracy')
 plt.suptitle('HFCR Sampling & Feature Selection')
 plt.savefig(graphsDir + 'HFCR Sampling & Feature Selection')

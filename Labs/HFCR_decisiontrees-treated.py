@@ -37,15 +37,14 @@ for key in datas:
         X: np.ndarray = data.values
         labels = pd.unique(y)
 
-        skf = StratifiedKFold(n_splits=5, shuffle=True)
-        splitList = list(skf.split(X, y))
-        splitCounter = 1
+        n_splits = 5
+        skf = StratifiedKFold(n_splits=n_splits, shuffle=True)
 
         min_impurity_decrease = [0.025, 0.01, 0.005, 0.0025, 0.001, 0.0005, 0.00025, 0.0001, 0.00005, 0.000025]
         max_depths = [2, 5, 10, 15, 20, 25, 30]
         criteria = ['entropy', 'gini']
         best = ('',  0, 0.0)
-        best_model = ()
+        best_model = None
         last_best = 0
         last_best_train = 0
         best_tree = None
@@ -62,29 +61,43 @@ for key in datas:
                 train_acc_values = []
                 test_acc_values = []
                 for imp in min_impurity_decrease:
-                    best_iteration_train_accuracy = 0
-                    best_iteration_accuracy = 0
-                    for model in splitList:
-                        trnX, trnY = X[model[0]], y[model[0]]
-                        tstX, tstY = X[model[1]], y[model[1]]
+                    trn_y_lst = []
+                    prd_trn_lst = []
+                    tst_y_lst = []
+                    prd_tst_lst = []
+                    test_accuracy = 0
+                    train_accuracy = 0
+                    for train_i, test_i in skf.split(X, y):
+                        # Train
+                        trn_X = X[train_i]
+                        trn_y = y[train_i]
+
+                        # Test
+                        tst_X = X[test_i]
+                        tst_y = y[test_i]
 
                         tree = DecisionTreeClassifier(min_samples_leaf=1, max_depth=d, criterion=f, min_impurity_decrease=imp)
-                        tree.fit(trnX, trnY)
-                        prdY = tree.predict(tstX)
-                        prd_trainY = tree.predict(trnX)
+                        tree.fit(trn_X, trn_y)
+                        prd_tst = tree.predict(tst_X)
+                        prd_trn = tree.predict(trn_X)
 
-                        iteration_accuracy = metrics.accuracy_score(tstY, prdY)
-                        if iteration_accuracy > best_iteration_accuracy:
-                            best_iteration_accuracy = iteration_accuracy
-                            best_iteration_train_accuracy = metrics.accuracy_score(trnY, prd_trainY)
-                            model_sets = (trnX, trnY, tstX, tstY)
+                        train_accuracy += metrics.accuracy_score(trn_y, prd_trn)
+                        test_accuracy += metrics.accuracy_score(tst_y, prd_tst)
 
-                    yvalues.append(best_iteration_accuracy)
-                    train_acc_values.append(best_iteration_train_accuracy)
-                    test_acc_values.append(best_iteration_accuracy)  
+                        trn_y_lst.append(trn_y)
+                        prd_trn_lst.append(prd_trn)
+                        tst_y_lst.append(tst_y)
+                        prd_tst_lst.append(prd_tst)
+
+                    test_accuracy /= n_splits
+                    train_accuracy /= n_splits
+
+                    yvalues.append(test_accuracy)
+                    train_acc_values.append(train_accuracy)
+                    test_acc_values.append(test_accuracy)  
                     if yvalues[-1] > last_best:
                         best = (f, d, imp)
-                        best_model = tuple(model_sets)
+                        best_model = (trn_y_lst, prd_trn_lst, tst_y_lst, prd_tst_lst)
                         last_best = yvalues[-1]
                         last_best_train = train_acc_values[-1]
                         best_tree = tree
@@ -122,10 +135,12 @@ for key in datas:
         # Convert to png
         call(['dot', '-Tpng', (subDir + 'HFCR - ' + key + ' - dtree.dot'), '-o', (subDir + 'HFCR Decision Trees - ' + key + ' - tree representation.png'), '-Gdpi=600'])
 
-        trnX, trnY, tstX, tstY = best_model
-        prd_trn = best_tree.predict(trnX)
-        prd_tst = best_tree.predict(tstX)
-        ds.plot_evaluation_results(pd.unique(y), trnY, prd_trn, tstY, prd_tst)
+        trn_y_lst = best_model[0]
+        prd_trn_lst = best_model[1]
+        tst_y_lst = best_model[2]
+        prd_tst_lst = best_model[3]
+
+        ds.plot_evaluation_results_kfold(pd.unique(y), trn_y_lst, prd_trn_lst, tst_y_lst, prd_tst_lst)
         plt.suptitle('HFCR Decision Trees - ' + key + ' - Performance & Confusion matrix')
         plt.savefig(subDir + 'HFCR Decision Trees - ' + key + ' - Performance & Confusion matrix')
 
