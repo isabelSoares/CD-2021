@@ -70,12 +70,14 @@ def data_balancing(data, target):
     new_df = df_class_min.copy()
     df_under = df_class_max.copy().sample(len(df_class_min))
     new_df = pd.concat([new_df, df_under], sort=False).sort_index()
+    new_df = new_df.reset_index(drop=True)
     datas['UnderSample'] = new_df
 
     #By Oversampling
     new_df = df_class_max.copy()
     df_over = df_class_min.copy().sample(len(df_class_max), replace=True)
     new_df = pd.concat([new_df, df_over], sort=False).sort_index()
+    new_df = new_df.reset_index(drop=True)
     datas['OverSample'] = new_df.copy()
 
     #By SMOTE
@@ -86,6 +88,7 @@ def data_balancing(data, target):
     smote_X, smote_y = smote.fit_sample(X, y)
     df_smote = pd.DataFrame(smote_X, columns=data.columns)
     df_smote[target] = smote_y
+    df_smote = new_df.reset_index(drop=True)
     datas['SMOTE'] = df_smote.copy()
 
     return datas
