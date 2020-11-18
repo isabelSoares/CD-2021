@@ -25,8 +25,12 @@ data: pd.DataFrame = pd.read_csv('../Dataset/qsar_oral_toxicity.csv', sep=';', h
 datas = prepfunctions.prepare_dataset(data, 1024, False, False)
 featured_datas = prepfunctions.mask_feature_selection(datas, 1024, True, './Results/FeatureSelection/QOT Feature Selection - Features')
 
+count = 0
 for key in datas:
-    for do_feature_eng in [False, True]:
+    if count < 2:
+        count += 1
+        continue
+    for do_feature_eng in [False]:
         if (do_feature_eng):
             data = featured_datas[key]
             subDir = graphsDir + 'FeatureEng/' +  key + '/'
