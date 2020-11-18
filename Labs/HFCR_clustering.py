@@ -26,7 +26,7 @@ datas = prepfunctions.prepare_dataset(data, 'DEATH_EVENT', True, True)
 featured_datas = prepfunctions.mask_feature_selection(datas, 'DEATH_EVENT', False, './Results/FeatureSelection/HFCR Feature Selection - Features')
 
 for key in datas:
-    for do_feature_eng in [False]:
+    for do_feature_eng in [False, True]:
         if (do_feature_eng):
             data = featured_datas[key]
             subDir = graphsDir + 'FeatureEng/' +  key + '/'
@@ -40,8 +40,8 @@ for key in datas:
 
         data.pop('DEATH_EVENT')
 
-        v1 = 0  # age
-        v2 = 11 # time
+        v1 = data.columns.get_loc("age")  # age
+        v2 = data.columns.get_loc("time") # time
 
         N_CLUSTERS = [2, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29]
         rows, cols = ds.choose_grid(len(N_CLUSTERS))
