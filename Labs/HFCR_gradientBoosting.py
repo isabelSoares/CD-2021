@@ -17,6 +17,7 @@ if not os.path.exists(graphsDir):
 data: pd.DataFrame = pd.read_csv('../Dataset/heart_failure_clinical_records_dataset.csv')
 datas = prepfunctions.prepare_dataset(data, 'DEATH_EVENT', True, True)
 featured_datas = prepfunctions.mask_feature_selection(datas, 'DEATH_EVENT', False, './Results/FeatureSelection/HFCR Feature Selection - Features')
+best_accuracies = {}
 
 for key in datas:
     for do_feature_eng in [False, True]:
@@ -40,90 +41,147 @@ for key in datas:
 
         n_splits = 5
         skf = StratifiedKFold(n_splits=n_splits, shuffle=True)
-        splitList = list(skf.split(X, y))
 
+        criterions = ['friedman_mse', 'mse', 'mae']
         n_estimators = [5, 10, 25, 50, 75, 100, 150, 200, 250, 300]
         max_depths = [5, 10, 25]
         learning_rate = [.1, .3, .5, .7, .9]
-        best = ('', 0, 0)
-        last_best = 0
-        best_tree = None
+        max_features = [None, 'auto', 'sqrt', 'log2']
 
-        cols = len(max_depths)
-        plt.figure()
-        fig, axs = plt.subplots(1, cols, figsize=(cols*ds.HEIGHT, ds.HEIGHT), squeeze=False)
-        overfitting_values = {}
-        for k in range(len(max_depths)):
-            d = max_depths[k]
-            values = {}
-            overfitting_values[d] = {}
+        values_by_criteria = {}
+        for criterion in criterions:
+            criterionDir = subDir + criterion + '/'
+            if not os.path.exists(criterionDir):
+                os.makedirs(criterionDir)
+
+            best = ('', '', 0, 0)
+            last_best = 0
+            best_tree = None
 
             now = datetime.now()
             current_time = now.strftime("%H:%M:%S")
-            print(current_time, ": D: ", d)
-            for lr in learning_rate:
+            print(current_time, ": Criterion: ", criterion)
+
+            cols = len(max_depths)
+            rows = len(max_features)
+            plt.figure()
+            fig, axs = plt.subplots(rows, cols, figsize=(cols*(ds.HEIGHT * 2), rows * (ds.HEIGHT + 3)), squeeze=False)
+            overfitting_values = {}
+            for w in range(len(max_features)):
+                max_feat = max_features[w]
+                max_feat_string = max_feat
+                if (max_feat == None): max_feat_string = 'None'
+                overfitting_values[max_feat_string] = {}
+
                 now = datetime.now()
                 current_time = now.strftime("%H:%M:%S")
-                print(current_time, ": Lr: ", lr)
-                yvalues = []
-                train_acc_values = []
-                test_acc_values = []
-                for n in n_estimators:
-                    best_iteration_train_accuracy = 0
-                    best_iteration_accuracy = 0
-                    for model in splitList:
-                        gb = GradientBoostingClassifier(n_estimators=n, max_depth=d, learning_rate=lr)
-                        trnX = X[model[0]] 
-                        trnY = y[model[0]]
-                        tstX = X[model[1]]
-                        tstY = y[model[1]]
-                        gb.fit(trnX, trnY)
-                        prdY = gb.predict(tstX)
-                        prd_trainY = gb.predict(trnX)
+                print(current_time, ": Max Features: ", max_feat_string)
 
-                        iteration_accuracy = metrics.accuracy_score(tstY, prdY)
-                        if iteration_accuracy > best_iteration_accuracy:
-                            best_iteration_accuracy = iteration_accuracy
-                            best_iteration_train_accuracy = metrics.accuracy_score(trnY, prd_trainY)
-                            model_sets = (trnX, trnY, tstX, tstY, prdY, prd_trainY)
-                
-                    yvalues.append(best_iteration_accuracy)
-                    train_acc_values.append(best_iteration_train_accuracy)
-                    test_acc_values.append(best_iteration_accuracy) 
-                    if yvalues[-1] > last_best:
-                        best = (d, lr, n)
-                        best_model = tuple(model_sets)
-                        last_best = yvalues[-1]
-                        best_tree = gb
-                
-                values[lr] = yvalues
-                overfitting_values[d][lr] = {}
-                overfitting_values[d][lr]['train'] = train_acc_values
-                overfitting_values[d][lr]['test'] = test_acc_values
-            ds.multiple_line_chart(n_estimators, values, ax=axs[0, k], title='Gradient Boorsting with max_depth=%d'%d,
-                                xlabel='nr estimators', ylabel='accuracy', percentage=True)
-        
-        print('Best results with depth=%d, learning rate=%1.2f and %d estimators, with accuracy=%1.2f'%(best[0], best[1], best[2], last_best))
-        fig.text(0.5, 0.03, 'Best results with depth=%d, learning rate=%1.2f and %d estimators, with accuracy=%1.2f'%(best[0], best[1], best[2], last_best), fontsize=7, ha='center', va='center')
-        plt.suptitle('HFCR Gradient Boosting - ' + key + ' - parameters')
-        plt.savefig(subDir + 'HFCR Gradient Boosting - ' + key + ' - parameters')
+                for k in range(len(max_depths)):
+                    d = max_depths[k]
+                    values = {}
+                    overfitting_values[max_feat_string][d] = {}
 
-        plt.figure()
-        fig, axs = plt.subplots(len(max_depths), len(learning_rate), figsize=(32, 8), squeeze=False)
-        for i in range(len(max_depths)):
-            d = max_depths[i]
-            for j in range(len(learning_rate)):
-                lr = learning_rate[j]
-                ds.multiple_line_chart(n_estimators, overfitting_values[d][lr], ax=axs[i, j], title='Overfitting for max_depth = %d, with learning rate = %1.2f'%(d, lr), xlabel='n_estimators', ylabel='accuracy', percentage=True)
-        
-        plt.subplots_adjust(hspace=0.5)
-        plt.suptitle('HFCR Overfitting - Gradient Boosting')
-        plt.savefig(subDir + 'HFCR Overfitting - Gradient Boosting')
-        
-        trnX, trnY, tstX, tstY, prdY, prd_trainY = best_model
-        ds.plot_evaluation_results(pd.unique(y), trnY, prd_trainY, tstY, prdY)
-        plt.suptitle('HFCR Gradient Boosting - ' + key + ' - Performance & Confusion matrix')
-        plt.savefig(subDir + 'HFCR Gradient Boosting - ' + key + ' - Performance & Confusion matrix')
+                    now = datetime.now()
+                    current_time = now.strftime("%H:%M:%S")
+                    print(current_time, ": D: ", d)
+                    for lr in learning_rate:
+                        now = datetime.now()
+                        current_time = now.strftime("%H:%M:%S")
+                        print(current_time, ": Lr: ", lr)
+                        yvalues = []
+                        train_acc_values = []
+                        test_acc_values = []
+                        for n in n_estimators:
+                            trn_y_lst = []
+                            prd_trn_lst = []
+                            tst_y_lst = []
+                            prd_tst_lst = []
+                            test_accuracy = 0
+                            train_accuracy = 0
+                            for train_i, test_i in skf.split(X, y):
+                                # Train
+                                trn_X = X[train_i]
+                                trn_y = y[train_i]
 
-        plt.close("all")
+                                # Test
+                                tst_X = X[test_i]
+                                tst_y = y[test_i]
 
+                                gb = GradientBoostingClassifier(criterion=criterion, max_features=max_feat, n_estimators=n, max_depth=d, learning_rate=lr)
+                                gb.fit(trn_X, trn_y)
+                                prd_tst = gb.predict(tst_X)
+                                prd_trn = gb.predict(trn_X)
+
+                                train_accuracy += metrics.accuracy_score(trn_y, prd_trn)
+                                test_accuracy += metrics.accuracy_score(tst_y, prd_tst)
+
+                                trn_y_lst.append(trn_y)
+                                prd_trn_lst.append(prd_trn)
+                                tst_y_lst.append(tst_y)
+                                prd_tst_lst.append(prd_tst)
+
+                            test_accuracy /= n_splits
+                            train_accuracy /= n_splits
+
+                            yvalues.append(test_accuracy)
+                            train_acc_values.append(train_accuracy)
+                            test_acc_values.append(test_accuracy)
+                            if yvalues[-1] > last_best:
+                                best = (max_feat_string, d, lr, n)
+                                best_model = (trn_y_lst, prd_trn_lst, tst_y_lst, prd_tst_lst)
+                                last_best = yvalues[-1]
+                                last_best_train = train_acc_values[-1]
+                                values_by_criteria[criterion] = [last_best_train, last_best]
+                                best_tree = gb
+                        
+                        values[lr] = yvalues
+                        overfitting_values[max_feat_string][d][lr] = {}
+                        overfitting_values[max_feat_string][d][lr]['train'] = train_acc_values
+                        overfitting_values[max_feat_string][d][lr]['test'] = test_acc_values
+
+                    ds.multiple_line_chart(n_estimators, values, ax=axs[w, k], title='Gradient Boorsting with max_features=%s max_depth=%d'%(max_feat_string, d),
+                                        xlabel='nr estimators', ylabel='accuracy', percentage=True)
+            
+            print('Best results with max_features=%s, depth=%d, learning rate=%1.2f and %d estimators, with accuracy=%1.2f'%(best[0], best[1], best[2], best[3], last_best))
+            fig.text(0.5, 0.03, 'Best results with max_features=%s, depth=%d, learning rate=%1.2f and %d estimators, with accuracy=%1.2f'%(best[0], best[1], best[2], best[3], last_best), fontsize=7, ha='center', va='center')
+            plt.suptitle('HFCR Gradient Boosting - ' + key + ' - parameters')
+            plt.savefig(criterionDir + 'HFCR Gradient Boosting - ' + key + ' - parameters')
+
+            text = key
+            if (do_feature_eng): text += ' with FS'
+            if ((text not in best_accuracies.keys()) or (best_accuracies[text][1] < last_best)):
+                best_accuracies[text] = [last_best_train, last_best]
+
+            plt.figure()
+            fig, axs = plt.subplots(len(max_depths), len(learning_rate), figsize=(32, 8), squeeze=False)
+            for i in range(len(max_depths)):
+                d = max_depths[i]
+                for j in range(len(learning_rate)):
+                    lr = learning_rate[j]
+                    ds.multiple_line_chart(n_estimators, overfitting_values[best[0]][d][lr], ax=axs[i, j], title='Overfitting for max_depth = %d, with learning rate = %1.2f'%(d, lr), xlabel='n_estimators', ylabel='accuracy', percentage=True)
+            
+            plt.subplots_adjust(hspace=0.5)
+            plt.suptitle('HFCR Overfitting - Gradient Boosting with max_features=%s'%best[0])
+            plt.savefig(criterionDir + 'HFCR Overfitting - Gradient Boosting')
+            
+            trn_y_lst = best_model[0]
+            prd_trn_lst = best_model[1]
+            tst_y_lst = best_model[2]
+            prd_tst_lst = best_model[3]
+
+            ds.plot_evaluation_results_kfold(pd.unique(y), trn_y_lst, prd_trn_lst, tst_y_lst, prd_tst_lst)
+            plt.suptitle('HFCR Gradient Boosting - ' + key + ' - Performance & Confusion matrix')
+            plt.savefig(criterionDir + 'HFCR Gradient Boosting - ' + key + ' - Performance & Confusion matrix')
+
+            plt.close("all")
+
+        plt.figure(figsize=(7,7))
+        ds.multiple_bar_chart(['Train', 'Test'], values_by_criteria, ylabel='Accuracy')
+        plt.suptitle('HFCR Gradient Boosting Criteria')
+        plt.savefig(subDir + 'HFCR Gradient Boosting Criteria')
+    
+plt.figure(figsize=(7,7))
+ds.multiple_bar_chart(['Train', 'Test'], best_accuracies, ylabel='Accuracy')
+plt.suptitle('HFCR Sampling & Feature Selection')
+plt.savefig(graphsDir + 'HFCR Sampling & Feature Selection')
