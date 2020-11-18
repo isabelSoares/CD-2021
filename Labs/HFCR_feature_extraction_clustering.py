@@ -108,7 +108,7 @@ for key in datas:
         N_CLUSTERS = [2, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29]
         rows, cols = ds.choose_grid(len(N_CLUSTERS))
 
-        print('HFCR Feature Extraction - ' + key + ' - K-Means after PCA')
+        print('HFCR Clustering - ' + key + ' - K-Means after PCA')
         mse: list = []
         sc: list = []
         _, axs = plt.subplots(rows, cols, figsize=(cols*5, rows*5), squeeze=False)
@@ -122,21 +122,21 @@ for key in datas:
             ds.plot_clusters(data, eixo_x, eixo_y, estimator.labels_.astype(float), estimator.cluster_centers_, k,
                              f'KMeans k={k}', ax=axs[i,j])
             i, j = (i + 1, 0) if (n+1) % cols == 0 else (i, j + 1)
-        plt.suptitle('HFCR Feature Extraction - ' + key + ' - K-Means after PCA')
-        plt.savefig(subDir + 'HFCR Feature Extraction - ' + key + ' - K-Means after PCA')
+        plt.suptitle('HFCR Clustering - ' + key + ' - K-Means after PCA')
+        plt.savefig(subDir + 'HFCR Clustering - ' + key + ' - K-Means after PCA')
 
 
 
-        print('HFCR Feature Extraction - ' + key + ' - K-Means after PCA MSE vs SC')
+        print('HFCR Clustering - ' + key + ' - K-Means after PCA MSE vs SC after PCA')
         fig, ax = plt.subplots(1, 2, figsize=(6, 3), squeeze=False)
         ds.plot_line(N_CLUSTERS, mse, title='KMeans MSE', xlabel='k', ylabel='MSE', ax=ax[0, 0])
         ds.plot_line(N_CLUSTERS, sc, title='KMeans SC', xlabel='k', ylabel='SC', ax=ax[0, 1], percentage=True)
-        plt.suptitle('HFCR Feature Extraction - ' + key + ' - K-Means after PCA MSE vs SC')
-        plt.savefig(subDir + 'HFCR Feature Extraction - ' + key + ' - K-Means after PCA MSE vs SC')
+        plt.suptitle('HFCR Clustering - ' + key + ' - K-Means after PCA MSE vs SC after PCA')
+        plt.savefig(subDir + 'HFCR Clustering - ' + key + ' - K-Means after PCA MSE vs SC after PCA')
 
 
 
-        print('HFCR Feature Extraction - ' + key + ' - Expectation-Maximization')
+        print('HFCR Clustering - ' + key + ' - Expectation-Maximization after PCA')
         mse: list = []
         sc: list = []
         _, axs = plt.subplots(rows, cols, figsize=(cols*5, rows*5), squeeze=False)
@@ -151,21 +151,21 @@ for key in datas:
             ds.plot_clusters(data, eixo_x, eixo_y, labels.astype(float), estimator.means_, k,
                              f'EM k={k}', ax=axs[i,j])
             i, j = (i + 1, 0) if (n+1) % cols == 0 else (i, j + 1)
-        plt.suptitle('HFCR Feature Extraction - ' + key + ' - Expectation-Maximization')
-        plt.savefig(subDir + 'HFCR Feature Extraction - ' + key + ' - Expectation-Maximization')
+        plt.suptitle('HFCR Clustering - ' + key + ' - Expectation-Maximization after PCA')
+        plt.savefig(subDir + 'HFCR Clustering - ' + key + ' - Expectation-Maximization after PCA')
 
 
 
-        print('HFCR Feature Extraction - ' + key + ' - Expectation-Maximization MSE vs SC')
+        print('HFCR Clustering - ' + key + ' - Expectation-Maximization MSE vs SC after PCA')
         fig, ax = plt.subplots(1, 2, figsize=(6, 3), squeeze=False)
         ds.plot_line(N_CLUSTERS, mse, title='EM MSE', xlabel='k', ylabel='MSE', ax=ax[0, 0])
         ds.plot_line(N_CLUSTERS, sc, title='EM SC', xlabel='k', ylabel='SC', ax=ax[0, 1], percentage=True)
-        plt.suptitle('HFCR Feature Extraction - ' + key + ' - Expectation-Maximization MSE vs SC')
-        plt.savefig(subDir + 'HFCR Feature Extraction - ' + key + ' - Expectation-Maximization MSE vs SC')
+        plt.suptitle('HFCR Clustering - ' + key + ' - Expectation-Maximization MSE vs SC after PCA')
+        plt.savefig(subDir + 'HFCR Clustering - ' + key + ' - Expectation-Maximization MSE vs SC after PCA')
 
 
 
-        print('HFCR Feature Extraction - ' + key + ' - EPS (Density-based)')
+        print('HFCR Clustering - ' + key + ' - EPS (Density-based) after PCA')
         EPS = [2.5, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
         mse: list = []
         sc: list = []
@@ -187,21 +187,21 @@ for key in datas:
             else:
                 mse.append(0)
                 sc.append(0)
-        plt.suptitle('HFCR Feature Extraction - ' + key + ' - EPS (Density-based)')
-        plt.savefig(subDir + 'HFCR Feature Extraction - ' + key + ' - EPS (Density-based)')
+        plt.suptitle('HFCR Clustering - ' + key + ' - EPS (Density-based) after PCA')
+        plt.savefig(subDir + 'HFCR Clustering - ' + key + ' - EPS (Density-based) after PCA')
 
 
 
-        print('HFCR Feature Extraction - ' + key + ' - EPS (Density-based) MSE vs SC')
+        print('HFCR Clustering - ' + key + ' - EPS (Density-based) MSE vs SC after PCA')
         fig, ax = plt.subplots(1, 2, figsize=(6, 3), squeeze=False)
         ds.plot_line(EPS, mse, title='DBSCAN MSE', xlabel='eps', ylabel='MSE', ax=ax[0, 0])
         ds.plot_line(EPS, sc, title='DBSCAN SC', xlabel='eps', ylabel='SC', ax=ax[0, 1], percentage=True)
-        plt.suptitle('HFCR Feature Extraction - ' + key + ' - EPS (Density-based) MSE vs SC')
-        plt.savefig(subDir + 'HFCR Feature Extraction - ' + key + ' - EPS (Density-based) MSE vs SC')
+        plt.suptitle('HFCR Clustering - ' + key + ' - EPS (Density-based) MSE vs SC after PCA')
+        plt.savefig(subDir + 'HFCR Clustering - ' + key + ' - EPS (Density-based) MSE vs SC after PCA')
 
 
 
-        print('HFCR Feature Extraction - ' + key + ' - Metric (Density-based)')
+        print('HFCR Clustering - ' + key + ' - Metric (Density-based) after PCA')
         METRICS = ['euclidean', 'cityblock', 'chebyshev', 'cosine', 'jaccard']
         distances = []
         for m in METRICS:
@@ -237,21 +237,21 @@ for key in datas:
                 mse.append(0)
                 sc.append(0)
             i, j = (i + 1, 0) if (n+1) % cols == 0 else (i, j + 1)
-        plt.suptitle('HFCR Feature Extraction - ' + key + ' - Metric (Density-based)')
-        plt.savefig(subDir + 'HFCR Feature Extraction - ' + key + ' - Metric (Density-based)')
+        plt.suptitle('HFCR Clustering - ' + key + ' - Metric (Density-based) after PCA')
+        plt.savefig(subDir + 'HFCR Clustering - ' + key + ' - Metric (Density-based) after PCA')
 
 
 
-        print('HFCR Feature Extraction - ' + key + ' - Metric (Density-based) MSE vs SC')
+        print('HFCR Clustering - ' + key + ' - Metric (Density-based) MSE vs SC after PCA')
         fig, ax = plt.subplots(1, 2, figsize=(6, 3), squeeze=False)
         ds.bar_chart(METRICS, mse, title='DBSCAN MSE', xlabel='metric', ylabel='MSE', ax=ax[0, 0])
         ds.bar_chart(METRICS, sc, title='DBSCAN SC', xlabel='metric', ylabel='SC', ax=ax[0, 1], percentage=True)
-        plt.suptitle('HFCR Feature Extraction - ' + key + ' - Metric (Density-based) MSE vs SC')
-        plt.savefig(subDir + 'HFCR Feature Extraction - ' + key + ' - Metric (Density-based) MSE vs SC')
+        plt.suptitle('HFCR Clustering - ' + key + ' - Metric (Density-based) MSE vs SC after PCA')
+        plt.savefig(subDir + 'HFCR Clustering - ' + key + ' - Metric (Density-based) MSE vs SC after PCA')
 
 
 
-        print('HFCR Feature Extraction - ' + key + ' - Hierarchical')
+        print('HFCR Clustering - ' + key + ' - Hierarchical after PCA')
         mse: list = []
         sc: list = []
         rows, cols = ds.choose_grid(len(N_CLUSTERS))
@@ -268,21 +268,21 @@ for key in datas:
             ds.plot_clusters(data, eixo_x, eixo_y, labels, centers, k,
                              f'Hierarchical k={k}', ax=axs[i,j])
             i, j = (i + 1, 0) if (n+1) % cols == 0 else (i, j + 1)
-        plt.suptitle('HFCR Feature Extraction - ' + key + ' - Hierarchical')
-        plt.savefig(subDir + 'HFCR Feature Extraction - ' + key + ' - Hierarchical')
+        plt.suptitle('HFCR Clustering - ' + key + ' - Hierarchical after PCA')
+        plt.savefig(subDir + 'HFCR Clustering - ' + key + ' - Hierarchical after PCA')
 
 
 
-        print('HFCR Feature Extraction - ' + key + ' - Hierarchical MSE vs SC')
+        print('HFCR Clustering - ' + key + ' - Hierarchical MSE vs SC after PCA')
         fig, ax = plt.subplots(1, 2, figsize=(6, 3), squeeze=False)
         ds.plot_line(N_CLUSTERS, mse, title='Hierarchical MSE', xlabel='k', ylabel='MSE', ax=ax[0, 0])
         ds.plot_line(N_CLUSTERS, sc, title='Hierarchical SC', xlabel='k', ylabel='SC', ax=ax[0, 1], percentage=True)
-        plt.suptitle('HFCR Feature Extraction - ' + key + ' - Hierarchical MSE vs SC')
-        plt.savefig(subDir + 'HFCR Feature Extraction - ' + key + ' - Hierarchical MSE vs SC')
+        plt.suptitle('HFCR Clustering - ' + key + ' - Hierarchical MSE vs SC after PCA')
+        plt.savefig(subDir + 'HFCR Clustering - ' + key + ' - Hierarchical MSE vs SC after PCA')
 
 
 
-        print('HFCR Feature Extraction - ' + key + ' - Metric (Hierarchical)')
+        print('HFCR Clustering - ' + key + ' - Metric (Hierarchical) after PCA')
         METRICS = ['euclidean', 'cityblock', 'chebyshev', 'cosine', 'jaccard']
         LINKS = ['complete', 'average']
         k = 3
@@ -307,16 +307,16 @@ for key in datas:
                                  f'Hierarchical k={k} metric={m} link={link}', ax=axs[i,j])
             values_mse[m] = mse
             values_sc[m] = sc
-        plt.suptitle('HFCR Feature Extraction - ' + key + ' - Metric (Hierarchical)')
-        plt.savefig(subDir + 'HFCR Feature Extraction - ' + key + ' - Metric (Hierarchical)')
+        plt.suptitle('HFCR Clustering - ' + key + ' - Metric (Hierarchical) after PCA')
+        plt.savefig(subDir + 'HFCR Clustering - ' + key + ' - Metric (Hierarchical) after PCA')
 
 
 
-        print('HFCR Feature Extraction - ' + key + ' - Metric (Hierarchical) MSE vs SC')
+        print('HFCR Clustering - ' + key + ' - Metric (Hierarchical) MSE vs SC after PCA')
         _, ax = plt.subplots(1, 2, figsize=(6, 3), squeeze=False)
         ds.multiple_bar_chart(LINKS, values_mse, title=f'Hierarchical MSE', xlabel='metric', ylabel='MSE', ax=ax[0, 0])
         ds.multiple_bar_chart(LINKS, values_sc, title=f'Hierarchical SC', xlabel='metric', ylabel='SC', ax=ax[0, 1], percentage=True)
-        plt.suptitle('HFCR Feature Extraction - ' + key + ' - Metric (Hierarchical) MSE vs SC')
-        plt.savefig(subDir + 'HFCR Feature Extraction - ' + key + ' - Metric (Hierarchical) MSE vs SC')
+        plt.suptitle('HFCR Clustering - ' + key + ' - Metric (Hierarchical) MSE vs SC after PCA')
+        plt.savefig(subDir + 'HFCR Clustering - ' + key + ' - Metric (Hierarchical) MSE vs SC after PCA')
 
         plt.close("all")
