@@ -220,4 +220,12 @@ def compute_mse(X: np.ndarray, labels: np.ndarray, centroids: np.ndarray) -> flo
     partial = list(partial * partial)
     partial = [sum(el) for el in partial]
     partial = sum(partial)
-    return math.sqrt(partial) / (n-1)
+    return math.sqrt(partial / n)
+
+def compute_mae(X: np.ndarray, labels: np.ndarray, centroids: np.ndarray) -> float:
+    n = len(X)
+    centroid_per_record = [centroids[labels[i]] for i in range(n)]
+    partial = abs(X - centroid_per_record)
+    partial = [sum(el) for el in partial]
+    partial = sum(partial)
+    return partial / n
