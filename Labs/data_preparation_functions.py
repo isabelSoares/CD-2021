@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from imblearn.over_sampling import SMOTE
 from sklearn.impute import SimpleImputer
 
@@ -9,7 +9,7 @@ def prepare_dataset(data, target, do_scaling, do_outliers):
     # Outliers Removal with Winsorization
     if (do_outliers): data = outliers_removal(data, target)
     # Scaling
-    if (do_scaling): data = scaling(data, target)
+    if (do_scaling): data = scaling(data, target, true)
     # Data Balancing
     datas = data_balancing(data, target)
 
@@ -38,8 +38,7 @@ def outliers_removal(data, target):
     
     return data
 
-def scaling(data, target):
-    # Using Normalization with Z-score
+def scaling(data, target, z_score = True):
     target_collumn = data.pop(target)
 
     cols_nr = data.select_dtypes(include='number')
@@ -50,11 +49,20 @@ def scaling(data, target):
     df_nr = pd.DataFrame(imp_nr.fit_transform(cols_nr), columns=cols_nr.columns)
     #df_sb = pd.DataFrame(imp_sb.fit_transform(cols_sb), columns=cols_sb.columns)
 
-    transf = StandardScaler(with_mean=True, with_std=True, copy=True).fit(df_nr)
-    df_nr = pd.DataFrame(transf.transform(df_nr), columns= df_nr.columns)
-    #norm_data_zscore = df_nr.join(cols_sb, how='right')
-    norm_data_zscore = df_nr.join(target_collumn, how='right')
-    return norm_data_zscore
+    if (z_score):
+        # Using Normalization with Z-score
+        transf = StandardScaler(with_mean=True, with_std=True, copy=True).fit(df_nr)
+        df_nr = pd.DataFrame(transf.transform(df_nr), columns= df_nr.columns)
+        #norm_data = df_nr.join(cols_sb, how='right')
+        norm_data = df_nr.join(target_collumn, how='right')
+    else:
+        # Using Min - Max
+        transf = MinMaxScaler(feature_range=(0, 1), copy=True).fit(df_nr)
+        df_nr = pd.DataFrame(transf.transform(df_nr), columns= df_nr.columns)
+        #norm_data = df_nr.join(cols_sb, how='right')
+        norm_data = df_nr.join(target_collumn, how='right')
+    
+    return norm_data
 
 def data_balancing(data, target):
     datas = {}
