@@ -1,0 +1,7 @@
+Collumn age: [40. 55. 65. 95.]
+Collumn creatinine_phosphokinase: [  23.          145.33333333  582.         7861.        ]
+Collumn ejection_fraction: [14. 35. 40. 80.]
+Collumn platelets: [ 25100.         226000.         278333.33333333 850000.        ]
+Collumn serum_creatinine: [0.5 1.  1.3 9.4]
+Collumn serum_sodium: [113. 136. 138. 148.]
+Collumn time: [  4.          86.33333333 186.         285.        ]
