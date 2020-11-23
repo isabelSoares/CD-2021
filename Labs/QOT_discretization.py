@@ -25,7 +25,7 @@ data.describe().to_csv(graphsDir + 'QOT Discretization - Before.csv')
 target_collumn = data.pop(1024)
 
 for attribute in data.columns:
-    data[attribute] = data[attribute].astype('bool');
+    data[attribute] = data[attribute].astype('bool')
 print("------------------------------ ONE HOT ENCODER ------------------------------")
 
 new_data = pd.DataFrame()

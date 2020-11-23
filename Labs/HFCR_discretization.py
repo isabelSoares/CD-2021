@@ -26,7 +26,7 @@ target_collumn = data.pop("DEATH_EVENT")
 
 boolean_attributes = ["anaemia", "diabetes", "high_blood_pressure", "sex", "smoking"]
 for attribute in boolean_attributes:
-    data[attribute] = data[attribute].astype('bool');
+    data[attribute] = data[attribute].astype('bool')
 
 for strategy in ['uniform', 'quantile']:
     print("------------------------------ DIVIDING IN BINS ------------------------------")

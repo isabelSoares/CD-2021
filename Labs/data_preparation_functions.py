@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-from sklearn.preprocessing import StandardScaler, MinMaxScaler
+from sklearn.preprocessing import StandardScaler, MinMaxScaler, KBinsDiscretizer, OneHotEncoder
 from imblearn.over_sampling import SMOTE
 from sklearn.impute import SimpleImputer
 
@@ -126,3 +126,27 @@ def mask_feature_selection(datas, target, features_are_numbers, mask_file):
         new_datas[key] = new_data
     
     return new_datas
+
+def dummification(data, boolean_attributes = [], bins = 0, strategy = 'uniform'):
+    for attribute in boolean_attributes:
+        data[attribute] = data[attribute].astype('bool')
+
+    numeric_columns = data.select_dtypes(include='number').columns
+    new_data = pd.DataFrame()
+    for column in data.columns:
+        if column not in numeric_columns: new_data = pd.concat((new_data, pd.DataFrame(data[column], columns=[column])), 1)
+        else :
+            est = KBinsDiscretizer(n_bins=bins, encode='ordinal', strategy=strategy)
+            transform_data = est.fit_transform(data[column].values.reshape(-1, 1))
+            new_data = pd.concat((new_data, pd.DataFrame(transform_data, columns=[column])), 1)
+
+    temp_data = new_data
+    new_data = pd.DataFrame()
+    one_hot_encoder = OneHotEncoder(sparse=False, drop='if_binary')
+    for column in temp_data.columns:
+        one_hot_encoder.fit(temp_data[column].values.reshape(-1, 1))
+        feature_names = one_hot_encoder.get_feature_names([str(column)])
+        transformed_data = one_hot_encoder.transform(temp_data[column].values.reshape(-1, 1))
+        new_data = pd.concat((new_data, pd.DataFrame(transformed_data, columns=feature_names)), 1)
+    
+    return new_data
