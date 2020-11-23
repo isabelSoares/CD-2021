@@ -9,7 +9,7 @@ def prepare_dataset(data, target, do_scaling, do_outliers):
     # Outliers Removal with Winsorization
     if (do_outliers): data = outliers_removal(data, target)
     # Scaling
-    if (do_scaling): data = scaling(data, target, true)
+    if (do_scaling): data = scaling(data, target, True)
     # Data Balancing
     datas = data_balancing(data, target)
 
@@ -20,6 +20,8 @@ def outliers_removal(data, target):
     for var in data:
         if var == target:
             break
+        if var == "anaemia" or var == "diabetes" or var == "high_blood_pressure" or var == "sex" or var == "smoking":
+            continue
         q1 = data[var].quantile(0.25)
         q3 = data[var].quantile(0.75)
         iqr = q3 - q1

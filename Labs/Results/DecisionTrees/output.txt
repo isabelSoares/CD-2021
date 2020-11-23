@@ -2,11 +2,11 @@ Original :  (299, 13)  ->  (299, 12)
 UnderSample :  (192, 13)  ->  (192, 12)
 OverSample :  (406, 13)  ->  (406, 12)
 SMOTE :  (406, 13)  ->  (406, 11)
-Best results achieved with entropy criteria, depth=2 and min_impurity_decrease=0.02500 ==> accuracy=0.83960
-Best results achieved with entropy criteria, depth=2 and min_impurity_decrease=0.02500 ==> accuracy=0.83938
-Best results achieved with gini criteria, depth=5 and min_impurity_decrease=0.02500 ==> accuracy=0.79636
-Best results achieved with entropy criteria, depth=20 and min_impurity_decrease=0.02500 ==> accuracy=0.80216
-Best results achieved with entropy criteria, depth=10 and min_impurity_decrease=0.00100 ==> accuracy=0.90154
-Best results achieved with gini criteria, depth=10 and min_impurity_decrease=0.00100 ==> accuracy=0.90656
-Best results achieved with entropy criteria, depth=15 and min_impurity_decrease=0.00500 ==> accuracy=0.88913
-Best results achieved with entropy criteria, depth=20 and min_impurity_decrease=0.00050 ==> accuracy=0.90391
+Best results achieved with entropy criteria, depth=2 and min_impurity_decrease=0.02500 ==> accuracy=0.84277
+Best results achieved with gini criteria, depth=5 and min_impurity_decrease=0.01000 ==> accuracy=0.84938
+Best results achieved with gini criteria, depth=10 and min_impurity_decrease=0.01000 ==> accuracy=0.79231
+Best results achieved with entropy criteria, depth=2 and min_impurity_decrease=0.02500 ==> accuracy=0.79636
+Best results achieved with entropy criteria, depth=10 and min_impurity_decrease=0.00250 ==> accuracy=0.90903
+Best results achieved with entropy criteria, depth=10 and min_impurity_decrease=0.00500 ==> accuracy=0.91132
+Best results achieved with entropy criteria, depth=25 and min_impurity_decrease=0.00025 ==> accuracy=0.91870
+Best results achieved with entropy criteria, depth=10 and min_impurity_decrease=0.00005 ==> accuracy=0.91385

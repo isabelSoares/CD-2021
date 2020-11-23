@@ -8,42 +8,42 @@ UnderSample :  (192, 13)  ->  (192, 12)
 OverSample :  (406, 13)  ->  (406, 12)
 SMOTE :  (406, 13)  ->  (406, 11)
 HFCR Random Forests - Parameters Combinations
-Best results with depth=10, 0.30 features and 150 estimators, with accuracy=0.86
+Best results with depth=25, 0.30 features and 300 estimators, with accuracy=0.86
 
 HFCR Random Forests - Performance & Confusion Matrix
 
 HFCR Random Forests - Parameters Combinations
-Best results with depth=25, 0.30 features and 100 estimators, with accuracy=0.87
+Best results with depth=5, 0.30 features and 200 estimators, with accuracy=0.86
 
 HFCR Random Forests - Performance & Confusion Matrix
 
 HFCR Random Forests - Parameters Combinations
-Best results with depth=25, 0.50 features and 50 estimators, with accuracy=0.88
+Best results with depth=25, 1.00 features and 50 estimators, with accuracy=0.89
 
 HFCR Random Forests - Performance & Confusion Matrix
 
 HFCR Random Forests - Parameters Combinations
-Best results with depth=10, 0.30 features and 150 estimators, with accuracy=0.89
+Best results with depth=5, 0.30 features and 250 estimators, with accuracy=0.87
 
 HFCR Random Forests - Performance & Confusion Matrix
 
 HFCR Random Forests - Parameters Combinations
-Best results with depth=10, 1.00 features and 100 estimators, with accuracy=0.94
+Best results with depth=25, 0.10 features and 200 estimators, with accuracy=0.94
 
 HFCR Random Forests - Performance & Confusion Matrix
 
 HFCR Random Forests - Parameters Combinations
-Best results with depth=10, 0.10 features and 50 estimators, with accuracy=0.94
+Best results with depth=10, 1.00 features and 250 estimators, with accuracy=0.94
 
 HFCR Random Forests - Performance & Confusion Matrix
 
 HFCR Random Forests - Parameters Combinations
-Best results with depth=25, 0.10 features and 200 estimators, with accuracy=0.90
+Best results with depth=25, 0.30 features and 150 estimators, with accuracy=0.93
 
 HFCR Random Forests - Performance & Confusion Matrix
 
 HFCR Random Forests - Parameters Combinations
-Best results with depth=25, 1.00 features and 75 estimators, with accuracy=0.91
+Best results with depth=10, 0.30 features and 50 estimators, with accuracy=0.93
 
 HFCR Random Forests - Performance & Confusion Matrix
 
