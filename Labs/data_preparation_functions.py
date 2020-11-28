@@ -140,7 +140,16 @@ def dummification(data, boolean_attributes = [], bins = 0, strategy = 'uniform')
         else :
             est = KBinsDiscretizer(n_bins=bins, encode='ordinal', strategy=strategy)
             transform_data = est.fit_transform(data[column].values.reshape(-1, 1))
+
+            edges = est.bin_edges_[0]
+            old_values = []
+            new_values = []
+            for x in range(len(edges) - 1):
+                old_values.append(x)
+                new_values.append(str(round(edges[x], 2)) + ":" + str(round(edges[x + 1], 2)))
+
             new_data = pd.concat((new_data, pd.DataFrame(transform_data, columns=[column])), 1)
+            new_data[column] = new_data[column].replace(old_values, new_values)
 
     temp_data = new_data
     new_data = pd.DataFrame()
