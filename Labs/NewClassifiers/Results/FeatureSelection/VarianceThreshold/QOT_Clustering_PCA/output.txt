@@ -1,0 +1,243 @@
+t = 0.01 / n_features = 1019
+QOT Feature Extraction - PCA
+QOT Feature Extraction - PCA 2
+Clustering after PCA
+QOT Clustering - K-Means after PCA
+QOT Clustering - K-Means after PCA MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Expectation-Maximization after PCA
+QOT Clustering - Expectation-Maximization MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - EPS (Density-based) after PCA
+QOT Clustering - EPS (Density-based) MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Metric (Density-based) after PCA
+AVG distances among records [4.223982135056922, 5.351028487521462, 3.818496522145069, 0.25202171763080033, 0.9998726131412976]
+CHOSEN EPS [80, 50, 80, 0.0005, 0.0009]
+1
+1
+1
+1
+QOT Clustering - Metric (Density-based) MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Hierarchical after PCA
+QOT Clustering - Hierarchical MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Metric (Hierarchical) after PCA
+QOT Clustering - Metric (Hierarchical) MSE vs MAE vs SC vs DB after PCA
+t = 0.02 / n_features = 862
+QOT Feature Extraction - PCA
+QOT Feature Extraction - PCA 2
+Clustering after PCA
+QOT Clustering - K-Means after PCA
+QOT Clustering - K-Means after PCA MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Expectation-Maximization after PCA
+QOT Clustering - Expectation-Maximization MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - EPS (Density-based) after PCA
+QOT Clustering - EPS (Density-based) MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Metric (Density-based) after PCA
+AVG distances among records [4.2217248392496245, 5.348633929103332, 3.816188571362746, 0.2520651496756844, 0.9998726131412976]
+CHOSEN EPS [80, 50, 80, 0.0005, 0.0009]
+1
+1
+1
+1
+QOT Clustering - Metric (Density-based) MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Hierarchical after PCA
+QOT Clustering - Hierarchical MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Metric (Hierarchical) after PCA
+QOT Clustering - Metric (Hierarchical) MSE vs MAE vs SC vs DB after PCA
+t = 0.03 / n_features = 666
+QOT Feature Extraction - PCA
+QOT Feature Extraction - PCA 2
+Clustering after PCA
+QOT Clustering - K-Means after PCA
+QOT Clustering - K-Means after PCA MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Expectation-Maximization after PCA
+QOT Clustering - Expectation-Maximization MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - EPS (Density-based) after PCA
+QOT Clustering - EPS (Density-based) MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Metric (Density-based) after PCA
+AVG distances among records [4.2137214468757875, 5.339443618854801, 3.808420007338865, 0.2521952487603373, 0.9998726131412976]
+CHOSEN EPS [80, 50, 80, 0.0005, 0.0009]
+1
+1
+1
+1
+QOT Clustering - Metric (Density-based) MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Hierarchical after PCA
+QOT Clustering - Hierarchical MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Metric (Hierarchical) after PCA
+QOT Clustering - Metric (Hierarchical) MSE vs MAE vs SC vs DB after PCA
+t = 0.04 / n_features = 539
+QOT Feature Extraction - PCA
+QOT Feature Extraction - PCA 2
+Clustering after PCA
+QOT Clustering - K-Means after PCA
+QOT Clustering - K-Means after PCA MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Expectation-Maximization after PCA
+QOT Clustering - Expectation-Maximization MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - EPS (Density-based) after PCA
+QOT Clustering - EPS (Density-based) MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Metric (Density-based) after PCA
+AVG distances among records [4.20301974031147, 5.326663995212178, 3.7982739457286523, 0.2526926798861794, 0.9998726131412976]
+CHOSEN EPS [80, 50, 80, 0.0005, 0.0009]
+1
+1
+1
+1
+QOT Clustering - Metric (Density-based) MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Hierarchical after PCA
+QOT Clustering - Hierarchical MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Metric (Hierarchical) after PCA
+QOT Clustering - Metric (Hierarchical) MSE vs MAE vs SC vs DB after PCA
+t = 0.05 / n_features = 426
+QOT Feature Extraction - PCA
+QOT Feature Extraction - PCA 2
+Clustering after PCA
+QOT Clustering - K-Means after PCA
+QOT Clustering - K-Means after PCA MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Expectation-Maximization after PCA
+QOT Clustering - Expectation-Maximization MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - EPS (Density-based) after PCA
+QOT Clustering - EPS (Density-based) MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Metric (Density-based) after PCA
+AVG distances among records [4.183295506490913, 5.302430661892058, 3.780078474140476, 0.2529708616876659, 0.9998726131412976]
+CHOSEN EPS [80, 50, 80, 0.0005, 0.0009]
+1
+1
+1
+1
+1
+QOT Clustering - Metric (Density-based) MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Hierarchical after PCA
+QOT Clustering - Hierarchical MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Metric (Hierarchical) after PCA
+QOT Clustering - Metric (Hierarchical) MSE vs MAE vs SC vs DB after PCA
+t = 0.07 / n_features = 306
+QOT Feature Extraction - PCA
+QOT Feature Extraction - PCA 2
+Clustering after PCA
+QOT Clustering - K-Means after PCA
+QOT Clustering - K-Means after PCA MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Expectation-Maximization after PCA
+QOT Clustering - Expectation-Maximization MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - EPS (Density-based) after PCA
+QOT Clustering - EPS (Density-based) MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Metric (Density-based) after PCA
+AVG distances among records [4.135735258360774, 5.240933514963527, 3.737963830335301, 0.2509257885801883, 0.9998725636706729]
+CHOSEN EPS [80, 50, 80, 0.0005, 0.0009]
+1
+1
+1
+1
+QOT Clustering - Metric (Density-based) MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Hierarchical after PCA
+QOT Clustering - Hierarchical MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Metric (Hierarchical) after PCA
+QOT Clustering - Metric (Hierarchical) MSE vs MAE vs SC vs DB after PCA
+t = 0.1 / n_features = 202
+QOT Feature Extraction - PCA
+QOT Feature Extraction - PCA 2
+Clustering after PCA
+QOT Clustering - K-Means after PCA
+QOT Clustering - K-Means after PCA MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Expectation-Maximization after PCA
+QOT Clustering - Expectation-Maximization MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - EPS (Density-based) after PCA
+QOT Clustering - EPS (Density-based) MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Metric (Density-based) after PCA
+AVG distances among records [4.041891117322633, 5.118140407663616, 3.6556666720122153, 0.2527917679747689, 0.99987169793474]
+CHOSEN EPS [80, 50, 80, 0.0005, 0.0009]
+1
+1
+1
+1
+QOT Clustering - Metric (Density-based) MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Hierarchical after PCA
+QOT Clustering - Hierarchical MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Metric (Hierarchical) after PCA
+QOT Clustering - Metric (Hierarchical) MSE vs MAE vs SC vs DB after PCA
+t = 0.15 / n_features = 124
+QOT Feature Extraction - PCA
+QOT Feature Extraction - PCA 2
+Clustering after PCA
+QOT Clustering - K-Means after PCA
+QOT Clustering - K-Means after PCA MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Expectation-Maximization after PCA
+QOT Clustering - Expectation-Maximization MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - EPS (Density-based) after PCA
+QOT Clustering - EPS (Density-based) MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Metric (Density-based) after PCA
+AVG distances among records [3.8258297020111627, 4.825271252527238, 3.4696098805815265, 0.25883789428442455, 0.9998632631932219]
+CHOSEN EPS [80, 50, 80, 0.0005, 0.0009]
+1
+1
+1
+1
+QOT Clustering - Metric (Density-based) MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Hierarchical after PCA
+QOT Clustering - Hierarchical MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Metric (Hierarchical) after PCA
+QOT Clustering - Metric (Hierarchical) MSE vs MAE vs SC vs DB after PCA
+t = 0.2 / n_features = 73
+QOT Feature Extraction - PCA
+QOT Feature Extraction - PCA 2
+Clustering after PCA
+QOT Clustering - K-Means after PCA
+QOT Clustering - K-Means after PCA MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Expectation-Maximization after PCA
+QOT Clustering - Expectation-Maximization MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - EPS (Density-based) after PCA
+QOT Clustering - EPS (Density-based) MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Metric (Density-based) after PCA
+AVG distances among records [3.3615814570774387, 4.211698322582834, 3.071722544541705, 0.2528683383302435, 0.9998147325103532]
+CHOSEN EPS [80, 50, 80, 0.0005, 0.0009]
+1
+1
+1
+1
+QOT Clustering - Metric (Density-based) MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Hierarchical after PCA
+QOT Clustering - Hierarchical MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Metric (Hierarchical) after PCA
+QOT Clustering - Metric (Hierarchical) MSE vs MAE vs SC vs DB after PCA
+t = 0.24 / n_features = 20
+QOT Feature Extraction - PCA
+QOT Feature Extraction - PCA 2
+Clustering after PCA
+QOT Clustering - K-Means after PCA
+QOT Clustering - K-Means after PCA MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Expectation-Maximization after PCA
+QOT Clustering - Expectation-Maximization MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - EPS (Density-based) after PCA
+QOT Clustering - EPS (Density-based) MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Metric (Density-based) after PCA
+AVG distances among records [1.9790622795803978, 2.5118335848074076, 1.7933195891454674, 0.27511086154475395, 0.9958008839015463]
+CHOSEN EPS [80, 50, 80, 0.0005, 0.0009]
+1
+1
+1
+1
+QOT Clustering - Metric (Density-based) MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Hierarchical after PCA
+QOT Clustering - Hierarchical MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Metric (Hierarchical) after PCA
+QOT Clustering - Metric (Hierarchical) MSE vs MAE vs SC vs DB after PCA
+t = 0.249 / n_features = 9
+QOT Feature Extraction - PCA
+QOT Feature Extraction - PCA 2
+Clustering after PCA
+QOT Clustering - K-Means after PCA
+QOT Clustering - K-Means after PCA MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Expectation-Maximization after PCA
+QOT Clustering - Expectation-Maximization MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - EPS (Density-based) after PCA
+QOT Clustering - EPS (Density-based) MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Metric (Density-based) after PCA
+AVG distances among records [1.4236179610809956, 1.8158992403919225, 1.2796409388488534, 0.40882037370802, 0.9800666527621231]
+CHOSEN EPS [80, 50, 80, 0.0005, 0.0009]
+1
+1
+1
+1
+QOT Clustering - Metric (Density-based) MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Hierarchical after PCA
+QOT Clustering - Hierarchical MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Metric (Hierarchical) after PCA
+QOT Clustering - Metric (Hierarchical) MSE vs MAE vs SC vs DB after PCA

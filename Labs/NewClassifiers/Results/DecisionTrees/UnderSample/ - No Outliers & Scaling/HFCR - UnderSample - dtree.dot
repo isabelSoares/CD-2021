@@ -1,0 +1,37 @@
+digraph Tree {
+node [shape=box, style="filled, rounded", color="black", fontname=helvetica] ;
+edge [fontname=helvetica] ;
+0 [label=<time &le; -0.733<br/>gini = 0.5<br/>samples = 154<br/>value = [77, 77]<br/>class = 0>, fillcolor="#ffffff"] ;
+1 [label=<gini = 0.107<br/>samples = 53<br/>value = [3, 50]<br/>class = 1>, fillcolor="#45a3e7"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label=<serum_creatinine &le; -0.092<br/>gini = 0.392<br/>samples = 101<br/>value = [74, 27]<br/>class = 0>, fillcolor="#eeaf81"] ;
+0 -> 2 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+3 [label=<serum_creatinine &le; -1.35<br/>gini = 0.158<br/>samples = 58<br/>value = [53, 5]<br/>class = 0>, fillcolor="#e78d4c"] ;
+2 -> 3 ;
+4 [label=<gini = 0.0<br/>samples = 1<br/>value = [0, 1]<br/>class = 1>, fillcolor="#399de5"] ;
+3 -> 4 ;
+5 [label=<gini = 0.131<br/>samples = 57<br/>value = [53, 4]<br/>class = 0>, fillcolor="#e78b48"] ;
+3 -> 5 ;
+6 [label=<ejection_fraction &le; -0.475<br/>gini = 0.5<br/>samples = 43<br/>value = [21, 22]<br/>class = 1>, fillcolor="#f6fbfe"] ;
+2 -> 6 ;
+7 [label=<creatinine_phosphokinase &le; -0.962<br/>gini = 0.388<br/>samples = 19<br/>value = [5, 14]<br/>class = 1>, fillcolor="#80c0ee"] ;
+6 -> 7 ;
+8 [label=<gini = 0.0<br/>samples = 2<br/>value = [2, 0]<br/>class = 0>, fillcolor="#e58139"] ;
+7 -> 8 ;
+9 [label=<gini = 0.291<br/>samples = 17<br/>value = [3, 14]<br/>class = 1>, fillcolor="#63b2eb"] ;
+7 -> 9 ;
+10 [label=<age &le; 0.519<br/>gini = 0.444<br/>samples = 24<br/>value = [16, 8]<br/>class = 0>, fillcolor="#f2c09c"] ;
+6 -> 10 ;
+11 [label=<ejection_fraction &le; 2.106<br/>gini = 0.231<br/>samples = 15<br/>value = [13, 2]<br/>class = 0>, fillcolor="#e99457"] ;
+10 -> 11 ;
+12 [label=<gini = 0.133<br/>samples = 14<br/>value = [13, 1]<br/>class = 0>, fillcolor="#e78b48"] ;
+11 -> 12 ;
+13 [label=<gini = 0.0<br/>samples = 1<br/>value = [0, 1]<br/>class = 1>, fillcolor="#399de5"] ;
+11 -> 13 ;
+14 [label=<time &le; 0.487<br/>gini = 0.444<br/>samples = 9<br/>value = [3, 6]<br/>class = 1>, fillcolor="#9ccef2"] ;
+10 -> 14 ;
+15 [label=<gini = 0.0<br/>samples = 5<br/>value = [0, 5]<br/>class = 1>, fillcolor="#399de5"] ;
+14 -> 15 ;
+16 [label=<gini = 0.375<br/>samples = 4<br/>value = [3, 1]<br/>class = 0>, fillcolor="#eeab7b"] ;
+14 -> 16 ;
+}

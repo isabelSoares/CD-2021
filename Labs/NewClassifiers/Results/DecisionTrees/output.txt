@@ -1,0 +1,48 @@
+Original :  (299, 13)  ->  (299, 12)
+UnderSample :  (192, 13)  ->  (192, 12)
+OverSample :  (406, 13)  ->  (406, 12)
+SMOTE :  (406, 13)  ->  (406, 11)
+Original :  (299, 13)  ->  (299, 12)
+UnderSample :  (192, 13)  ->  (192, 12)
+OverSample :  (406, 13)  ->  (406, 12)
+SMOTE :  (406, 13)  ->  (406, 11)
+Original :  (299, 13)  ->  (299, 12)
+UnderSample :  (192, 13)  ->  (192, 12)
+OverSample :  (406, 13)  ->  (406, 12)
+SMOTE :  (406, 13)  ->  (406, 11)
+Original :  (299, 13)  ->  (299, 12)
+UnderSample :  (192, 13)  ->  (192, 12)
+OverSample :  (406, 13)  ->  (406, 12)
+SMOTE :  (406, 13)  ->  (406, 11)
+Best results achieved with entropy criteria, depth=5 and min_impurity_decrease=0.00005 ==> accuracy=0.83593
+Best results achieved with entropy criteria, depth=2 and min_impurity_decrease=0.02500 ==> accuracy=0.84282
+Best results achieved with entropy criteria, depth=2 and min_impurity_decrease=0.02500 ==> accuracy=0.83627
+Best results achieved with entropy criteria, depth=2 and min_impurity_decrease=0.02500 ==> accuracy=0.83944
+Best results achieved with entropy criteria, depth=20 and min_impurity_decrease=0.00100 ==> accuracy=0.81781
+Best results achieved with gini criteria, depth=2 and min_impurity_decrease=0.02500 ==> accuracy=0.82281
+Best results achieved with gini criteria, depth=10 and min_impurity_decrease=0.01000 ==> accuracy=0.79271
+Best results achieved with gini criteria, depth=5 and min_impurity_decrease=0.02500 ==> accuracy=0.80756
+Best results achieved with entropy criteria, depth=25 and min_impurity_decrease=0.00025 ==> accuracy=0.87955
+Best results achieved with entropy criteria, depth=20 and min_impurity_decrease=0.00005 ==> accuracy=0.89654
+Best results achieved with gini criteria, depth=15 and min_impurity_decrease=0.00050 ==> accuracy=0.89904
+Best results achieved with gini criteria, depth=15 and min_impurity_decrease=0.00100 ==> accuracy=0.90400
+Best results achieved with gini criteria, depth=20 and min_impurity_decrease=0.00025 ==> accuracy=0.89410
+Best results achieved with entropy criteria, depth=30 and min_impurity_decrease=0.00010 ==> accuracy=0.91382
+Best results achieved with entropy criteria, depth=20 and min_impurity_decrease=0.00025 ==> accuracy=0.89651
+Best results achieved with entropy criteria, depth=10 and min_impurity_decrease=0.00050 ==> accuracy=0.91632
+[0.9272419804741979, 0.8359322033898305] <-- Original
+[0.8469909344490935, 0.8428248587570621] <--  - No Outliers - Original
+[0.8478347280334729, 0.836271186440678] <--  - No Outliers & Scaling - Original
+[0.8478242677824268, 0.8394350282485876] <--  - No Outliers & Feature Selection - Original
+[1.0, 0.8178137651821862] <-- UnderSample
+[0.8502673796791443, 0.8228070175438595] <--  - No Outliers - UnderSample
+[0.9192768016297428, 0.7927125506072874] <--  - No Outliers & Scaling - UnderSample
+[0.8646040234275528, 0.807557354925776] <--  - No Outliers & Feature Selection - UnderSample
+[1.0, 0.8795543510990665] <-- OverSample
+[1.0, 0.8965371875940982] <--  - No Outliers - OverSample
+[0.9975365622032288, 0.8990364348087926] <--  - No Outliers & Scaling - OverSample
+[0.9956923076923075, 0.9040048178259561] <--  - No Outliers, Scaling & Feature Selection - OverSample
+[1.0, 0.8940981632038543] <-- SMOTE
+[1.0, 0.9138211382113821] <--  - No Outliers - SMOTE
+[1.0, 0.896507076181873] <--  - No Outliers & Scaling - SMOTE
+[0.9987692307692309, 0.9163203854260764] <--  - No Outliers & Feature Selection - SMOTE
