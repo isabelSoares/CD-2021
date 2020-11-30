@@ -10,7 +10,7 @@ from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.model_selection import StratifiedKFold
 from datetime import datetime
 
-graphsDir = './Results/GradientBoosting/'
+graphsDir = './Results_Accuracy_and_Recall/GradientBoosting/'
 if not os.path.exists(graphsDir):
     os.makedirs(graphsDir)
 
@@ -192,12 +192,28 @@ for key in datas:
                             test_accuracy /= n_splits
                             train_accuracy /= n_splits
 
+                            test_recall /= n_splits
+                            train_recall /= n_splits
+
+                            test_specificity /= n_splits
+                            train_specificity /= n_splits
+
+                            test_precision /= n_splits
+                            train_precision /= n_splits
+
+                            test_f1 /= n_splits
+                            train_f1 /= n_splits
+
                             yvalues.append(test_accuracy)
-                            yvalues_recall.append(test_accuracy)
-                            yvalues_specificity.append(test_accuracy)
-                            yvalues_precision.append(test_accuracy)
-                            yvalues_f1.append(test_accuracy)
+                            yvalues_recall.append(test_recall)
+                            yvalues_specificity.append(test_specificity)
+                            yvalues_precision.append(test_precision)
+                            yvalues_f1.append(test_f1)
                             train_acc_values.append(train_accuracy)
+                            train_acc_values_recall.append(train_recall)
+                            train_acc_values_specificity.append(train_specificity)
+                            train_acc_values_precision.append(train_precision)
+                            train_acc_values_f1.append(train_f1)
                             test_acc_values.append(test_accuracy)
                             if yvalues[-1] > last_best:
                                 best = (max_feat_string, d, lr, n)
