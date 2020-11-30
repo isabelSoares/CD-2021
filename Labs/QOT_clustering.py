@@ -13,6 +13,7 @@ import numpy as np
 from scipy.spatial.distance import pdist, squareform
 from sklearn.cluster import AgglomerativeClustering
 import data_preparation_functions as prepfunctions
+from sklearn.feature_selection import VarianceThreshold
 
 
 graphsDir = './Results/Clustering/QOT/'
@@ -26,15 +27,24 @@ print('-                        -')
 print('--------------------------')
 
 data: pd.DataFrame = pd.read_csv('../Dataset/qsar_oral_toxicity.csv', sep=';', header=None)
-original_data = data.copy()
-datas = prepfunctions.prepare_dataset(data, 1024, False, False)
-featured_datas = prepfunctions.mask_feature_selection(datas, 1024, True, './Results/FeatureSelection/QOT Feature Selection - Features')
 
-fs_pca = [(True, True)]
+# Original
+original_data = data.copy()
+original_data.pop(1024)
+
+sel = VarianceThreshold(threshold=0.2)
+sel.fit_transform(original_data.values)
+f_to_accept = sel.get_support()
+new_features = []
+for i in range(len(f_to_accept)):
+    if f_to_accept[i]:
+        new_features.append(i)
+
+fs_data = original_data.copy()[new_features]
+
+fs_pca = [(False, True), (True, True)]
 
 def pca_function(data, subDir):
-    data.pop(1024)
-
     variables = data.columns.values
     eixo_x = 0
     eixo_y = 4
@@ -360,22 +370,31 @@ def pca_function(data, subDir):
 
 
 
-for key in datas:
-    if key != 'Original':
-        break
+for key in ['Original']:
     for fs, pca in fs_pca:
         if (fs, pca) == (False, False):
-            data = original_data
+            data = original_data.copy()
             subDir = graphsDir + 'Original/'
             if not os.path.exists(subDir):
                 os.makedirs(subDir)
         elif (fs, pca) == (True, False):
-            data = featured_datas[key].copy()
+            data = fs_data.copy()
             subDir = graphsDir + 'Feature Selection/'
             if not os.path.exists(subDir):
                 os.makedirs(subDir)
+        elif (fs, pca) == (False, True):
+            data = original_data.copy()
+            subDir = graphsDir + 'PCA/'
+            if not os.path.exists(subDir):
+                os.makedirs(subDir)
+            print()
+            print()
+            print('Feature Selection = ' + str(fs) + ': PCA = ' + str(pca))
+            print()
+            pca_function(data, subDir)
+            continue
         elif (fs, pca) == (True, True):
-            data = featured_datas[key].copy()
+            data = fs_data.copy()
             subDir = graphsDir + 'Feature Selection and PCA/'
             if not os.path.exists(subDir):
                 os.makedirs(subDir)
@@ -384,7 +403,7 @@ for key in datas:
             print('Feature Selection = ' + str(fs) + ': PCA = ' + str(pca))
             print()
             pca_function(data, subDir)
-            break
+            continue
         else:
             break
 
@@ -392,7 +411,6 @@ for key in datas:
         print()
         print('Feature Selection = ' + str(fs) + ': PCA = ' + str(pca))
         print()
-        data.pop(1024)
 
         v1 = 0
         v2 = 4

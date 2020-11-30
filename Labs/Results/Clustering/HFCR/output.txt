@@ -1,0 +1,89 @@
+---------------------------
+-                         -
+-     HFCR Clustering     -
+-                         -
+---------------------------
+
+
+Scaling = False and PCA = False
+
+HFCR Clustering - K-Means
+HFCR Clustering - K-Means MSE vs MAE vs SC vs DB
+HFCR Clustering - Expectation-Maximization
+HFCR Clustering - Expectation-Maximization MSE vs MAE vs SC vs DB
+HFCR Clustering - EPS (Density-based)
+HFCR Clustering - EPS (Density-based) MSE vs MAE vs SC vs DB
+HFCR Clustering - Metric (Density-based)
+AVG distances among records [100637.81533304756, 101429.9149762978, 100613.5314159797, 2.133570264848463e-05, 0.8663685764092921]
+CHOSEN EPS [60382.689199828535, 80, 60368.118849587816, 2.133570264848463e-06, 0.12995528646139382]
+HFCR Clustering - Metric (Density-based) MSE vs MAE vs SC vs DB
+HFCR Clustering - Hierarchical
+HFCR Clustering - Hierarchical MSE vs MAE vs SC vs DB
+HFCR Clustering - Metric (Hierarchical)
+HFCR Clustering - Metric (Hierarchical) MSE vs MAE vs SC vs DB
+
+
+Scaling = True and PCA = False
+
+HFCR Clustering - K-Means
+HFCR Clustering - K-Means MSE vs MAE vs SC vs DB
+HFCR Clustering - Expectation-Maximization
+HFCR Clustering - Expectation-Maximization MSE vs MAE vs SC vs DB
+HFCR Clustering - EPS (Density-based)
+HFCR Clustering - EPS (Density-based) MSE vs MAE vs SC vs DB
+HFCR Clustering - Metric (Density-based)
+AVG distances among records [4.80105025813857, 12.587208601982779, 2.5588536460261047, 0.999586459309209, 0.7435841508111393]
+CHOSEN EPS [2.880630154883142, 80, 1.5353121876156628, 0.09995864593092091, 0.11153762262167088]
+HFCR Clustering - Metric (Density-based) MSE vs MAE vs SC vs DB
+HFCR Clustering - Hierarchical
+HFCR Clustering - Hierarchical MSE vs MAE vs SC vs DB
+HFCR Clustering - Metric (Hierarchical)
+HFCR Clustering - Metric (Hierarchical) MSE vs MAE vs SC vs DB
+
+
+Scaling = False and PCA = True
+
+HFCR Feature Extraction - PCA
+HFCR Feature Extraction - PCA 2
+Clustering after PCA
+HFCR Clustering - K-Means after PCA
+HFCR Clustering - K-Means after PCA MSE vs MAE vs SC vs DB after PCA
+HFCR Clustering - Expectation-Maximization after PCA
+HFCR Clustering - Expectation-Maximization MSE vs MAE vs SC vs DB after PCA
+HFCR Clustering - EPS (Density-based) after PCA
+HFCR Clustering - EPS (Density-based) MSE vs MAE vs SC vs DB after PCA
+HFCR Clustering - Metric (Density-based) after PCA
+AVG distances among records [100637.27211321057, 101308.17830630303, 100613.34172745582, 2.055653156893136e-05, 0.9966555183946488]
+CHOSEN EPS [80, 50, 80, 0.0005, 0.0009]
+1
+1
+HFCR Clustering - Metric (Density-based) MSE vs MAE vs SC vs DB after PCA
+HFCR Clustering - Hierarchical after PCA
+HFCR Clustering - Hierarchical MSE vs MAE vs SC vs DB after PCA
+HFCR Clustering - Metric (Hierarchical) after PCA
+HFCR Clustering - Metric (Hierarchical) MSE vs MAE vs SC vs DB after PCA
+
+
+Scaling = True and PCA = True
+
+HFCR Feature Extraction - PCA
+HFCR Feature Extraction - PCA 2
+Clustering after PCA
+HFCR Clustering - K-Means after PCA
+HFCR Clustering - K-Means after PCA MSE vs MAE vs SC vs DB after PCA
+HFCR Clustering - Expectation-Maximization after PCA
+HFCR Clustering - Expectation-Maximization MSE vs MAE vs SC vs DB after PCA
+HFCR Clustering - EPS (Density-based) after PCA
+HFCR Clustering - EPS (Density-based) MSE vs MAE vs SC vs DB after PCA
+HFCR Clustering - Metric (Density-based) after PCA
+AVG distances among records [2.310886874161698, 2.9420470631912288, 2.0806099740531647, 0.9991605502731815, 0.9966555183946488]
+CHOSEN EPS [80, 50, 80, 0.0005, 0.0009]
+1
+1
+1
+1
+HFCR Clustering - Metric (Density-based) MSE vs MAE vs SC vs DB after PCA
+HFCR Clustering - Hierarchical after PCA
+HFCR Clustering - Hierarchical MSE vs MAE vs SC vs DB after PCA
+HFCR Clustering - Metric (Hierarchical) after PCA
+HFCR Clustering - Metric (Hierarchical) MSE vs MAE vs SC vs DB after PCA

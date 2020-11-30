@@ -1,0 +1,92 @@
+--------------------------
+-                        -
+-     QOT Clustering     -
+-                        -
+--------------------------
+
+
+Feature Selection = False: PCA = False
+
+QOT Clustering - K-Means
+QOT Clustering - K-Means MSE vs MAE vs SC vs DB
+QOT Clustering - Expectation-Maximization
+QOT Clustering - Expectation-Maximization MSE vs MAE vs SC vs DB
+QOT Clustering - EPS (Density-based)
+QOT Clustering - EPS (Density-based) MSE vs MAE vs SC vs DB
+QOT Clustering - Metric (Density-based)
+AVG distances among records [11.441172559146954, 134.88438321707076, 0.9998726131412976, 0.7082288366972024, 0.8318665315949874]
+CHOSEN EPS [6.8647035354881725, 80, 0.5999235678847785, 0.07082288366972024, 0.12477997973924809]
+QOT Clustering - Metric (Density-based) MSE vs MAE vs SC vs DB
+QOT Clustering - Hierarchical
+QOT Clustering - Hierarchical MSE vs MAE vs SC vs DB
+QOT Clustering - Metric (Hierarchical)
+QOT Clustering - Metric (Hierarchical) MSE vs MAE vs SC vs DB
+
+
+Feature Selection = True: PCA = False
+
+QOT Clustering - K-Means
+QOT Clustering - K-Means MSE vs MAE vs SC vs DB
+QOT Clustering - Expectation-Maximization
+QOT Clustering - Expectation-Maximization MSE vs MAE vs SC vs DB
+QOT Clustering - EPS (Density-based)
+QOT Clustering - EPS (Density-based) MSE vs MAE vs SC vs DB
+QOT Clustering - Metric (Density-based)
+AVG distances among records [5.680508272658758, 33.45749122786882, 0.9998147325103532, nan, 0.6639497944108046]
+CHOSEN EPS [3.408304963595255, 80, 0.599888839506212, nan, 0.09959246916162069]
+Traceback (most recent call last):
+  File "QOT_clustering.py", line 542, in <module>
+    estimator.fit(data)
+  File "/home/joaodias/anaconda3/envs/cd/lib/python3.8/site-packages/sklearn/cluster/_dbscan.py", line 315, in fit
+    raise ValueError("eps must be positive.")
+ValueError: eps must be positive.
+
+
+Feature Selection = False: PCA = True
+
+QOT Feature Extraction - PCA
+QOT Feature Extraction - PCA 2
+Clustering after PCA
+QOT Clustering - K-Means after PCA
+QOT Clustering - K-Means after PCA MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Expectation-Maximization after PCA
+QOT Clustering - Expectation-Maximization MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - EPS (Density-based) after PCA
+QOT Clustering - EPS (Density-based) MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Metric (Density-based) after PCA
+AVG distances among records [4.223987953565449, 5.351033312351962, 3.8185028525203766, 0.25202168065926395, 0.9998726131412976]
+CHOSEN EPS [80, 50, 80, 0.0005, 0.0009]
+1
+1
+1
+1
+QOT Clustering - Metric (Density-based) MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Hierarchical after PCA
+QOT Clustering - Hierarchical MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Metric (Hierarchical) after PCA
+QOT Clustering - Metric (Hierarchical) MSE vs MAE vs SC vs DB after PCA
+
+
+Feature Selection = True: PCA = True
+
+QOT Feature Extraction - PCA
+QOT Feature Extraction - PCA 2
+Clustering after PCA
+QOT Clustering - K-Means after PCA
+QOT Clustering - K-Means after PCA MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Expectation-Maximization after PCA
+QOT Clustering - Expectation-Maximization MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - EPS (Density-based) after PCA
+QOT Clustering - EPS (Density-based) MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Metric (Density-based) after PCA
+AVG distances among records [3.3615814570774387, 4.211698322582834, 3.071722544541705, 0.2528683383302435, 0.9998147325103532]
+CHOSEN EPS [80, 50, 80, 0.0005, 0.0009]
+1
+1
+1
+1
+QOT Clustering - Metric (Density-based) MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Hierarchical after PCA
+QOT Clustering - Hierarchical MSE vs MAE vs SC vs DB after PCA
+QOT Clustering - Metric (Hierarchical) after PCA
+QOT Clustering - Metric (Hierarchical) MSE vs MAE vs SC vs DB after PCA

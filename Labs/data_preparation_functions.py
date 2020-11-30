@@ -40,7 +40,7 @@ def outliers_removal(data, target):
     
     return data
 
-def scaling(data, target, z_score = True):
+def scaling(data, target, z_score):
     target_collumn = data.pop(target)
 
     cols_nr = data.select_dtypes(include='number')
