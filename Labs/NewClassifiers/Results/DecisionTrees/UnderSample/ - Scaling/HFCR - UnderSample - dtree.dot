@@ -1,0 +1,33 @@
+digraph Tree {
+node [shape=box, style="filled, rounded", color="black", fontname=helvetica] ;
+edge [fontname=helvetica] ;
+0 [label=<time &le; -0.791<br/>gini = 0.5<br/>samples = 154<br/>value = [77, 77]<br/>class = 0>, fillcolor="#ffffff"] ;
+1 [label=<gini = 0.18<br/>samples = 50<br/>value = [5, 45]<br/>class = 1>, fillcolor="#4fa8e8"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label=<serum_creatinine &le; 0.151<br/>gini = 0.426<br/>samples = 104<br/>value = [72, 32]<br/>class = 0>, fillcolor="#f1b991"] ;
+0 -> 2 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+3 [label=<age &le; 1.403<br/>gini = 0.292<br/>samples = 79<br/>value = [65, 14]<br/>class = 0>, fillcolor="#eb9c64"] ;
+2 -> 3 ;
+4 [label=<ejection_fraction &le; -0.896<br/>gini = 0.248<br/>samples = 76<br/>value = [65, 11]<br/>class = 0>, fillcolor="#e9965b"] ;
+3 -> 4 ;
+5 [label=<smoking &le; 0.383<br/>gini = 0.5<br/>samples = 14<br/>value = [7, 7]<br/>class = 0>, fillcolor="#ffffff"] ;
+4 -> 5 ;
+6 [label=<gini = 0.42<br/>samples = 10<br/>value = [7, 3]<br/>class = 0>, fillcolor="#f0b78e"] ;
+5 -> 6 ;
+7 [label=<gini = 0.0<br/>samples = 4<br/>value = [0, 4]<br/>class = 1>, fillcolor="#399de5"] ;
+5 -> 7 ;
+8 [label=<platelets &le; -1.637<br/>gini = 0.121<br/>samples = 62<br/>value = [58, 4]<br/>class = 0>, fillcolor="#e78a47"] ;
+4 -> 8 ;
+9 [label=<gini = 0.0<br/>samples = 1<br/>value = [0, 1]<br/>class = 1>, fillcolor="#399de5"] ;
+8 -> 9 ;
+10 [label=<gini = 0.094<br/>samples = 61<br/>value = [58, 3]<br/>class = 0>, fillcolor="#e68843"] ;
+8 -> 10 ;
+11 [label=<gini = 0.0<br/>samples = 3<br/>value = [0, 3]<br/>class = 1>, fillcolor="#399de5"] ;
+3 -> 11 ;
+12 [label=<time &le; 0.932<br/>gini = 0.403<br/>samples = 25<br/>value = [7, 18]<br/>class = 1>, fillcolor="#86c3ef"] ;
+2 -> 12 ;
+13 [label=<gini = 0.266<br/>samples = 19<br/>value = [3, 16]<br/>class = 1>, fillcolor="#5eafea"] ;
+12 -> 13 ;
+14 [label=<gini = 0.444<br/>samples = 6<br/>value = [4, 2]<br/>class = 0>, fillcolor="#f2c09c"] ;
+12 -> 14 ;
+}

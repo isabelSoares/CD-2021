@@ -12,7 +12,7 @@ from sklearn.preprocessing import StandardScaler
 from subprocess import call
 
 
-graphsDir = './Results/KNN/'
+graphsDir = './Results_Accuracy_and_Recall/KNN/'
 if not os.path.exists(graphsDir):
     os.makedirs(graphsDir)
 
@@ -34,7 +34,7 @@ all_datas_names = ['', ' - No Outliers', ' - Scaling', ' - Feature Selection', '
 provisorio_data_scaling = ' - Scaling & Feature Selection'
 
 accuracies = {}
-
+recalls = {}
 for key in datas:
     last_name = 'None'
     best_accuracy = -1
@@ -93,6 +93,7 @@ for key in datas:
         overfitting_values = {}
         for d in dist:
             yvalues = []
+            yvalues_recall = []
             overfitting_values[d] = {}
             overfitting_values[d]['test'] = []
             overfitting_values[d]['train'] = []
@@ -101,6 +102,8 @@ for key in datas:
                 prd_tst_lst = []
                 test_accuracy = 0
                 train_accuracy = 0
+                test_recall = 0
+                train_recall = 0
                 for trn_X, trn_y, tst_X, tst_y in zip(trn_x_lst, trn_y_lst, tst_x_lst, tst_y_lst):
                     knn = KNeighborsClassifier(n_neighbors=n, metric=d)
                     knn.fit(trn_X, trn_y)
@@ -109,26 +112,35 @@ for key in datas:
 
                     train_accuracy += metrics.accuracy_score(trn_y, prd_trn)
                     test_accuracy += metrics.accuracy_score(tst_y, prd_tst)
+                    train_recall += metrics.recall_score(trn_y, prd_trn)
+                    test_recall += metrics.recall_score(tst_y, prd_tst)
 
                     prd_trn_lst.append(prd_trn)
                     prd_tst_lst.append(prd_tst)
 
                 test_accuracy /= n_splits
                 train_accuracy /= n_splits
+                test_recall /= n_splits
+                train_recall /= n_splits
                 
                 overfitting_values[d]['train'].append(train_accuracy)
                 overfitting_values[d]['test'].append(test_accuracy)
                 yvalues.append(test_accuracy)
+                yvalues_recall.append(test_recall)
                 if yvalues[-1] > last_best:
                     best = (n, d)
                     last_best = yvalues[-1]
                     last_train_best = train_accuracy
+                    last_best_recall = yvalues_recall[-1]
+                    last_train_best_recall = train_recall
                     best_model = (prd_trn_lst, prd_tst_lst)
             values[d] = yvalues
 
         if(count == 0): text = key
         else: text = last_name + ' - ' + key
         accuracies[text] = [last_train_best, last_best]
+        recalls[text] = [last_train_best_recall, last_best_recall]
+
 
         last_accuracy = last_best
 
@@ -179,3 +191,8 @@ plt.figure(figsize=(7,7))
 ds.multiple_bar_chart(['Train', 'Test'], accuracies, ylabel='Accuracy')
 plt.suptitle('HFCR Accuracy Comparison')
 plt.savefig(graphsDir + 'HFCR Accuracy Comparison')
+
+plt.figure(figsize=(7,7))
+ds.multiple_bar_chart(['Train', 'Test'], recalls, ylabel='Recall')
+plt.suptitle('HFCR Recall Comparison')
+plt.savefig(graphsDir + 'HFCR Recall Comparison')
