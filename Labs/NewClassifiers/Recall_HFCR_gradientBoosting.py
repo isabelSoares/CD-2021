@@ -287,7 +287,7 @@ plt.suptitle('HFCR Accuracy Comparison')
 plt.savefig(graphsDir + 'HFCR Accuracy Comparison')
 
 plt.figure(figsize=(7,7))
-ds.multiple_bar_chart(['Train', 'Test'], recall, ylabel='Recall')
+ds.multiple_bar_chart(['Train', 'Test'], recalls, ylabel='Recall')
 plt.suptitle('HFCR Recall Comparison')
 plt.savefig(graphsDir + 'HFCR Recall Comparison')
 

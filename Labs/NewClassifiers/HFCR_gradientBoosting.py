@@ -180,7 +180,7 @@ for key in datas:
             if(count == 0): text = key
             else: text = last_name + ' - ' + key
             if ((text not in best_accuracies.keys()) or (best_accuracies[text][1] < last_best)):
-                accuracies[text] = [last_train_best, last_best]
+                accuracies[text] = [last_best_train, last_best]
                 last_accuracy = last_best
 
             plt.figure()

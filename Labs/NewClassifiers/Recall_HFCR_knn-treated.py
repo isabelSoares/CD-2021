@@ -34,7 +34,7 @@ all_datas_names = ['', ' - No Outliers', ' - Scaling', ' - Feature Selection', '
 provisorio_data_scaling = ' - Scaling & Feature Selection'
 
 accuracies = {}
-rrecalls = {}
+recalls = {}
 specificities = {}
 precisions = {}
 f1s = {}
@@ -97,6 +97,9 @@ for key in datas:
         for d in dist:
             yvalues = []
             yvalues_recall = []
+            yvalues_specificity = []
+            yvalues_precision = []
+            yvalues_f1 = []
             overfitting_values[d] = {}
             overfitting_values[d]['test'] = []
             overfitting_values[d]['train'] = []
@@ -142,17 +145,33 @@ for key in datas:
                 train_accuracy /= n_splits
                 test_recall /= n_splits
                 train_recall /= n_splits
-                
+                test_specificity /= n_splits
+                train_specificity /= n_splits
+                test_precision /= n_splits
+                train_precision /= n_splits
+                test_f1 /= n_splits
+                train_f1 /= n_splits
+
                 overfitting_values[d]['train'].append(train_accuracy)
                 overfitting_values[d]['test'].append(test_accuracy)
                 yvalues.append(test_accuracy)
                 yvalues_recall.append(test_recall)
+                yvalues_specificity.append(test_specificity)
+                yvalues_precision.append(test_precision)
+                yvalues_f1.append(test_f1)
                 if yvalues[-1] > last_best:
                     best = (n, d)
                     last_best = yvalues[-1]
-                    last_train_best = train_accuracy
                     last_best_recall = yvalues_recall[-1]
+                    last_best_specificity = yvalues_specificity[-1]
+                    last_best_precision = yvalues_precision[-1]
+                    last_best_f1 = yvalues_f1[-1]
+
+                    last_train_best = train_accuracy
                     last_train_best_recall = train_recall
+                    last_train_best_specificity = train_specificity
+                    last_train_best_precision = train_precision
+                    last_train_best_f1 = train_f1
                     best_model = (prd_trn_lst, prd_tst_lst)
             values[d] = yvalues
 
@@ -160,6 +179,9 @@ for key in datas:
         else: text = last_name + ' - ' + key
         accuracies[text] = [last_train_best, last_best]
         recalls[text] = [last_train_best_recall, last_best_recall]
+        specificities[text] = [last_train_best_specificity, last_best_specificity]
+        precisions[text] = [last_train_best_precision, last_best_precision]
+        f1s[text] = [last_train_best_f1, last_best_f1]
 
 
         last_accuracy = last_best
@@ -216,3 +238,18 @@ plt.figure(figsize=(7,7))
 ds.multiple_bar_chart(['Train', 'Test'], recalls, ylabel='Recall')
 plt.suptitle('HFCR Recall Comparison')
 plt.savefig(graphsDir + 'HFCR Recall Comparison')
+
+plt.figure(figsize=(7,7))
+ds.multiple_bar_chart(['Train', 'Test'], specificities, ylabel='Specificity')
+plt.suptitle('HFCR Specificity Comparison')
+plt.savefig(graphsDir + 'HFCR Specificity Comparison')
+
+plt.figure(figsize=(7,7))
+ds.multiple_bar_chart(['Train', 'Test'], precisions, ylabel='Precision')
+plt.suptitle('HFCR Precision Comparison')
+plt.savefig(graphsDir + 'HFCR Precision Comparison')
+
+plt.figure(figsize=(7,7))
+ds.multiple_bar_chart(['Train', 'Test'], f1s, ylabel='F1')
+plt.suptitle('HFCR F1 Comparison')
+plt.savefig(graphsDir + 'HFCR F1 Comparison')
