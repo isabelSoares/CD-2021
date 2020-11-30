@@ -174,10 +174,10 @@ for key in datas:
                                 train_recall += metrics.recall_score(trn_y, prd_trn)
                                 test_recall += metrics.recall_score(tst_y, prd_tst)
 
-                                a_tn, a_fp, a_fn, a_tp = confusion_matrix(trn_y, prd_trn).ravel()
+                                a_tn, a_fp, a_fn, a_tp = metrics.confusion_matrix(trn_y, prd_trn).ravel()
                                 train_specificity = a_tn / (a_tn+a_fp)
 
-                                b_tn, b_fp, b_fn, b_tp = confusion_matrix(tst_y, prd_tst).ravel()
+                                b_tn, b_fp, b_fn, b_tp = metrics.confusion_matrix(tst_y, prd_tst).ravel()
                                 test_specificity = b_tn / (b_tn+b_fp)
 
                                 train_precision += metrics.precision_score(trn_y, prd_trn)
