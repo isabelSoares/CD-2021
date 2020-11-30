@@ -229,6 +229,18 @@ for key in datas:
 for a in accuracies:
     print(str(accuracies[a]) + ' <-- ' + a)
 
+for r in recalls:
+    print(str(recalls[r]) + ' <-- ' + r)
+
+for s in specificities:
+    print(str(specificities[s]) + ' <-- ' + s)
+
+for p in precisions:
+    print(str(precisions[p]) + ' <-- ' + p)
+
+for f in f1s:
+    print(str(f1s[f]) + ' <-- ' + f)
+
 plt.figure(figsize=(7,7))
 ds.multiple_bar_chart(['Train', 'Test'], accuracies, ylabel='Accuracy')
 plt.suptitle('HFCR Accuracy Comparison')
