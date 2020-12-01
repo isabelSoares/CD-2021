@@ -1,0 +1,245 @@
+-------------------------------
+-                             -
+-     HFCR Random Forests     -
+-                             -
+-------------------------------
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (152, 13)  ->  (152, 12)
+OverSample :  (326, 13)  ->  (326, 12)
+SMOTE :  (326, 13)  ->  (326, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (240, 13)  ->  (240, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (326, 13)  ->  (326, 12)
+SMOTE :  (326, 13)  ->  (326, 11)
+Original :  (59, 13)  ->  (59, 12)
+UnderSample :  (59, 13)  ->  (59, 12)
+OverSample :  (59, 13)  ->  (59, 12)
+SMOTE :  (59, 13)  ->  (59, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (152, 13)  ->  (152, 12)
+OverSample :  (326, 13)  ->  (326, 12)
+SMOTE :  (326, 13)  ->  (326, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (240, 13)  ->  (240, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (326, 13)  ->  (326, 12)
+SMOTE :  (326, 13)  ->  (326, 11)
+Original :  (59, 13)  ->  (59, 12)
+UnderSample :  (59, 13)  ->  (59, 12)
+OverSample :  (59, 13)  ->  (59, 12)
+SMOTE :  (59, 13)  ->  (59, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (152, 13)  ->  (152, 12)
+OverSample :  (326, 13)  ->  (326, 12)
+SMOTE :  (326, 13)  ->  (326, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (240, 13)  ->  (240, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (326, 13)  ->  (326, 12)
+SMOTE :  (326, 13)  ->  (326, 11)
+Original :  (59, 13)  ->  (59, 12)
+UnderSample :  (59, 13)  ->  (59, 12)
+OverSample :  (59, 13)  ->  (59, 12)
+SMOTE :  (59, 13)  ->  (59, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (152, 13)  ->  (152, 12)
+OverSample :  (326, 13)  ->  (326, 12)
+SMOTE :  (326, 13)  ->  (326, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (240, 13)  ->  (240, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (326, 13)  ->  (326, 12)
+SMOTE :  (326, 13)  ->  (326, 11)
+Original :  (59, 13)  ->  (59, 12)
+UnderSample :  (59, 13)  ->  (59, 12)
+OverSample :  (59, 13)  ->  (59, 12)
+SMOTE :  (59, 13)  ->  (59, 11)
+Best results with depth=5, 0.30 features and 25 estimators, with accuracy=1.00
+
+HFCR Random Forests - Performance & Confusion Matrix
+
+Best results with depth=5, 0.30 features and 10 estimators, with accuracy=1.00
+
+HFCR Random Forests - Performance & Confusion Matrix
+
+Best results with depth=5, 0.30 features and 10 estimators, with accuracy=1.00
+
+HFCR Random Forests - Performance & Confusion Matrix
+
+Best results with depth=5, 0.30 features and 10 estimators, with accuracy=1.00
+
+HFCR Random Forests - Performance & Confusion Matrix
+
+Best results with depth=5, 0.30 features and 50 estimators, with accuracy=1.00
+
+HFCR Random Forests - Performance & Confusion Matrix
+
+Best results with depth=5, 0.30 features and 25 estimators, with accuracy=1.00
+
+HFCR Random Forests - Performance & Confusion Matrix
+
+Best results with depth=5, 0.30 features and 25 estimators, with accuracy=1.00
+
+HFCR Random Forests - Performance & Confusion Matrix
+
+Best results with depth=5, 0.30 features and 10 estimators, with accuracy=1.00
+
+HFCR Random Forests - Performance & Confusion Matrix
+
+Best results with depth=5, 0.30 features and 10 estimators, with accuracy=1.00
+
+HFCR Random Forests - Performance & Confusion Matrix
+
+Best results with depth=5, 0.10 features and 100 estimators, with accuracy=1.00
+
+HFCR Random Forests - Performance & Confusion Matrix
+
+Best results with depth=5, 0.10 features and 100 estimators, with accuracy=1.00
+
+HFCR Random Forests - Performance & Confusion Matrix
+
+Best results with depth=5, 0.30 features and 25 estimators, with accuracy=1.00
+
+HFCR Random Forests - Performance & Confusion Matrix
+
+Best results with depth=5, 0.30 features and 10 estimators, with accuracy=1.00
+
+HFCR Random Forests - Performance & Confusion Matrix
+
+Best results with depth=5, 0.30 features and 25 estimators, with accuracy=1.00
+
+HFCR Random Forests - Performance & Confusion Matrix
+
+Best results with depth=5, 0.10 features and 100 estimators, with accuracy=1.00
+
+HFCR Random Forests - Performance & Confusion Matrix
+
+Best results with depth=5, 0.30 features and 25 estimators, with accuracy=1.00
+
+HFCR Random Forests - Performance & Confusion Matrix
+
+[1.0, 1.0] <-- Original
+[1.0, 1.0] <--  - No Outliers - Original
+[1.0, 1.0] <--  - Scaling - Original
+[1.0, 1.0] <--  - Scaling & Feature Selection - Original
+[1.0, 1.0] <-- UnderSample
+[1.0, 1.0] <--  - No Outliers - UnderSample
+[1.0, 1.0] <--  - Scaling - UnderSample
+[1.0, 1.0] <--  - Scaling & Feature Selection - UnderSample
+[0.9993865030674847, 1.0] <-- OverSample
+[1.0, 1.0] <--  - No Outliers - OverSample
+[1.0, 1.0] <--  - Scaling - OverSample
+[1.0, 1.0] <--  - Scaling & Feature Selection - OverSample
+[1.0, 1.0] <-- SMOTE
+[1.0, 1.0] <--  - No Outliers - SMOTE
+[1.0, 1.0] <--  - Scaling - SMOTE
+[1.0, 1.0] <--  - Scaling & Feature Selection - SMOTE
