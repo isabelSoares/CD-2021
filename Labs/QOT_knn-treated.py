@@ -25,6 +25,7 @@ featured_datas = prepfunctions.mask_feature_selection(datas, 1024, True, './Resu
 featured_test_datas = prepfunctions.mask_feature_selection(testDatas, 1024, True, './Results/FeatureSelection/QOT Feature Selection - Features')
 
 best_accuracies = {}
+recalls = {}
 
 for key in datas:
     for do_feature_eng in [False, True]:
@@ -63,6 +64,7 @@ for key in datas:
             current_time = now.strftime("%H:%M:%S")
             print(current_time, " : ", d)
             yvalues = []
+            yvalues_recall = []
             overfitting_values[d] = {}
             overfitting_values[d]['test'] = []
             overfitting_values[d]['train'] = []
@@ -77,18 +79,24 @@ for key in datas:
 
                 test_accuracy = metrics.accuracy_score(tstY, prdY)
                 train_accuracy = metrics.accuracy_score(trnY, prdTrainY)
+                train_recall = metrics.recall_score(trnY, prdTrainY, pos_label="positive")
+                test_recall = metrics.recall_score(tstY, prdY, pos_label="positive")
                 overfitting_values[d]['test'].append(test_accuracy)
                 overfitting_values[d]['train'].append(train_accuracy)
+                yvalues_recall.append(test_recall)
                 yvalues.append(test_accuracy)
                 if yvalues[-1] > last_best:
                     best = (n, d)
                     last_best = yvalues[-1]
                     last_train_best = train_accuracy
+                    last_best_recall = yvalues_recall[-1]
+                    last_train_best_recall = train_recall
             values[d] = yvalues
 
         text = key
         if (do_feature_eng): text += ' with FS'
         best_accuracies[text] = [last_train_best, last_best]
+        recalls[text] = [last_train_best_recall, last_best_recall]
 
         plt.figure()
         ds.multiple_line_chart(nvalues, values, title='KNN variants', xlabel='n', ylabel='accuracy', percentage=True)
@@ -119,3 +127,8 @@ plt.figure(figsize=(7,7))
 ds.multiple_bar_chart(['Train', 'Test'], best_accuracies, ylabel='Accuracy')
 plt.suptitle('QOT Sampling & Feature Selection')
 plt.savefig(graphsDir + 'QOT Sampling & Feature Selection')
+
+plt.figure(figsize=(7,7))
+ds.multiple_bar_chart(['Train', 'Test'], recalls, ylabel='Recall')
+plt.suptitle('QOT Recall Comparison')
+plt.savefig(graphsDir + 'QOT Recall Comparison')

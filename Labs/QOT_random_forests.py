@@ -20,22 +20,29 @@ print('-     QOT Random Forests     -')
 print('-                            -')
 print('------------------------------')
 
-
-
 data: pd.DataFrame = pd.read_csv('../Dataset/qsar_oral_toxicity.csv', sep=';', header=None)
-datas = prepfunctions.prepare_dataset(data, 1024, False, False)
+train, test = train_test_split(data, train_size=0.7, stratify=data[1024].values)
+testDatas = {}
+datas = prepfunctions.prepare_dataset(train, 1024, False, False)
+for key in datas:
+    testDatas[key] = test.copy()
+
 featured_datas = prepfunctions.mask_feature_selection(datas, 1024, True, './Results/FeatureSelection/QOT Feature Selection - Features')
+featured_test_datas = prepfunctions.mask_feature_selection(testDatas, 1024, True, './Results/FeatureSelection/QOT Feature Selection - Features')
+
 best_accuracies = {}
 
 for key in datas:
     for do_feature_eng in [False, True]:
         if (do_feature_eng):
             data = featured_datas[key]
+            testData = featured_test_datas[key].copy()
             subDir = graphsDir + 'FeatureEng/' +  key + '/'
             if not os.path.exists(subDir):
                 os.makedirs(subDir)
         else:
             data = datas[key]
+            testData = test.copy()
             subDir = graphsDir + key + '/'
             if not os.path.exists(subDir):
                 os.makedirs(subDir)
@@ -45,11 +52,10 @@ for key in datas:
         current_time = now.strftime("%H:%M:%S")
         print(current_time, ": Key: ", key, ", feature eng: ", do_feature_eng)
 
-        y: np.ndarray = data.pop(1024).values
-        X: np.ndarray = data.values
-        labels = pd.unique(y)
-
-        trnX, tstX, trnY, tstY = train_test_split(X, y, train_size=0.7, stratify=y)
+        trnY: np.ndarray = data.pop(1024).values 
+        trnX: np.ndarray = data.values
+        tstY: np.ndarray = testData.pop(1024).values 
+        tstX: np.ndarray = testData.values
 
         n_estimators = [5, 10, 25, 50, 75, 100, 150, 200, 250, 300]
         max_depths = [5, 10, 25]
@@ -123,7 +129,7 @@ for key in datas:
         print('QOT Random Forests - Performance & Confusion Matrix')
         prd_trn = best_tree.predict(trnX)
         prd_tst = best_tree.predict(tstX)
-        ds.plot_evaluation_results(pd.unique(y), trnY, prd_trn, tstY, prd_tst)
+        ds.plot_evaluation_results(["negative", "positive"], trnY, prd_trn, tstY, prd_tst)
         plt.suptitle('QOT Random Forests - ' + key + ' - Performance & Confusion Matrix')
         plt.savefig(subDir + 'QOT Random Forests - ' + key + ' - Performance & Confusion Matrix')
         print()
