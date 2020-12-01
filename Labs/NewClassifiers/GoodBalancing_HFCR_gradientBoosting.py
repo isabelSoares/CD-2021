@@ -101,7 +101,7 @@ for dt in all_datas:
 all_datas_names = ['', ' - No Outliers', ' - Scaling', ' - Feature Selection', ' - No Outliers & Scaling', ' - No Outliers & Feature Selection', ' - No Outliers, Scaling & Feature Selection']
 provisorio_data_scaling = ' - Scaling & Feature Selection'
 
-accuracies = {}
+best_accuracies = {}
 
 for key in ['Original', 'UnderSample', 'OverSample', 'SMOTE']:
     last_name = 'None'
@@ -135,7 +135,7 @@ for key in ['Original', 'UnderSample', 'OverSample', 'SMOTE']:
 
         now = datetime.now()
         current_time = now.strftime("%H:%M:%S")
-        print(current_time, ": Key: ", key, ", feature eng: ", do_feature_eng)
+        print(current_time, ": Key: ", key)
 
         criterions = ['friedman_mse', 'mse', 'mae']
         n_estimators = [5, 10, 25, 50, 75, 100, 150, 200, 250, 300]
@@ -234,7 +234,7 @@ for key in ['Original', 'UnderSample', 'OverSample', 'SMOTE']:
             if(count == 0): text = key
             else: text = last_name + ' - ' + key
             if ((text not in best_accuracies.keys()) or (best_accuracies[text][1] < last_best)):
-                accuracies[text] = [last_best_train, last_best]
+                best_accuracies[text] = [last_best_train, last_best]
                 last_accuracy = last_best
 
             plt.figure()
@@ -264,6 +264,6 @@ for key in ['Original', 'UnderSample', 'OverSample', 'SMOTE']:
         plt.savefig(subDir + 'HFCR Gradient Boosting Criteria')
     
 plt.figure(figsize=(7,7))
-ds.multiple_bar_chart(['Train', 'Test'], accuracies, ylabel='Accuracy')
+ds.multiple_bar_chart(['Train', 'Test'], best_accuracies, ylabel='Accuracy')
 plt.suptitle('HFCR Accuracy Comparison')
 plt.savefig(graphsDir + 'HFCR Accuracy Comparison')
