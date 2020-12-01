@@ -95,11 +95,14 @@ def multiple_bar_chart(xvalues: list, yvalues: dict, ax: plt.Axes = None, title:
         ax.bar(x + i*width, yvalues[metric], width=width, align='center', label=metric)
         i += 1
     ax.set_xticks(x + width/len(xvalues) - step/2)
-    ax.legend(fontsize='x-small', title_fontsize='small')
+    ax.legend(fontsize='x-small', title_fontsize='small', loc='lower center')
 
 
 def plot_confusion_matrix(cnf_matrix: np.ndarray, classes_names: np.ndarray,
                           ax: plt.Axes = None, normalize: bool = False):
+    cnf_matrix = np.rot90(cnf_matrix, 2)
+    cnf_matrix = np.transpose(cnf_matrix)
+
     if ax is None:
         ax = plt.gca()
     if normalize:
@@ -116,13 +119,13 @@ def plot_confusion_matrix(cnf_matrix: np.ndarray, classes_names: np.ndarray,
     ax.set_xlabel('Predicted label')
     ax.set_xticks(tick_marks)
     ax.set_yticks(tick_marks)
-    ax.set_xticklabels(classes_names)
-    ax.set_yticklabels(classes_names)
-    ax.imshow(cm, interpolation='nearest', cmap=cfg.cmap_blues)
+    ax.set_xticklabels(classes_names[::-1])
+    ax.set_yticklabels(classes_names[::-1])
+    ax.imshow(np.transpose(cm), interpolation='nearest', cmap=cfg.cmap_blues)
 
     fmt = '.2f' if normalize else 'd'
     for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
-        ax.text(j, i, format(cm[i, j], fmt), color='w', horizontalalignment="center")
+        ax.text(i, j, format(cm[i, j], fmt), color='w', horizontalalignment="center")
 
 
 def plot_evaluation_results(labels: np.ndarray, trn_y, prd_trn, tst_y, prd_tst):
