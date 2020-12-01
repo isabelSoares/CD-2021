@@ -179,13 +179,20 @@ for key in ['Original', 'UnderSample', 'OverSample', 'SMOTE']:
 
                     train_accuracy += metrics.accuracy_score(trn_y, prd_trn)
                     test_accuracy += metrics.accuracy_score(tst_y, prd_tst)
-                    train_recall += metrics.recall_score(trn_y, prd_trn)
-                    test_recall += metrics.recall_score(tst_y, prd_tst)
+
+                    cnf_mtx_trn = metrics.confusion_matrix(trn_y, prd_trn, [0,1])
+                    tn_trn, fp_trn, fn_trn, tp_trn = cnf_mtx_trn.ravel()
+                    cnf_mtx_tst = metrics.confusion_matrix(tst_y, prd_tst, [0,1])
+                    tn_tst, fp_tst, fn_tst, tp_tst = cnf_mtx_tst.ravel()
+
+                    train_recall += tp_trn / (tp_trn + fn_trn)
+                    test_recall += tp_tst / (tp_tst + fn_tst)
+
                     a_tn, a_fp, a_fn, a_tp = metrics.confusion_matrix(trn_y, prd_trn).ravel()
-                    train_specificity = a_tn / (a_tn+a_fp)
+                    train_specificity += a_tn / (a_tn+a_fp)
 
                     b_tn, b_fp, b_fn, b_tp = metrics.confusion_matrix(tst_y, prd_tst).ravel()
-                    test_specificity = b_tn / (b_tn+b_fp)
+                    test_specificity += b_tn / (b_tn+b_fp)
 
                     train_precision += metrics.precision_score(trn_y, prd_trn)
                     test_precision += metrics.precision_score(tst_y, prd_tst)
@@ -200,6 +207,7 @@ for key in ['Original', 'UnderSample', 'OverSample', 'SMOTE']:
                 train_accuracy /= n_splits
                 test_recall /= n_splits
                 train_recall /= n_splits
+                print(test_recall)
                 test_specificity /= n_splits
                 train_specificity /= n_splits
                 test_precision /= n_splits
