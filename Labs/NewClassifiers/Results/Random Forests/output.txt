@@ -20,26 +20,3 @@ UnderSample :  (192, 13)  ->  (192, 12)
 OverSample :  (406, 13)  ->  (406, 12)
 SMOTE :  (406, 13)  ->  (406, 11)
 HFCR Random Forests - Parameters Combinations
-Best results with depth=5, 0.30 features and 75 estimators, with accuracy=0.85
-
-HFCR Random Forests - Performance & Confusion Matrix
-
-HFCR Random Forests - Parameters Combinations
-Best results with depth=5, 0.50 features and 75 estimators, with accuracy=0.82
-
-HFCR Random Forests - Performance & Confusion Matrix
-
-HFCR Random Forests - Parameters Combinations
-Best results with depth=25, 0.10 features and 50 estimators, with accuracy=0.93
-
-HFCR Random Forests - Performance & Confusion Matrix
-
-HFCR Random Forests - Parameters Combinations
-Best results with depth=10, 0.10 features and 300 estimators, with accuracy=0.93
-
-HFCR Random Forests - Performance & Confusion Matrix
-
-[0.946481868898187, 0.8493220338983051] <-- Original
-[0.9713436889907477, 0.8175438596491228] <-- UnderSample
-[1.0, 0.928515507377296] <-- OverSample
-[1.0, 0.9311352002408914] <-- SMOTE

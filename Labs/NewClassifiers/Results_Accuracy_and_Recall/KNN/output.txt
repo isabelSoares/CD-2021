@@ -1,0 +1,256 @@
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (152, 13)  ->  (152, 12)
+OverSample :  (326, 13)  ->  (326, 12)
+SMOTE :  (326, 13)  ->  (326, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (240, 13)  ->  (240, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (326, 13)  ->  (326, 12)
+SMOTE :  (326, 13)  ->  (326, 11)
+Original :  (59, 13)  ->  (59, 12)
+UnderSample :  (59, 13)  ->  (59, 12)
+OverSample :  (59, 13)  ->  (59, 12)
+SMOTE :  (59, 13)  ->  (59, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (152, 13)  ->  (152, 12)
+OverSample :  (326, 13)  ->  (326, 12)
+SMOTE :  (326, 13)  ->  (326, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (240, 13)  ->  (240, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (326, 13)  ->  (326, 12)
+SMOTE :  (326, 13)  ->  (326, 11)
+Original :  (59, 13)  ->  (59, 12)
+UnderSample :  (59, 13)  ->  (59, 12)
+OverSample :  (59, 13)  ->  (59, 12)
+SMOTE :  (59, 13)  ->  (59, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (152, 13)  ->  (152, 12)
+OverSample :  (326, 13)  ->  (326, 12)
+SMOTE :  (326, 13)  ->  (326, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (240, 13)  ->  (240, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (326, 13)  ->  (326, 12)
+SMOTE :  (326, 13)  ->  (326, 11)
+Original :  (59, 13)  ->  (59, 12)
+UnderSample :  (59, 13)  ->  (59, 12)
+OverSample :  (59, 13)  ->  (59, 12)
+SMOTE :  (59, 13)  ->  (59, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (152, 13)  ->  (152, 12)
+OverSample :  (326, 13)  ->  (326, 12)
+SMOTE :  (326, 13)  ->  (326, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (240, 13)  ->  (240, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (326, 13)  ->  (326, 12)
+SMOTE :  (326, 13)  ->  (326, 11)
+Original :  (59, 13)  ->  (59, 12)
+UnderSample :  (59, 13)  ->  (59, 12)
+OverSample :  (59, 13)  ->  (59, 12)
+SMOTE :  (59, 13)  ->  (59, 11)
+Best results with 19 neighbors and chebyshev
+Best results with 17 neighbors and manhattan
+Best results with 5 neighbors and manhattan
+Best results with 9 neighbors and manhattan
+Best results with 9 neighbors and manhattan
+Best results with 7 neighbors and manhattan
+Best results with 19 neighbors and manhattan
+Best results with 15 neighbors and manhattan
+Best results with 1 neighbors and manhattan
+Best results with 1 neighbors and manhattan
+Best results with 7 neighbors and manhattan
+Best results with 19 neighbors and manhattan
+Best results with 1 neighbors and manhattan
+Best results with 1 neighbors and manhattan
+Best results with 7 neighbors and manhattan
+Best results with 13 neighbors and manhattan
+[0.6856171548117155, 0.6621468926553672] <-- Original
+[0.6839470013947002, 0.6688135593220339] <--  - No Outliers - Original
+[0.943971408647141, 0.9064406779661016] <--  - No Outliers & Scaling - Original
+[0.9314504881450489, 0.9031073446327683] <--  - No Outliers, Scaling & Feature Selection - Original
+[0.6406698564593302, 0.5285875706214689] <-- UnderSample
+[0.6653622693096377, 0.545367231638418] <--  - No Outliers - UnderSample
+[0.9414388243335612, 0.9431638418079096] <--  - No Outliers & Scaling - UnderSample
+[0.9453178400546822, 0.946497175141243] <--  - No Outliers, Scaling & Feature Selection - UnderSample
+[1.0, 0.5716949152542373] <-- OverSample
+[1.0, 0.605593220338983] <--  - No Outliers - OverSample
+[0.9507422555479815, 0.9231638418079097] <--  - No Outliers & Scaling - OverSample
+[0.9452132091191396, 0.9331638418079097] <--  - No Outliers, Scaling & Feature Selection - OverSample
+[1.0, 0.5716949152542373] <-- SMOTE
+[1.0, 0.605593220338983] <--  - No Outliers - SMOTE
+[0.9507422555479815, 0.9231638418079097] <--  - No Outliers & Scaling - SMOTE
+[0.9470385518442779, 0.929774011299435] <--  - No Outliers, Scaling & Feature Selection - SMOTE
+[0.04938482570061518, 0.020526315789473684] <-- Original
+[0.06250854408749146, 0.042105263157894736] <--  - No Outliers - Original
+[0.8489747095010254, 0.7310526315789474] <--  - No Outliers & Scaling - Original
+[0.7968899521531101, 0.7194736842105263] <--  - No Outliers, Scaling & Feature Selection - Original
+[0.6068010936431989, 0.4163157894736842] <-- UnderSample
+[0.6822624743677375, 0.5831578947368421] <--  - No Outliers - UnderSample
+[0.9245044429254955, 0.9073684210526316] <--  - No Outliers & Scaling - UnderSample
+[0.9374914559125085, 0.9178947368421053] <--  - No Outliers, Scaling & Feature Selection - UnderSample
+[1.0, 0.19736842105263155] <-- OverSample
+[1.0, 0.3631578947368421] <--  - No Outliers - OverSample
+[0.9655229871998788, 0.8857894736842106] <--  - No Outliers & Scaling - OverSample
+[0.9323184124820116, 0.896842105263158] <--  - No Outliers, Scaling & Feature Selection - OverSample
+[1.0, 0.19736842105263155] <-- SMOTE
+[1.0, 0.3631578947368421] <--  - No Outliers - SMOTE
+[0.9655229871998788, 0.8857894736842106] <--  - No Outliers & Scaling - SMOTE
+[0.9495190487010529, 0.8868421052631579] <--  - No Outliers, Scaling & Feature Selection - SMOTE
+[0.19754601226993865, 0.185] <-- Original
+[0.19877300613496934, 0.19] <--  - No Outliers - Original
+[0.19754601226993865, 0.2] <--  - No Outliers & Scaling - Original
+[0.19877300613496934, 0.195] <--  - No Outliers, Scaling & Feature Selection - Original
+[0.14545454545454545, 0.135] <-- UnderSample
+[0.13246753246753246, 0.11499999999999999] <--  - No Outliers - UnderSample
+[0.19220779220779222, 0.19] <--  - No Outliers & Scaling - UnderSample
+[0.18961038961038962, 0.195] <--  - No Outliers, Scaling & Feature Selection - UnderSample
+[0.2, 0.145] <-- OverSample
+[0.2, 0.16999999999999998] <--  - No Outliers - OverSample
+[0.18650306748466255, 0.185] <--  - No Outliers & Scaling - OverSample
+[0.19263803680981595, 0.185] <--  - No Outliers, Scaling & Feature Selection - OverSample
+[0.2, 0.145] <-- SMOTE
+[0.2, 0.16999999999999998] <--  - No Outliers - SMOTE
+[0.18650306748466255, 0.185] <--  - No Outliers & Scaling - SMOTE
+[0.19141104294478528, 0.18] <--  - No Outliers, Scaling & Feature Selection - SMOTE
+[0.4878787878787878, 0.25] <-- Original
+[0.6572222222222222, 0.3] <--  - No Outliers - Original
+[0.973069418144045, 0.9708333333333332] <--  - No Outliers & Scaling - Original
+[0.9874142137861812, 0.9739495798319329] <--  - No Outliers, Scaling & Feature Selection - Original
+[0.650846137797945, 0.3239920948616601] <-- UnderSample
+[0.6613055366455722, 0.3684729064039409] <--  - No Outliers - UnderSample
+[0.9573766178859436, 0.9161403508771929] <--  - No Outliers & Scaling - UnderSample
+[0.9534664511857495, 0.9175689223057644] <--  - No Outliers, Scaling & Feature Selection - UnderSample
+[1.0, 0.26749999999999996] <-- OverSample
+[1.0, 0.3923668368245027] <--  - No Outliers - OverSample
+[0.9380366724863383, 0.8811797765358136] <--  - No Outliers & Scaling - OverSample
+[0.9572420751243194, 0.898404210168916] <--  - No Outliers, Scaling & Feature Selection - OverSample
+[1.0, 0.26749999999999996] <-- SMOTE
+[1.0, 0.3923668368245027] <--  - No Outliers - SMOTE
+[0.9380366724863383, 0.8811797765358136] <--  - No Outliers & Scaling - SMOTE
+[0.9450838176052114, 0.9000858123569794] <--  - No Outliers, Scaling & Feature Selection - SMOTE
+[0.08804167719830369, 0.03643892339544513] <-- Original
+[0.10790158199306357, 0.0735930735930736] <--  - No Outliers - Original
+[0.9066693813675706, 0.8315667175961293] <--  - No Outliers & Scaling - Original
+[0.8815971431789172, 0.8245282521610793] <--  - No Outliers, Scaling & Feature Selection - Original
+[0.6266690580457089, 0.36159079016221873] <-- UnderSample
+[0.6709129602160712, 0.4473683506189361] <--  - No Outliers - UnderSample
+[0.9402617457836209, 0.9109092898566583] <--  - No Outliers & Scaling - UnderSample
+[0.9448902703390523, 0.916550315497684] <--  - No Outliers, Scaling & Feature Selection - UnderSample
+[1.0, 0.22653293575494712] <-- OverSample
+[1.0, 0.3698102972296521] <--  - No Outliers - OverSample
+[0.9514732871353859, 0.8810383682784195] <--  - No Outliers & Scaling - OverSample
+[0.9443393822493631, 0.8950481675513767] <--  - No Outliers, Scaling & Feature Selection - OverSample
+[1.0, 0.22653293575494712] <-- SMOTE
+[1.0, 0.3698102972296521] <--  - No Outliers - SMOTE
+[0.9514732871353859, 0.8810383682784195] <--  - No Outliers & Scaling - SMOTE
+[0.9471369636257668, 0.8895820632662736] <--  - No Outliers, Scaling & Feature Selection - SMOTE

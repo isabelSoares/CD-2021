@@ -1,0 +1,121 @@
+--------------------------------------
+-                                    -
+-     HFCR Naive Bayes - Treated     -
+-                                    -
+--------------------------------------
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (152, 13)  ->  (152, 12)
+OverSample :  (326, 13)  ->  (326, 12)
+SMOTE :  (326, 13)  ->  (326, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (240, 13)  ->  (240, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (326, 13)  ->  (326, 12)
+SMOTE :  (326, 13)  ->  (326, 11)
+Original :  (59, 13)  ->  (59, 12)
+UnderSample :  (59, 13)  ->  (59, 12)
+OverSample :  (59, 13)  ->  (59, 12)
+SMOTE :  (59, 13)  ->  (59, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (152, 13)  ->  (152, 12)
+OverSample :  (326, 13)  ->  (326, 12)
+SMOTE :  (326, 13)  ->  (326, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (240, 13)  ->  (240, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (326, 13)  ->  (326, 12)
+SMOTE :  (326, 13)  ->  (326, 11)
+Original :  (59, 13)  ->  (59, 12)
+UnderSample :  (59, 13)  ->  (59, 12)
+OverSample :  (59, 13)  ->  (59, 12)
+SMOTE :  (59, 13)  ->  (59, 11)
+HFCR Naive Bayes - Performance & Confusion matrix
+HFCR Naive Bayes - Comparison of Naive Bayes Models
+HFCR Naive Bayes - Performance & Confusion matrix
+HFCR Naive Bayes - Comparison of Naive Bayes Models
+HFCR Naive Bayes - Performance & Confusion matrix
+HFCR Naive Bayes - Comparison of Naive Bayes Models
+HFCR Naive Bayes - Performance & Confusion matrix
+HFCR Naive Bayes - Comparison of Naive Bayes Models
+HFCR Naive Bayes - Performance & Confusion matrix
+HFCR Naive Bayes - Comparison of Naive Bayes Models
+HFCR Naive Bayes - Performance & Confusion matrix
+HFCR Naive Bayes - Comparison of Naive Bayes Models
+HFCR Naive Bayes - Performance & Confusion matrix
+HFCR Naive Bayes - Comparison of Naive Bayes Models
+HFCR Naive Bayes - Performance & Confusion matrix
+HFCR Naive Bayes - Comparison of Naive Bayes Models
+HFCR Naive Bayes - Performance & Confusion matrix
+HFCR Naive Bayes - Comparison of Naive Bayes Models
+HFCR Naive Bayes - Performance & Confusion matrix
+HFCR Naive Bayes - Comparison of Naive Bayes Models
+HFCR Naive Bayes - Performance & Confusion matrix
+HFCR Naive Bayes - Comparison of Naive Bayes Models
+HFCR Naive Bayes - Performance & Confusion matrix
+HFCR Naive Bayes - Comparison of Naive Bayes Models
+[0.8185529986053, 0.8026553672316383] <-- Original
+[0.8612064156206415, 0.8428813559322034] <--  - No Outliers - Original
+[1.0, 1.0] <--  - No Outliers & Feature Selection - Original
+[0.8111244019138756, 0.8327118644067795] <-- UnderSample
+[0.8059808612440191, 0.8127118644067796] <--  - No Outliers - UnderSample
+[0.8111244019138756, 0.8327118644067795] <--  - Feature Selection - UnderSample
+[0.8356017571763992, 0.8228248587570622] <-- OverSample
+[0.8177308187533135, 0.7959887005649718] <--  - No Outliers - OverSample
+[1.0, 1.0] <--  - Feature Selection - OverSample
+[0.8356017571763992, 0.8228248587570622] <-- SMOTE
+[0.8177308187533135, 0.7959887005649718] <--  - No Outliers - SMOTE
+[1.0, 1.0] <--  - Feature Selection - SMOTE

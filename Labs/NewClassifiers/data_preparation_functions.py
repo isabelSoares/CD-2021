@@ -15,6 +15,14 @@ def prepare_dataset(data, target, do_scaling, do_outliers):
 
     return datas
 
+def new_prepare_dataset(data, target, do_scaling, do_outliers):
+    # Outliers Removal with Winsorization
+    if (do_outliers): data = outliers_removal(data, target)
+    # Scaling
+    if (do_scaling): data = scaling(data, target, True)
+
+    return data
+
 def outliers_removal(data, target):
     # Winsorization
     for var in data:
