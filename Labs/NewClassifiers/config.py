@@ -22,13 +22,18 @@ cmap_blues = clrs.LinearSegmentedColormap.from_list("myCMPBlues", blues)
 LINE_COLOR = my_palette['dark blue']
 FILL_COLOR = my_palette['pale blue']
 DOT_COLOR = my_palette['blue3']
-ACTIVE_COLORS = [my_palette['yellow'], my_palette['pale orange'], my_palette['salmon'], my_palette['dark orange'],
-				  my_palette['pale blue'], my_palette['blue3'], my_palette['blue2'], my_palette['dark blue'],
-                 my_palette['lavender'], my_palette['pale pink'], my_palette['lilac'], my_palette['purple'],
-                 my_palette['pale green'], my_palette['green'], my_palette['olive'], my_palette['marine']]
+ACTIVE_COLORS = [my_palette['pale blue'], my_palette['dark blue'],
+                 my_palette['yellow'], my_palette['pale orange'],
+                 my_palette['lavender'], my_palette['pale pink'],
+                 my_palette['pale green'], my_palette['green']]
 
-#ACTIVE_COLORS = [my_palette['yellow'], my_palette['pale orange'], my_palette['dark orange'],
-#				 my_palette['blue3'], my_palette['blue2'], my_palette['dark blue'],
+#ACTIVE_COLORS = [my_palette['pale blue'], my_palette['blue3'], my_palette['blue2'], my_palette['dark blue'],
+#				 my_palette['yellow'], my_palette['pale orange'], my_palette['salmon'], my_palette['dark orange'],
+#                 my_palette['lavender'], my_palette['pale pink'], my_palette['lilac'], my_palette['purple'],
+#                 my_palette['pale green'], my_palette['green'], my_palette['olive'], my_palette['marine']]
+
+#ACTIVE_COLORS = [my_palette['blue3'], my_palette['blue2'], my_palette['dark blue'],
+#				  my_palette['yellow'], my_palette['pale orange'], my_palette['dark orange'],
 #                 my_palette['lavender'], my_palette['pale pink'], my_palette['purple'],
 #                 my_palette['pale green'], my_palette['olive'], my_palette['green'], my_palette['acqua']]
 

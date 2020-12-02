@@ -163,19 +163,31 @@ Original :  (59, 13)  ->  (59, 12)
 UnderSample :  (59, 13)  ->  (59, 12)
 OverSample :  (59, 13)  ->  (59, 12)
 SMOTE :  (59, 13)  ->  (59, 11)
-Best results with depth=5, 0.30 features and 250 estimators, with accuracy=0.86
+Best results with depth=25, 0.50 features and 100 estimators, with accuracy=0.85
 
 HFCR Random Forests - Performance & Confusion Matrix
 
-Best results with depth=5, 0.30 features and 250 estimators, with accuracy=0.85
+Best results with depth=5, 0.30 features and 150 estimators, with accuracy=0.85
 
 HFCR Random Forests - Performance & Confusion Matrix
 
-Best results with depth=25, 0.30 features and 50 estimators, with accuracy=0.86
+Best results with depth=25, 0.30 features and 25 estimators, with accuracy=0.86
 
 HFCR Random Forests - Performance & Confusion Matrix
 
-Best results with depth=5, 0.30 features and 50 estimators, with accuracy=0.86
+Best results with depth=5, 0.30 features and 25 estimators, with accuracy=0.86
+
+HFCR Random Forests - Performance & Confusion Matrix
+
+Best results with depth=25, 0.70 features and 150 estimators, with accuracy=0.84
+
+HFCR Random Forests - Performance & Confusion Matrix
+
+Best results with depth=5, 0.30 features and 25 estimators, with accuracy=0.84
+
+HFCR Random Forests - Performance & Confusion Matrix
+
+Best results with depth=5, 0.50 features and 100 estimators, with accuracy=0.84
 
 HFCR Random Forests - Performance & Confusion Matrix
 
@@ -183,63 +195,27 @@ Best results with depth=5, 0.30 features and 75 estimators, with accuracy=0.83
 
 HFCR Random Forests - Performance & Confusion Matrix
 
-Best results with depth=10, 0.30 features and 200 estimators, with accuracy=0.86
+Best results with depth=5, 1.00 features and 250 estimators, with accuracy=0.85
 
 HFCR Random Forests - Performance & Confusion Matrix
 
-Best results with depth=25, 0.50 features and 75 estimators, with accuracy=0.84
+Best results with depth=5, 0.10 features and 100 estimators, with accuracy=0.86
 
 HFCR Random Forests - Performance & Confusion Matrix
 
-Best results with depth=25, 1.00 features and 50 estimators, with accuracy=0.86
+Best results with depth=5, 0.30 features and 200 estimators, with accuracy=0.85
 
 HFCR Random Forests - Performance & Confusion Matrix
 
-Best results with depth=10, 0.30 features and 75 estimators, with accuracy=0.85
+Best results with depth=25, 0.30 features and 150 estimators, with accuracy=0.86
 
 HFCR Random Forests - Performance & Confusion Matrix
 
-Best results with depth=5, 0.10 features and 150 estimators, with accuracy=0.86
+Best results with depth=25, 0.50 features and 25 estimators, with accuracy=0.85
 
 HFCR Random Forests - Performance & Confusion Matrix
 
-Best results with depth=25, 0.30 features and 200 estimators, with accuracy=0.85
+Best results with depth=25, 0.30 features and 75 estimators, with accuracy=0.86
 
 HFCR Random Forests - Performance & Confusion Matrix
 
-Best results with depth=5, 1.00 features and 300 estimators, with accuracy=0.86
-
-HFCR Random Forests - Performance & Confusion Matrix
-
-Best results with depth=5, 0.30 features and 200 estimators, with accuracy=0.86
-
-HFCR Random Forests - Performance & Confusion Matrix
-
-Best results with depth=25, 0.30 features and 150 estimators, with accuracy=0.87
-
-HFCR Random Forests - Performance & Confusion Matrix
-
-Best results with depth=10, 0.30 features and 25 estimators, with accuracy=0.85
-
-HFCR Random Forests - Performance & Confusion Matrix
-
-Best results with depth=5, 0.50 features and 25 estimators, with accuracy=0.86
-
-HFCR Random Forests - Performance & Confusion Matrix
-
-[0.9473152022315203, 0.8560451977401129] <-- Original
-[0.9448221757322177, 0.8529943502824858] <--  - No Outliers - Original
-[0.999163179916318, 0.862824858757062] <--  - Scaling - Original
-[0.9456520223152023, 0.8629378531073446] <--  - Scaling & Feature Selection - Original
-[0.9713943950786055, 0.8324293785310735] <-- UnderSample
-[1.0, 0.8562711864406779] <--  - No Outliers - UnderSample
-[1.0, 0.8428813559322034] <--  - No Outliers & Scaling - UnderSample
-[1.0, 0.8595480225988702] <--  - No Outliers & Feature Selection - UnderSample
-[1.0, 0.8525988700564971] <-- OverSample
-[0.967352116943119, 0.8562711864406781] <--  - No Outliers - OverSample
-[1.0, 0.8462146892655367] <--  - No Outliers & Scaling - OverSample
-[0.9661364841323941, 0.8564406779661017] <--  - No Outliers & Feature Selection - OverSample
-[0.9710709687192305, 0.8558192090395481] <-- SMOTE
-[1.0, 0.8663276836158194] <--  - No Outliers - SMOTE
-[0.9987730061349694, 0.8528248587570622] <--  - No Outliers & Scaling - SMOTE
-[0.9605885026130425, 0.8562146892655367] <--  - No Outliers & Feature Selection - SMOTE
