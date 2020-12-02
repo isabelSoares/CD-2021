@@ -16,20 +16,35 @@ if not os.path.exists(graphsDir):
     os.makedirs(graphsDir)
 
 data: pd.DataFrame = pd.read_csv('../Dataset/qsar_oral_toxicity.csv', sep=';', header=None)
-datas = prepfunctions.prepare_dataset(data, 1024, False, False)
-featured_datas = prepfunctions.mask_feature_selection(datas, 1024, True, './Results/FeatureSelection/QOT Feature Selection - Features')
-best_accuracies = {}
-
+train, test = train_test_split(data, train_size=0.7, stratify=data[1024].values)
+testDatas = {}
+datas = prepfunctions.prepare_dataset(train, 1024, False, False)
 for key in datas:
-    if (key != 'SMOTE'): continue
+    testDatas[key] = test.copy()
+
+featured_datas = prepfunctions.mask_feature_selection(datas, 1024, True, './Results/FeatureSelection/QOT Feature Selection - Features')
+featured_test_datas = prepfunctions.mask_feature_selection(testDatas, 1024, True, './Results/FeatureSelection/QOT Feature Selection - Features')
+
+best_accuracies = {
+"Original": [0.9992055926278995, 0.9458858413639734], "Original with FS": [0.9817286304416905, 0.9414381022979985],
+"UnderSample": [1.0, 0.9347664936990363], "UnderSample with FS": [1.0, 0.933283914010378],
+"OverSample": [0.9992207792207792, 0.9432913269088213], "OverSample with FS": [0.9992207792207792, 0.9429206819866568],
+"SMOTE": [0.9993939393939394, 0.9403261675315048], "SMOTE with FS": [0.9993939393939394, 0.9425500370644923]
+}
+
+'''
+for key in datas:
+    if (key != 'Original'): continue
     for do_feature_eng in [False, True]:
         if (do_feature_eng):
             data = featured_datas[key]
+            testData = featured_test_datas[key].copy()
             subDir = graphsDir + 'FeatureEng/' +  key + '/'
             if not os.path.exists(subDir):
                 os.makedirs(subDir)
         else:
             data = datas[key]
+            testData = test.copy()
             subDir = graphsDir + key + '/'
             if not os.path.exists(subDir):
                 os.makedirs(subDir)
@@ -38,11 +53,10 @@ for key in datas:
         current_time = now.strftime("%H:%M:%S")
         print(current_time, ": Key: ", key, ", feature eng: ", do_feature_eng)
         
-        y: np.ndarray = data.pop(1024).values
-        X: np.ndarray = data.values
-        labels = pd.unique(y)
-
-        trnX, tstX, trnY, tstY = train_test_split(X, y, train_size=0.7, stratify=y)
+        trnY: np.ndarray = data.pop(1024).values 
+        trnX: np.ndarray = data.values
+        tstY: np.ndarray = testData.pop(1024).values 
+        tstX: np.ndarray = testData.values
 
         n_estimators = [5, 10, 25, 50, 75, 100, 150, 200, 250, 300]
         max_depths = [5, 10, 25]
@@ -132,12 +146,12 @@ for key in datas:
         
         prd_trn = best_tree.predict(trnX)
         prd_tst = best_tree.predict(tstX)
-        ds.plot_evaluation_results(pd.unique(y), trnY, prd_trn, tstY, prd_tst)
+        ds.plot_evaluation_results(["negative", "positive"], trnY, prd_trn, tstY, prd_tst)
         plt.suptitle('QOT Gradient Boosting - ' + key + ' - Performance & Confusion matrix')
         plt.savefig(subDir + 'QOT Gradient Boosting - ' + key + ' - Performance & Confusion matrix')
 
         plt.close("all")
-
+'''
 plt.figure(figsize=(7,7))
 ds.multiple_bar_chart(['Train', 'Test'], best_accuracies, ylabel='Accuracy')
 plt.suptitle('QOT Sampling & Feature Selection')
