@@ -1,13 +1,13 @@
 digraph Tree {
 node [shape=box, style="filled, rounded", color="black", fontname=helvetica] ;
 edge [fontname=helvetica] ;
-0 [label=<time &le; 67.5<br/>entropy = 0.905<br/>samples = 240<br/>value = [163, 77]<br/>class = 0>, fillcolor="#f1bd97"] ;
-1 [label=<entropy = 0.623<br/>samples = 58<br/>value = [9, 49]<br/>class = 1>, fillcolor="#5dafea"] ;
+0 [label=<time &le; 73.5<br/>entropy = 0.905<br/>samples = 240<br/>value = [163, 77]<br/>class = 0>, fillcolor="#f1bd97"] ;
+1 [label=<entropy = 0.668<br/>samples = 63<br/>value = [11, 52]<br/>class = 1>, fillcolor="#63b2ea"] ;
 0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
-2 [label=<ejection_fraction &le; 32.5<br/>entropy = 0.619<br/>samples = 182<br/>value = [154, 28]<br/>class = 0>, fillcolor="#ea985d"] ;
+2 [label=<serum_creatinine &le; 1.45<br/>entropy = 0.587<br/>samples = 177<br/>value = [152, 25]<br/>class = 0>, fillcolor="#e9965a"] ;
 0 -> 2 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
-3 [label=<entropy = 0.941<br/>samples = 53<br/>value = [34, 19]<br/>class = 0>, fillcolor="#f4c7a8"] ;
+3 [label=<entropy = 0.321<br/>samples = 137<br/>value = [129, 8]<br/>class = 0>, fillcolor="#e78945"] ;
 2 -> 3 ;
-4 [label=<entropy = 0.365<br/>samples = 129<br/>value = [120, 9]<br/>class = 0>, fillcolor="#e78a48"] ;
+4 [label=<entropy = 0.984<br/>samples = 40<br/>value = [23, 17]<br/>class = 0>, fillcolor="#f8decb"] ;
 2 -> 4 ;
 }

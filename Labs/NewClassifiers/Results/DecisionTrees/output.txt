@@ -1,48 +1,192 @@
-Original :  (299, 13)  ->  (299, 12)
-UnderSample :  (192, 13)  ->  (192, 12)
-OverSample :  (406, 13)  ->  (406, 12)
-SMOTE :  (406, 13)  ->  (406, 11)
-Original :  (299, 13)  ->  (299, 12)
-UnderSample :  (192, 13)  ->  (192, 12)
-OverSample :  (406, 13)  ->  (406, 12)
-SMOTE :  (406, 13)  ->  (406, 11)
-Original :  (299, 13)  ->  (299, 12)
-UnderSample :  (192, 13)  ->  (192, 12)
-OverSample :  (406, 13)  ->  (406, 12)
-SMOTE :  (406, 13)  ->  (406, 11)
-Original :  (299, 13)  ->  (299, 12)
-UnderSample :  (192, 13)  ->  (192, 12)
-OverSample :  (406, 13)  ->  (406, 12)
-SMOTE :  (406, 13)  ->  (406, 11)
-Best results achieved with entropy criteria, depth=2 and min_impurity_decrease=0.02500 ==> accuracy=0.83621
-Best results achieved with entropy criteria, depth=20 and min_impurity_decrease=0.00250 ==> accuracy=0.81277
-Best results achieved with entropy criteria, depth=2 and min_impurity_decrease=0.02500 ==> accuracy=0.83938
-Best results achieved with entropy criteria, depth=2 and min_impurity_decrease=0.02500 ==> accuracy=0.83932
-Best results achieved with entropy criteria, depth=5 and min_impurity_decrease=0.00050 ==> accuracy=0.83374
-Best results achieved with gini criteria, depth=10 and min_impurity_decrease=0.01000 ==> accuracy=0.82821
-Best results achieved with gini criteria, depth=30 and min_impurity_decrease=0.00250 ==> accuracy=0.81282
-Best results achieved with gini criteria, depth=30 and min_impurity_decrease=0.00250 ==> accuracy=0.83293
-Best results achieved with entropy criteria, depth=25 and min_impurity_decrease=0.00100 ==> accuracy=0.90151
-Best results achieved with entropy criteria, depth=30 and min_impurity_decrease=0.00500 ==> accuracy=0.89413
-Best results achieved with entropy criteria, depth=15 and min_impurity_decrease=0.00500 ==> accuracy=0.89651
-Best results achieved with gini criteria, depth=20 and min_impurity_decrease=0.00250 ==> accuracy=0.89648
-Best results achieved with gini criteria, depth=15 and min_impurity_decrease=0.00005 ==> accuracy=0.87931
-Best results achieved with entropy criteria, depth=25 and min_impurity_decrease=0.00025 ==> accuracy=0.89404
-Best results achieved with entropy criteria, depth=15 and min_impurity_decrease=0.00250 ==> accuracy=0.90407
-Best results achieved with gini criteria, depth=15 and min_impurity_decrease=0.00050 ==> accuracy=0.91632
-[0.8486680613668061, 0.8362146892655368] <-- Original
-[1.0, 0.8127683615819208] <--  - No Outliers - Original
-[0.846983960948396, 0.8393785310734463] <--  - Scaling - Original
-[0.8478172942817294, 0.8393220338983051] <--  - Scaling & Feature Selection - Original
-[0.9413886766827944, 0.8337381916329285] <-- UnderSample
-[0.919259825142178, 0.8282051282051281] <--  - No Outliers - UnderSample
-[0.9934895170189287, 0.8128205128205129] <--  - Scaling - UnderSample
-[0.9895849248790425, 0.8329284750337382] <--  - Scaling & Feature Selection - UnderSample
-[1.0, 0.9015055706112618] <-- OverSample
-[1.0, 0.8941282746160795] <--  - No Outliers - OverSample
-[0.9993846153846153, 0.896507076181873] <--  - Scaling - OverSample
-[0.97782905982906, 0.8964769647696478] <--  - Scaling & Feature Selection - OverSample
-[1.0, 0.8793134598012647] <-- SMOTE
-[1.0, 0.8940379403794037] <--  - No Outliers - SMOTE
-[1.0, 0.9040650406504065] <--  - No Outliers & Scaling - SMOTE
-[0.9981481481481481, 0.9163203854260764] <--  - No Outliers, Scaling & Feature Selection - SMOTE
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (152, 13)  ->  (152, 12)
+OverSample :  (326, 13)  ->  (326, 12)
+SMOTE :  (326, 13)  ->  (326, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (240, 13)  ->  (240, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (326, 13)  ->  (326, 12)
+SMOTE :  (326, 13)  ->  (326, 11)
+Original :  (59, 13)  ->  (59, 12)
+UnderSample :  (59, 13)  ->  (59, 12)
+OverSample :  (59, 13)  ->  (59, 12)
+SMOTE :  (59, 13)  ->  (59, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (152, 13)  ->  (152, 12)
+OverSample :  (326, 13)  ->  (326, 12)
+SMOTE :  (326, 13)  ->  (326, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (240, 13)  ->  (240, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (326, 13)  ->  (326, 12)
+SMOTE :  (326, 13)  ->  (326, 11)
+Original :  (59, 13)  ->  (59, 12)
+UnderSample :  (59, 13)  ->  (59, 12)
+OverSample :  (59, 13)  ->  (59, 12)
+SMOTE :  (59, 13)  ->  (59, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (152, 13)  ->  (152, 12)
+OverSample :  (326, 13)  ->  (326, 12)
+SMOTE :  (326, 13)  ->  (326, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (240, 13)  ->  (240, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (326, 13)  ->  (326, 12)
+SMOTE :  (326, 13)  ->  (326, 11)
+Original :  (59, 13)  ->  (59, 12)
+UnderSample :  (59, 13)  ->  (59, 12)
+OverSample :  (59, 13)  ->  (59, 12)
+SMOTE :  (59, 13)  ->  (59, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (152, 13)  ->  (152, 12)
+OverSample :  (326, 13)  ->  (326, 12)
+SMOTE :  (326, 13)  ->  (326, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (239, 13)  ->  (239, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (324, 13)  ->  (324, 12)
+SMOTE :  (324, 13)  ->  (324, 11)
+Original :  (60, 13)  ->  (60, 12)
+UnderSample :  (60, 13)  ->  (60, 12)
+OverSample :  (60, 13)  ->  (60, 12)
+SMOTE :  (60, 13)  ->  (60, 11)
+Original :  (240, 13)  ->  (240, 12)
+UnderSample :  (154, 13)  ->  (154, 12)
+OverSample :  (326, 13)  ->  (326, 12)
+SMOTE :  (326, 13)  ->  (326, 11)
+Original :  (59, 13)  ->  (59, 12)
+UnderSample :  (59, 13)  ->  (59, 12)
+OverSample :  (59, 13)  ->  (59, 12)
+SMOTE :  (59, 13)  ->  (59, 11)
+Best results achieved with gini criteria, depth=10 and min_impurity_decrease=0.00500 ==> accuracy=0.81599
+Best results achieved with gini criteria, depth=2 and min_impurity_decrease=0.02500 ==> accuracy=0.82960
+Best results achieved with entropy criteria, depth=2 and min_impurity_decrease=0.02500 ==> accuracy=0.83949
+Best results achieved with entropy criteria, depth=2 and min_impurity_decrease=0.02500 ==> accuracy=0.83949
+Best results achieved with gini criteria, depth=2 and min_impurity_decrease=0.02500 ==> accuracy=0.81588
+Best results achieved with gini criteria, depth=5 and min_impurity_decrease=0.02500 ==> accuracy=0.80932
+Best results achieved with gini criteria, depth=5 and min_impurity_decrease=0.02500 ==> accuracy=0.79910
+Best results achieved with gini criteria, depth=5 and min_impurity_decrease=0.02500 ==> accuracy=0.79910
+Best results achieved with gini criteria, depth=25 and min_impurity_decrease=0.00250 ==> accuracy=0.81938
+Best results achieved with gini criteria, depth=5 and min_impurity_decrease=0.02500 ==> accuracy=0.80277
+Best results achieved with gini criteria, depth=10 and min_impurity_decrease=0.00500 ==> accuracy=0.81949
+Best results achieved with gini criteria, depth=30 and min_impurity_decrease=0.00500 ==> accuracy=0.82282
+Best results achieved with gini criteria, depth=10 and min_impurity_decrease=0.00250 ==> accuracy=0.82616
+Best results achieved with gini criteria, depth=5 and min_impurity_decrease=0.02500 ==> accuracy=0.80277
+Best results achieved with gini criteria, depth=5 and min_impurity_decrease=0.00250 ==> accuracy=0.81944
+Best results achieved with gini criteria, depth=5 and min_impurity_decrease=0.00100 ==> accuracy=0.82949
+[0.9682287308228732, 0.8159887005649716] <-- Original
+[0.8478347280334729, 0.8296045197740114] <--  - No Outliers - Original
+[0.8478277545327755, 0.8394915254237288] <--  - No Outliers & Scaling - Original
+[0.8478277545327755, 0.8394915254237288] <--  - No Outliers, Scaling & Feature Selection - Original
+[0.8320574162679426, 0.8158757062146892] <-- UnderSample
+[0.8541353383458647, 0.809322033898305] <--  - No Outliers - UnderSample
+[0.8515550239234451, 0.79909604519774] <--  - Scaling - UnderSample
+[0.8515550239234451, 0.79909604519774] <--  - Scaling & Feature Selection - UnderSample
+[0.9815420737711126, 0.8193785310734463] <-- OverSample
+[0.8559153222752405, 0.8027683615819209] <--  - No Outliers - OverSample
+[0.9624365674467924, 0.8194915254237287] <--  - Scaling - OverSample
+[0.9562675149587214, 0.8228248587570622] <--  - Scaling & Feature Selection - OverSample
+[0.9815420737711126, 0.8261581920903953] <-- SMOTE
+[0.8559153222752405, 0.8027683615819209] <--  - No Outliers - SMOTE
+[0.9427516473528744, 0.8194350282485876] <--  - Scaling - SMOTE
+[0.9402862985685072, 0.8294915254237288] <--  - Scaling & Feature Selection - SMOTE

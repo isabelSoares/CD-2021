@@ -2,16 +2,12 @@ digraph Tree {
 node [shape=box, style="filled, rounded", color="black", fontname=helvetica] ;
 edge [fontname=helvetica] ;
 0 [label=<time &le; 73.5<br/>gini = 0.5<br/>samples = 154<br/>value = [77, 77]<br/>class = 0>, fillcolor="#ffffff"] ;
-1 [label=<gini = 0.137<br/>samples = 54<br/>value = [4, 50]<br/>class = 1>, fillcolor="#49a5e7"] ;
+1 [label=<gini = 0.185<br/>samples = 58<br/>value = [6, 52]<br/>class = 1>, fillcolor="#50a8e8"] ;
 0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
-2 [label=<serum_creatinine &le; 1.35<br/>gini = 0.394<br/>samples = 100<br/>value = [73, 27]<br/>class = 0>, fillcolor="#efb082"] ;
+2 [label=<serum_creatinine &le; 1.815<br/>gini = 0.385<br/>samples = 96<br/>value = [71, 25]<br/>class = 0>, fillcolor="#eead7f"] ;
 0 -> 2 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
-3 [label=<gini = 0.234<br/>samples = 74<br/>value = [64, 10]<br/>class = 0>, fillcolor="#e99558"] ;
+3 [label=<gini = 0.283<br/>samples = 82<br/>value = [68, 14]<br/>class = 0>, fillcolor="#ea9b62"] ;
 2 -> 3 ;
-4 [label=<time &le; 242.5<br/>gini = 0.453<br/>samples = 26<br/>value = [9, 17]<br/>class = 1>, fillcolor="#a2d1f3"] ;
+4 [label=<gini = 0.337<br/>samples = 14<br/>value = [3, 11]<br/>class = 1>, fillcolor="#6fb8ec"] ;
 2 -> 4 ;
-5 [label=<gini = 0.351<br/>samples = 22<br/>value = [5, 17]<br/>class = 1>, fillcolor="#73baed"] ;
-4 -> 5 ;
-6 [label=<gini = 0.0<br/>samples = 4<br/>value = [4, 0]<br/>class = 0>, fillcolor="#e58139"] ;
-4 -> 6 ;
 }

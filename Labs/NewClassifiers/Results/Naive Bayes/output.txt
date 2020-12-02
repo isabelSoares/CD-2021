@@ -107,15 +107,15 @@ HFCR Naive Bayes - Performance & Confusion matrix
 HFCR Naive Bayes - Comparison of Naive Bayes Models
 HFCR Naive Bayes - Performance & Confusion matrix
 HFCR Naive Bayes - Comparison of Naive Bayes Models
-[0.8185529986053, 0.8026553672316383] <-- Original
-[0.8612064156206415, 0.8428813559322034] <--  - No Outliers - Original
-[1.0, 1.0] <--  - No Outliers & Feature Selection - Original
-[0.8111244019138756, 0.8327118644067795] <-- UnderSample
-[0.8059808612440191, 0.8127118644067796] <--  - No Outliers - UnderSample
-[0.8111244019138756, 0.8327118644067795] <--  - Feature Selection - UnderSample
-[0.8356017571763992, 0.8228248587570622] <-- OverSample
-[0.8177308187533135, 0.7959887005649718] <--  - No Outliers - OverSample
-[1.0, 1.0] <--  - Feature Selection - OverSample
-[0.8356017571763992, 0.8228248587570622] <-- SMOTE
-[0.8177308187533135, 0.7959887005649718] <--  - No Outliers - SMOTE
-[1.0, 1.0] <--  - Feature Selection - SMOTE
+[0.8202266387726638, 0.7859887005649717] <-- Original
+[0.8528451882845187, 0.8427118644067797] <--  - No Outliers - Original
+[0.8252405857740588, 0.8057627118644068] <--  - No Outliers & Feature Selection - Original
+[0.8150205058099795, 0.806045197740113] <-- UnderSample
+[0.8072795625427205, 0.76909604519774] <--  - No Outliers - UnderSample
+[0.8150205058099795, 0.806045197740113] <--  - Feature Selection - UnderSample
+[0.8047716428084527, 0.802768361581921] <-- OverSample
+[0.7961334545179126, 0.7859887005649717] <--  - No Outliers - OverSample
+[0.7801446640914943, 0.7726553672316384] <--  - Feature Selection - OverSample
+[0.8047716428084527, 0.802768361581921] <-- SMOTE
+[0.7961334545179126, 0.7859887005649717] <--  - No Outliers - SMOTE
+[0.813383321972279, 0.8194350282485875] <--  - Feature Selection - SMOTE

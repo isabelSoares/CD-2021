@@ -53,29 +53,29 @@ for dt in all_datas:
 
         for category in ['Original', 'UnderSample', 'OverSample', 'SMOTE']:
             # Train
-            trn_X_b: np.ndarray = trn_data.copy()[category].values
-            trn_y_b: np.ndarray = trn_data.copy()[category].pop('DEATH_EVENT').values
+            trn_y_b: np.ndarray = trn_data[category].pop('DEATH_EVENT').values
+            trn_X_b: np.ndarray = trn_data[category].values
             # Test
-            tst_X_b: np.ndarray = tst_data.copy()[category].values
-            tst_y_b: np.ndarray = tst_data.copy()[category].pop('DEATH_EVENT').values
+            tst_y_b: np.ndarray = tst_data[category].pop('DEATH_EVENT').values
+            tst_X_b: np.ndarray = tst_data[category].values
 
-            trn_x_b_lst[category].append(trn_X_b)
-            trn_y_b_lst[category].append(trn_y_b)
-            tst_x_b_lst[category].append(tst_X_b)
-            tst_y_b_lst[category].append(tst_y_b)
+            trn_x_b_lst[category].append(trn_X_b.copy())
+            trn_y_b_lst[category].append(trn_y_b.copy())
+            tst_x_b_lst[category].append(tst_X_b.copy())
+            tst_y_b_lst[category].append(tst_y_b.copy())
 
         for category in ['Original', 'UnderSample', 'OverSample', 'SMOTE']:
             # Train
-            trn_X_fs: np.ndarray = trn_data_fs.copy()[category].values
-            trn_y_fs: np.ndarray = trn_data_fs.copy()[category].pop('DEATH_EVENT').values
+            trn_y_fs: np.ndarray = trn_data_fs[category].pop('DEATH_EVENT').values
+            trn_X_fs: np.ndarray = trn_data_fs[category].values
             # Test
-            tst_X_fs: np.ndarray = tst_data_fs.copy()[category].values
-            tst_y_fs: np.ndarray = tst_data_fs.copy()[category].pop('DEATH_EVENT').values
+            tst_y_fs: np.ndarray = tst_data_fs[category].pop('DEATH_EVENT').values
+            tst_X_fs: np.ndarray = tst_data_fs[category].values
 
-            trn_x_fs_lst[category].append(trn_X_fs)
-            trn_y_fs_lst[category].append(trn_y_fs)
-            tst_x_fs_lst[category].append(tst_X_fs)
-            tst_y_fs_lst[category].append(tst_y_fs)
+            trn_x_fs_lst[category].append(trn_X_fs.copy())
+            trn_y_fs_lst[category].append(trn_y_fs.copy())
+            tst_x_fs_lst[category].append(tst_X_fs.copy())
+            tst_y_fs_lst[category].append(tst_y_fs.copy())
 
     final_lst_b = {}
     final_lst_fs = {}
@@ -125,10 +125,10 @@ for key in ['Original', 'UnderSample', 'OverSample', 'SMOTE']:
         tst_y_lst = all_datas_splits[dt][key][3]
         if(last_name == ' - Scaling' and offset == 1):
             #data = datas_scaling_featureselection.copy()[key]
-            trn_X = datas_splits_scaling_featureselection[key][0]
-            trn_y = datas_splits_scaling_featureselection[key][1]
-            tst_X = datas_splits_scaling_featureselection[key][2]
-            tst_y = datas_splits_scaling_featureselection[key][3]
+            trn_x_lst = datas_splits_scaling_featureselection[key][0]
+            trn_y_lst = datas_splits_scaling_featureselection[key][1]
+            tst_x_lst = datas_splits_scaling_featureselection[key][2]
+            tst_y_lst = datas_splits_scaling_featureselection[key][3]
             subDir = graphsDir + key + '/' + provisorio_data_scaling + '/'
             last_name = provisorio_data_scaling
         elif(all_datas_names[count] == ''):

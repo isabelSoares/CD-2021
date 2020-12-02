@@ -15,6 +15,8 @@ if not os.path.exists(graphsDir):
     os.makedirs(graphsDir)
 
 data: pd.DataFrame = pd.read_csv('../../Dataset/heart_failure_clinical_records_dataset.csv')
+#data = prepfunctions.new_prepare_dataset(data.copy(), 'DEATH_EVENT', False, False)
+
 data_outliers = prepfunctions.new_prepare_dataset(data.copy(), 'DEATH_EVENT', False, True)
 data_outliers_scaling = prepfunctions.new_prepare_dataset(data.copy(), 'DEATH_EVENT', True, True)
 data_scaling = prepfunctions.new_prepare_dataset(data.copy(), 'DEATH_EVENT', True, False)
@@ -49,29 +51,29 @@ for dt in all_datas:
 
         for category in ['Original', 'UnderSample', 'OverSample', 'SMOTE']:
             # Train
-            trn_X_b: np.ndarray = trn_data.copy()[category].values
-            trn_y_b: np.ndarray = trn_data.copy()[category].pop('DEATH_EVENT').values
+            trn_y_b: np.ndarray = trn_data[category].pop('DEATH_EVENT').values
+            trn_X_b: np.ndarray = trn_data[category].values
             # Test
-            tst_X_b: np.ndarray = tst_data.copy()[category].values
-            tst_y_b: np.ndarray = tst_data.copy()[category].pop('DEATH_EVENT').values
+            tst_y_b: np.ndarray = tst_data[category].pop('DEATH_EVENT').values
+            tst_X_b: np.ndarray = tst_data[category].values
 
-            trn_x_b_lst[category].append(trn_X_b)
-            trn_y_b_lst[category].append(trn_y_b)
-            tst_x_b_lst[category].append(tst_X_b)
-            tst_y_b_lst[category].append(tst_y_b)
+            trn_x_b_lst[category].append(trn_X_b.copy())
+            trn_y_b_lst[category].append(trn_y_b.copy())
+            tst_x_b_lst[category].append(tst_X_b.copy())
+            tst_y_b_lst[category].append(tst_y_b.copy())
 
         for category in ['Original', 'UnderSample', 'OverSample', 'SMOTE']:
             # Train
-            trn_X_fs: np.ndarray = trn_data_fs.copy()[category].values
-            trn_y_fs: np.ndarray = trn_data_fs.copy()[category].pop('DEATH_EVENT').values
+            trn_y_fs: np.ndarray = trn_data_fs[category].pop('DEATH_EVENT').values
+            trn_X_fs: np.ndarray = trn_data_fs[category].values
             # Test
-            tst_X_fs: np.ndarray = tst_data_fs.copy()[category].values
-            tst_y_fs: np.ndarray = tst_data_fs.copy()[category].pop('DEATH_EVENT').values
+            tst_y_fs: np.ndarray = tst_data_fs[category].pop('DEATH_EVENT').values
+            tst_X_fs: np.ndarray = tst_data_fs[category].values
 
-            trn_x_fs_lst[category].append(trn_X_fs)
-            trn_y_fs_lst[category].append(trn_y_fs)
-            tst_x_fs_lst[category].append(tst_X_fs)
-            tst_y_fs_lst[category].append(tst_y_fs)
+            trn_x_fs_lst[category].append(trn_X_fs.copy())
+            trn_y_fs_lst[category].append(trn_y_fs.copy())
+            tst_x_fs_lst[category].append(tst_X_fs.copy())
+            tst_y_fs_lst[category].append(tst_y_fs.copy())
 
     final_lst_b = {}
     final_lst_fs = {}
@@ -118,10 +120,10 @@ for key in ['Original', 'UnderSample', 'OverSample', 'SMOTE']:
         tst_y_lst = all_datas_splits[dt][key][3]
         if(last_name == ' - Scaling' and offset == 1):
             #data = datas_scaling_featureselection.copy()[key]
-            trn_X = datas_splits_scaling_featureselection[key][0]
-            trn_y = datas_splits_scaling_featureselection[key][1]
-            tst_X = datas_splits_scaling_featureselection[key][2]
-            tst_y = datas_splits_scaling_featureselection[key][3]
+            trn_x_lst = datas_splits_scaling_featureselection[key][0]
+            trn_y_lst = datas_splits_scaling_featureselection[key][1]
+            tst_x_lst = datas_splits_scaling_featureselection[key][2]
+            tst_y_lst = datas_splits_scaling_featureselection[key][3]
             subDir = graphsDir + key + '/' + provisorio_data_scaling + '/'
             last_name = provisorio_data_scaling
         elif(all_datas_names[count] == ''):
@@ -256,7 +258,23 @@ for key in ['Original', 'UnderSample', 'OverSample', 'SMOTE']:
             plt.suptitle('HFCR Gradient Boosting - ' + key + ' - Performance & Confusion matrix')
             plt.savefig(criterionDir + 'HFCR Gradient Boosting - ' + key + ' - Performance & Confusion matrix')
 
+            if(offset == 1):
+                break
+            if(last_accuracy > best_accuracy and best_accuracy != -1):
+                best_accuracy = last_accuracy
+                last_accuracy = -1
+                count += offset
+                offset -= 1
+            elif(best_accuracy == -1):
+                best_accuracy = last_accuracy
+                count += 1
+            else:
+                count += 1
+                offset -= 1
+
+
             plt.close("all")
+            plt.clf()
 
         plt.figure(figsize=(7,7))
         ds.multiple_bar_chart(['Train', 'Test'], values_by_criteria, ylabel='Accuracy')

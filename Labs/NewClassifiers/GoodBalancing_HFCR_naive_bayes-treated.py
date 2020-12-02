@@ -52,29 +52,29 @@ for dt in all_datas:
 
         for category in ['Original', 'UnderSample', 'OverSample', 'SMOTE']:
             # Train
-            trn_X_b: np.ndarray = trn_data.copy()[category].values
-            trn_y_b: np.ndarray = trn_data.copy()[category].pop('DEATH_EVENT').values
+            trn_y_b: np.ndarray = trn_data[category].pop('DEATH_EVENT').values
+            trn_X_b: np.ndarray = trn_data[category].values
             # Test
-            tst_X_b: np.ndarray = tst_data.copy()[category].values
-            tst_y_b: np.ndarray = tst_data.copy()[category].pop('DEATH_EVENT').values
+            tst_y_b: np.ndarray = tst_data[category].pop('DEATH_EVENT').values
+            tst_X_b: np.ndarray = tst_data[category].values
 
-            trn_x_b_lst[category].append(trn_X_b)
-            trn_y_b_lst[category].append(trn_y_b)
-            tst_x_b_lst[category].append(tst_X_b)
-            tst_y_b_lst[category].append(tst_y_b)
+            trn_x_b_lst[category].append(trn_X_b.copy())
+            trn_y_b_lst[category].append(trn_y_b.copy())
+            tst_x_b_lst[category].append(tst_X_b.copy())
+            tst_y_b_lst[category].append(tst_y_b.copy())
 
         for category in ['Original', 'UnderSample', 'OverSample', 'SMOTE']:
             # Train
-            trn_X_fs: np.ndarray = trn_data_fs.copy()[category].values
-            trn_y_fs: np.ndarray = trn_data_fs.copy()[category].pop('DEATH_EVENT').values
+            trn_y_fs: np.ndarray = trn_data_fs[category].pop('DEATH_EVENT').values
+            trn_X_fs: np.ndarray = trn_data_fs[category].values
             # Test
-            tst_X_fs: np.ndarray = tst_data_fs.copy()[category].values
-            tst_y_fs: np.ndarray = tst_data_fs.copy()[category].pop('DEATH_EVENT').values
+            tst_y_fs: np.ndarray = tst_data_fs[category].pop('DEATH_EVENT').values
+            tst_X_fs: np.ndarray = tst_data_fs[category].values
 
-            trn_x_fs_lst[category].append(trn_X_fs)
-            trn_y_fs_lst[category].append(trn_y_fs)
-            tst_x_fs_lst[category].append(tst_X_fs)
-            tst_y_fs_lst[category].append(tst_y_fs)
+            trn_x_fs_lst[category].append(trn_X_fs.copy())
+            trn_y_fs_lst[category].append(trn_y_fs.copy())
+            tst_x_fs_lst[category].append(tst_X_fs.copy())
+            tst_y_fs_lst[category].append(tst_y_fs.copy())
 
     final_lst_b = {}
     final_lst_fs = {}

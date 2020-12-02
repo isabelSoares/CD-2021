@@ -16,34 +16,120 @@ if not os.path.exists(graphsDir):
     os.makedirs(graphsDir)
 
 data: pd.DataFrame = pd.read_csv('../../Dataset/heart_failure_clinical_records_dataset.csv')
-datas = prepfunctions.prepare_dataset(data.copy(), 'DEATH_EVENT', False, False)
+#data = prepfunctions.new_prepare_dataset(data.copy(), 'DEATH_EVENT', False, False)
 
-datas_outliers = prepfunctions.prepare_dataset(data.copy(), 'DEATH_EVENT', False, True)
-datas_outliers_scaling = prepfunctions.prepare_dataset(data.copy(), 'DEATH_EVENT', True, True)
-datas_outliers_featureselection = prepfunctions.mask_feature_selection(datas_outliers.copy(), 'DEATH_EVENT', False, './Results/FeatureSelection/HFCR Feature Selection - Features')
-datas_outliers_scaling_featureselection = prepfunctions.mask_feature_selection(datas_outliers_scaling.copy(), 'DEATH_EVENT', False, './Results/FeatureSelection/HFCR Feature Selection - Features')
+data_outliers = prepfunctions.new_prepare_dataset(data.copy(), 'DEATH_EVENT', False, True)
+data_outliers_scaling = prepfunctions.new_prepare_dataset(data.copy(), 'DEATH_EVENT', True, True)
+data_scaling = prepfunctions.new_prepare_dataset(data.copy(), 'DEATH_EVENT', True, False)
 
-datas_scaling = prepfunctions.prepare_dataset(data.copy(), 'DEATH_EVENT', True, False)
-datas_scaling_featureselection = prepfunctions.mask_feature_selection(datas_scaling.copy(), 'DEATH_EVENT', False, './Results/FeatureSelection/HFCR Feature Selection - Features')
+all_datas = [data, data_outliers, data_scaling, data_outliers_scaling]
+all_datas_index = [(0, 3), (1, 5), (2,-1), (4, 6)]
+all_datas_splits = [{}, {}, {}, {}, {}, {}, {}]
+datas_splits_scaling_featureselection = []
+c = 0
+for dt in all_datas:
+    y: np.ndarray = dt.copy().pop('DEATH_EVENT').values
+    X: np.ndarray = dt.copy().values
+    labels = [0,1]
 
-datas_featureselection = prepfunctions.mask_feature_selection(datas.copy(), 'DEATH_EVENT', False, './Results/FeatureSelection/HFCR Feature Selection - Features')
+    n_splits = 5
+    skf = StratifiedKFold(n_splits=n_splits, shuffle=True)
 
-all_datas = [datas, datas_outliers, datas_scaling, datas_featureselection, datas_outliers_scaling, datas_outliers_featureselection, datas_outliers_scaling_featureselection]
+    trn_x_b_lst = {'Original':[], 'UnderSample':[], 'OverSample':[], 'SMOTE':[]}
+    trn_y_b_lst = {'Original':[], 'UnderSample':[], 'OverSample':[], 'SMOTE':[]}
+    tst_x_b_lst = {'Original':[], 'UnderSample':[], 'OverSample':[], 'SMOTE':[]}
+    tst_y_b_lst = {'Original':[], 'UnderSample':[], 'OverSample':[], 'SMOTE':[]}
+    trn_x_fs_lst = {'Original':[], 'UnderSample':[], 'OverSample':[], 'SMOTE':[]}
+    trn_y_fs_lst = {'Original':[], 'UnderSample':[], 'OverSample':[], 'SMOTE':[]}
+    tst_x_fs_lst = {'Original':[], 'UnderSample':[], 'OverSample':[], 'SMOTE':[]}
+    tst_y_fs_lst = {'Original':[], 'UnderSample':[], 'OverSample':[], 'SMOTE':[]}
+    labels_values = {}
+    labels_values_fs = {}
+    for train_i, test_i in skf.split(X, y):
+        trn_data = prepfunctions.data_balancing(dt.iloc[train_i].copy(), 'DEATH_EVENT')
+        tst_data = {'Original':dt.iloc[test_i].copy(), 'UnderSample':dt.iloc[test_i].copy(), 'OverSample':dt.iloc[test_i].copy(), 'SMOTE':dt.iloc[test_i].copy()}
+
+        trn_data_fs = prepfunctions.mask_feature_selection(trn_data.copy(), 'DEATH_EVENT', False, './Results/FeatureSelection/HFCR Feature Selection - Features')
+        tst_data_fs = prepfunctions.mask_feature_selection(tst_data.copy(), 'DEATH_EVENT', False, './Results/FeatureSelection/HFCR Feature Selection - Features')
+
+        for category in ['Original', 'UnderSample', 'OverSample', 'SMOTE']:
+            # Train
+            trn_y_b: np.ndarray = trn_data[category].pop('DEATH_EVENT').values
+            trn_X_b: np.ndarray = trn_data[category].values
+            labels_values[category] = trn_data[category].columns.values
+            # Test
+            tst_y_b: np.ndarray = tst_data[category].pop('DEATH_EVENT').values
+            tst_X_b: np.ndarray = tst_data[category].values
+
+            trn_x_b_lst[category].append(trn_X_b.copy())
+            trn_y_b_lst[category].append(trn_y_b.copy())
+            tst_x_b_lst[category].append(tst_X_b.copy())
+            tst_y_b_lst[category].append(tst_y_b.copy())
+
+        for category in ['Original', 'UnderSample', 'OverSample', 'SMOTE']:
+            # Train
+            trn_y_fs: np.ndarray = trn_data_fs[category].pop('DEATH_EVENT').values
+            trn_X_fs: np.ndarray = trn_data_fs[category].values
+            labels_values_fs[category] = trn_data_fs[category].columns.values
+            # Test
+            tst_y_fs: np.ndarray = tst_data_fs[category].pop('DEATH_EVENT').values
+            tst_X_fs: np.ndarray = tst_data_fs[category].values
+
+            trn_x_fs_lst[category].append(trn_X_fs.copy())
+            trn_y_fs_lst[category].append(trn_y_fs.copy())
+            tst_x_fs_lst[category].append(tst_X_fs.copy())
+            tst_y_fs_lst[category].append(tst_y_fs.copy())
+
+    final_lst_b = {}
+    final_lst_fs = {}
+    for category in ['Original', 'UnderSample', 'OverSample', 'SMOTE']:
+        final_lst_b[category] = [trn_x_b_lst[category], trn_y_b_lst[category], tst_x_b_lst[category], tst_y_b_lst[category], labels_values[category].copy()]
+        final_lst_fs[category] = [trn_x_fs_lst[category], trn_y_fs_lst[category], tst_x_fs_lst[category], tst_y_fs_lst[category], labels_values_fs[category].copy()]
+
+    all_datas_splits[all_datas_index[c][0]] = final_lst_b.copy()
+    
+    if(c == 2):
+        datas_splits_scaling_featureselection = final_lst_fs.copy()
+        c += 1
+        continue
+    all_datas_splits[all_datas_index[c][1]] = final_lst_fs.copy()
+
+    c += 1
+
+#datas_outliers_featureselection = prepfunctions.mask_feature_selection(datas_outliers.copy(), 'DEATH_EVENT', False, './Results/FeatureSelection/HFCR Feature Selection - Features')
+
+#datas_outliers_scaling_featureselection = prepfunctions.mask_feature_selection(datas_outliers_scaling.copy(), 'DEATH_EVENT', False, './Results/FeatureSelection/HFCR Feature Selection - Features')
+
+#datas_scaling_featureselection = prepfunctions.mask_feature_selection(datas_scaling.copy(), 'DEATH_EVENT', False, './Results/FeatureSelection/HFCR Feature Selection - Features')
+
+#datas_featureselection = prepfunctions.mask_feature_selection(datas.copy(), 'DEATH_EVENT', False, './Results/FeatureSelection/HFCR Feature Selection - Features')
+
+#all_datas = [datas, datas_outliers, datas_scaling, datas_featureselection, datas_outliers_scaling, datas_outliers_featureselection, datas_outliers_scaling_featureselection]
 all_datas_names = ['', ' - No Outliers', ' - Scaling', ' - Feature Selection', ' - No Outliers & Scaling', ' - No Outliers & Feature Selection', ' - No Outliers, Scaling & Feature Selection']
 provisorio_data_scaling = ' - Scaling & Feature Selection'
 
 accuracies = {}
-for key in datas:
+for key in ['Original', 'UnderSample', 'OverSample', 'SMOTE']:
     last_name = 'None'
     best_accuracy = -1
     last_accuracy = -1
     offset = 3
     count = 0
-    for dt in range(len(all_datas)):
+    for dt in range(len(all_datas_splits)):
         if(dt != count): continue
-        data = all_datas[dt][key]
+        #data = all_datas[dt][key]
+        trn_x_lst = all_datas_splits[dt][key][0]
+        trn_y_lst = all_datas_splits[dt][key][1]
+        tst_x_lst = all_datas_splits[dt][key][2]
+        tst_y_lst = all_datas_splits[dt][key][3]
+        labels_category = all_datas_splits[dt][key][4]
         if(last_name == ' - Scaling' and offset == 1):
-            data = datas_scaling_featureselection.copy()[key]
+            #data = datas_scaling_featureselection.copy()[key]
+            trn_x_lst = datas_splits_scaling_featureselection[key][0]
+            trn_y_lst = datas_splits_scaling_featureselection[key][1]
+            tst_x_lst = datas_splits_scaling_featureselection[key][2]
+            tst_y_lst = datas_splits_scaling_featureselection[key][3]
+            labels_category = datas_splits_scaling_featureselection[key][4]
             subDir = graphsDir + key + '/' + provisorio_data_scaling + '/'
             last_name = provisorio_data_scaling
         elif(all_datas_names[count] == ''):
@@ -54,31 +140,6 @@ for key in datas:
             last_name = all_datas_names[count]
         if not os.path.exists(subDir):
             os.makedirs(subDir)
-
-        y: np.ndarray = data.pop('DEATH_EVENT').values
-        X: np.ndarray = data.values
-        labels = pd.unique(y)
-
-        n_splits = 5
-        skf = StratifiedKFold(n_splits=n_splits, shuffle=True)
-
-        trn_x_lst = []
-        trn_y_lst = []
-        tst_x_lst = []
-        tst_y_lst = []
-        for train_i, test_i in skf.split(X, y):
-            # Train
-            trn_X = X[train_i]
-            trn_y = y[train_i]
-
-            # Test
-            tst_X = X[test_i]
-            tst_y = y[test_i]
-
-            trn_x_lst.append(trn_X)
-            trn_y_lst.append(trn_y)
-            tst_x_lst.append(tst_X)
-            tst_y_lst.append(tst_y)
 
         min_impurity_decrease = [0.025, 0.01, 0.005, 0.0025, 0.001, 0.0005, 0.00025, 0.0001, 0.00005, 0.000025]
         max_depths = [2, 5, 10, 15, 20, 25, 30]
@@ -160,7 +221,7 @@ for key in datas:
         plt.suptitle('HFCR Overfitting - Decision Trees')
         plt.savefig(subDir + 'HFCR Overfitting - Decision Trees')
         
-        labels_features = list(data.columns.values)
+        labels_features = list(labels_category)
         dot_data = export_graphviz(best_tree, out_file=(subDir + 'HFCR - ' + key + ' - dtree.dot'), filled=True, rounded=True, special_characters=True, feature_names=labels_features, class_names=['0', '1'])
         # Convert to png
         call(['dot', '-Tpng', (subDir + 'HFCR - ' + key + ' - dtree.dot'), '-o', (subDir + 'HFCR Decision Trees - ' + key + ' - tree representation.png'), '-Gdpi=600'])
