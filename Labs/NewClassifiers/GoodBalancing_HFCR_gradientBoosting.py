@@ -262,23 +262,22 @@ for key in ['Original', 'UnderSample', 'OverSample', 'SMOTE']:
             plt.suptitle('HFCR Gradient Boosting - ' + key + ' - Performance & Confusion matrix')
             plt.savefig(criterionDir + 'HFCR Gradient Boosting - ' + key + ' - Performance & Confusion matrix')
 
-            if(offset == 1):
-                break
-            if(last_accuracy > best_accuracy and best_accuracy != -1):
-                best_accuracy = last_accuracy
-                last_accuracy = -1
-                count += offset
-                offset -= 1
-            elif(best_accuracy == -1):
-                best_accuracy = last_accuracy
-                count += 1
-            else:
-                count += 1
-                offset -= 1
-
-
             plt.close("all")
             plt.clf()
+
+        if(offset == 1):
+            break
+        if(last_accuracy > best_accuracy and best_accuracy != -1):
+            best_accuracy = last_accuracy
+            last_accuracy = -1
+            count += offset
+            offset -= 1
+        elif(best_accuracy == -1):
+            best_accuracy = last_accuracy
+            count += 1
+        else:
+            count += 1
+            offset -= 1
 
         plt.figure(figsize=(7,7))
         ds.multiple_bar_chart(['Train', 'Test'], values_by_criteria, ylabel='Accuracy')
