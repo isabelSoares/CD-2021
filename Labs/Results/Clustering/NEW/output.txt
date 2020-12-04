@@ -5,7 +5,7 @@
 ---------------------------
 
 
-PCA = False
+PCA = 0
 
 HFCR Clustering - K-Means
 HFCR Clustering - K-Means MSE vs MAE vs SC vs DB
@@ -23,7 +23,7 @@ HFCR Clustering - Metric (Hierarchical)
 HFCR Clustering - Metric (Hierarchical) MSE vs MAE vs SC vs DB
 
 
-PCA = True
+PCA = 1
 
 HFCR Feature Extraction - PCA
 HFCR Feature Extraction - PCA 2
@@ -36,7 +36,7 @@ HFCR Clustering - EPS (Density-based) after PCA
 HFCR Clustering - EPS (Density-based) MSE vs MAE vs SC vs DB after PCA
 HFCR Clustering - Metric (Density-based) after PCA
 AVG distances among records [100637.27211321057, 101308.17830630303, 100613.34172745582, 2.055653156893136e-05, 0.9966555183946488]
-CHOSEN EPS [80, 50, 80, 0.0005, 0.0009]
+CHOSEN EPS [0.05, 0.05, 0.05, 0.05, 0.05]
 1
 1
 HFCR Clustering - Metric (Density-based) MSE vs MAE vs SC vs DB after PCA
@@ -44,6 +44,29 @@ HFCR Clustering - Hierarchical after PCA
 HFCR Clustering - Hierarchical MSE vs MAE vs SC vs DB after PCA
 HFCR Clustering - Metric (Hierarchical) after PCA
 HFCR Clustering - Metric (Hierarchical) MSE vs MAE vs SC vs DB after PCA
+
+
+PCA = 2
+
+HFCR Feature Extraction - PCA
+HFCR Feature Extraction - PCA 2
+Clustering after PCA
+HFCR Clustering - K-Means after PCA
+HFCR Clustering - K-Means after PCA MSE vs MAE vs SC vs DB after PCA
+HFCR Clustering - Expectation-Maximization after PCA
+HFCR Clustering - Expectation-Maximization MSE vs MAE vs SC vs DB after PCA
+HFCR Clustering - EPS (Density-based) after PCA
+HFCR Clustering - EPS (Density-based) MSE vs MAE vs SC vs DB after PCA
+HFCR Clustering - Metric (Density-based) after PCA
+AVG distances among records [0.9954384833927136, 1.2650093067404125, 0.9008156913787574, 0.8945659132286121, 0.9966555183946488]
+CHOSEN EPS [0.05, 0.05, 0.05, 0.05, 0.05]
+1
+HFCR Clustering - Metric (Density-based) MSE vs MAE vs SC vs DB after PCA
+HFCR Clustering - Hierarchical after PCA
+HFCR Clustering - Hierarchical MSE vs MAE vs SC vs DB after PCA
+HFCR Clustering - Metric (Hierarchical) after PCA
+HFCR Clustering - Metric (Hierarchical) MSE vs MAE vs SC vs DB after PCA
+
 
 
 --------------------------
@@ -84,10 +107,7 @@ QOT Clustering - EPS (Density-based) after PCA
 QOT Clustering - EPS (Density-based) MSE vs MAE vs SC vs DB after PCA
 QOT Clustering - Metric (Density-based) after PCA
 AVG distances among records [3.3615814570774387, 4.211698322582834, 3.071722544541705, 0.2528683383302435, 0.9998147325103532]
-CHOSEN EPS [80, 50, 80, 0.0005, 0.0009]
-1
-1
-1
+CHOSEN EPS [0.03, 0.03, 0.03, 0.03, 0.03]
 1
 QOT Clustering - Metric (Density-based) MSE vs MAE vs SC vs DB after PCA
 QOT Clustering - Hierarchical after PCA
