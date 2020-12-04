@@ -23,3 +23,13 @@ for j in range(cols):
     axs[j].hist(data[columns[0]].values, bins=bins[j])
 fig.suptitle("HFCR Granularity - 10, 100, 1000 Bins per Variable")
 plt.savefig(graphsDir + 'HFCR Granularity - 10.100.1000bins.png')
+
+print("Computing HFCR Granularity - 2bins ...")
+variables = data.select_dtypes(include='number').columns
+plt.figure(figsize=(ds.HEIGHT, ds.HEIGHT))
+plt.title('Histogram for %s'%variables[1])
+plt.xlabel(variables[1])
+plt.ylabel('nr records')
+plt.hist(data[variables[1]].values, bins=2, rwidth=0.95)
+plt.suptitle("HFCR Granularity - 2 Bins per Variable")
+plt.savefig(graphsDir + 'HFCR Granularity - 2bins.png')
