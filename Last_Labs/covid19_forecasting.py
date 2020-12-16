@@ -10,6 +10,8 @@ from statsmodels.tsa.statespace.sarimax import SARIMAX
 
 data = pd.read_csv('../Dataset/covid19_pt.csv', index_col='Date', sep=',', decimal='.',
                    parse_dates=True, infer_datetime_format=True)
+data = data.sort_values(by='Date')
+data = data.asfreq('D')
 
 graphsDir = './Results/Forecasting/Original/'
 if not os.path.exists(graphsDir):
@@ -17,8 +19,8 @@ if not os.path.exists(graphsDir):
 
 print('Covid19 - Original')
 
-x_label='timestamp'
-y_label='consumption'
+x_label='Date'
+y_label='deaths'
 plt.figure(figsize=(3*ts.HEIGHT, ts.HEIGHT/2))
 ts.plot_series(data, x_label=x_label, y_label=y_label, title='COVID19 original')
 plt.xticks(rotation = 45)
@@ -39,7 +41,7 @@ def plot_components(series: pd.Series, comps: seasonal.DecomposeResult, x_label:
 
 decomposition = seasonal.seasonal_decompose(data, model = "add")
 plt.figure(figsize=(FIG_WIDTH, FIG_HEIGHT))
-plot_components(data, decomposition, x_label='timestamp', y_label='consumption')
+plot_components(data, decomposition, x_label='Date', y_label='deaths')
 plt.savefig(graphsDir + 'Covid19 - Observed vs Trend vs Seasonal vs Residual')
 
 graphsDir = './Results/Forecasting/ARIMA/'
@@ -125,24 +127,3 @@ for i in range(50, 100, 10):
     plot_forecasting(train, test, pred, ax=axs[k], x_label=x_label, y_label=y_label)
     k += 1
 plt.savefig(graphsDir + 'Covid19 - ARIMA 2')
-
-graphsDir = './Results/Forecasting/SARIMA/'
-if not os.path.exists(graphsDir):
-    os.makedirs(graphsDir)
-
-print('Covid19 - SARIMA')
-
-p, d, q, P, D, Q, S = 2, 0, 2, 2, 0, 2, 24
-fig, axs = plt.subplots(5, 1, figsize=(FIG_WIDTH, 5*FIG_HEIGHT))
-fig.suptitle(f'SARIMA predictions (p={p},d={d},q={q}) (P={P},D={D},Q={Q},S={S})')
-k = 0
-for S in (24*7,):
-    train = df[:n*i//10]
-    test = df[n*i//10+1:]
-
-    mod = SARIMAX(train, order=(p, d, q), seasonal_order=(P,D,Q,S))
-    mod = mod.fit()
-    pred = mod.predict(start = len(train), end = len(df)-1)
-    plot_forecasting(train, test, pred, ax=axs[k])
-    k += 1
-plt.savefig(graphsDir + 'Covid19 - SARIMA')

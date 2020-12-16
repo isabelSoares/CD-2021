@@ -21,7 +21,7 @@ data = data.set_index(index_var).sort_index()
 FIG_WIDTH, FIG_HEIGHT = 3*ts.HEIGHT, ts.HEIGHT/2
 
 plt.figure(figsize=(FIG_WIDTH, FIG_HEIGHT))
-ts.plot_series(data, x_label='Date', y_label='consumption', title='COVID19 original')
+ts.plot_series(data, x_label='Date', y_label='deaths', title='COVID19 original')
 plt.xticks(rotation = 45)
 plt.suptitle('Covid19 - Original')
 plt.savefig(graphsDir + 'Covid19 - Original')

@@ -21,7 +21,7 @@ data = data.set_index(index_var).sort_index()
 FIG_WIDTH, FIG_HEIGHT = 3*ts.HEIGHT, ts.HEIGHT/2
 
 plt.figure(figsize=(FIG_WIDTH, FIG_HEIGHT))
-ts.plot_series(data, x_label='start_date', y_label='consumption', title='DEATHS original')
+ts.plot_series(data, x_label='start_date', y_label='deaths', title='DEATHS original')
 plt.xticks(rotation = 45)
 plt.suptitle('Deaths - Original')
 plt.savefig(graphsDir + 'Deaths - Original')

@@ -7,9 +7,13 @@ import statsmodels.tsa.seasonal as seasonal
 from matplotlib import pyplot as plt
 from statsmodels.tsa.arima.model import ARIMA
 from statsmodels.tsa.statespace.sarimax import SARIMAX
+from math import sqrt
 
 data = pd.read_csv('../Dataset/deaths_pt.csv', index_col='start_date', sep=',', decimal='.',
                    parse_dates=True, infer_datetime_format=True)
+data = data.sort_values(by='start_date')
+data = data.resample('W').first()
+data = data.fillna(method='bfill').fillna(method='ffill')
 
 graphsDir = './Results/Forecasting/Original/'
 if not os.path.exists(graphsDir):
@@ -17,8 +21,8 @@ if not os.path.exists(graphsDir):
 
 print('Deaths - Original')
 
-x_label='timestamp'
-y_label='consumption'
+x_label='start_date'
+y_label='deaths'
 plt.figure(figsize=(3*ts.HEIGHT, ts.HEIGHT/2))
 ts.plot_series(data, x_label=x_label, y_label=y_label, title='DEATHS original')
 plt.xticks(rotation = 45)
@@ -39,7 +43,7 @@ def plot_components(series: pd.Series, comps: seasonal.DecomposeResult, x_label:
 
 decomposition = seasonal.seasonal_decompose(data, model = "add")
 plt.figure(figsize=(FIG_WIDTH, FIG_HEIGHT))
-plot_components(data, decomposition, x_label='timestamp', y_label='consumption')
+plot_components(data, decomposition, x_label='start_date', y_label='deaths')
 plt.savefig(graphsDir + 'Deaths - Observed vs Trend vs Seasonal vs Residual')
 
 graphsDir = './Results/Forecasting/ARIMA/'
@@ -62,24 +66,29 @@ plt.savefig(graphsDir + 'Deaths - Diagnostics')
 
 
 
-_, axs = plt.subplots(2, 2, figsize=(FIG_WIDTH, 2*FIG_HEIGHT))
+_, axs = plt.subplots(2, 3, figsize=(FIG_WIDTH, 2*FIG_HEIGHT))
 params = (1, 2, 3)
 for d in (0, 1):
+    rmse = {}
     mse = {}
     mae = {}
     for p in params:
+        rmse_lst = []
         mse_lst = []
         mae_lst = []
         for q in params:
             mod = ARIMA(df, order=(p, d, q))
             results = mod.fit()
+            rmse_lst.append(sqrt(results.mse))
             mse_lst.append(results.mse)
             mae_lst.append(results.mae)
+        rmse[p] = rmse_lst
         mse[p] = mse_lst
         mae[p] = mae_lst
-    ds.multiple_line_chart(params, mse, ax=axs[d, 0], title=f'MSE with d={d}', xlabel='p', ylabel='mse')
-    ds.multiple_line_chart(params, mae, ax=axs[d, 1], title=f'MAE with d={d}', xlabel='p', ylabel='mae')
-plt.savefig(graphsDir + 'Deaths - MSE and MAE')
+    ds.multiple_line_chart(params, rmse, ax=axs[d, 0], title=f'RMSE with d={d}', xlabel='p', ylabel='rmse')
+    ds.multiple_line_chart(params, mse, ax=axs[d, 1], title=f'MSE with d={d}', xlabel='p', ylabel='mse')
+    ds.multiple_line_chart(params, mae, ax=axs[d, 2], title=f'MAE with d={d}', xlabel='p', ylabel='mae')
+plt.savefig(graphsDir + 'Deaths - RMSE and MSE and MAE')
 
 
 
@@ -125,24 +134,3 @@ for i in range(50, 100, 10):
     plot_forecasting(train, test, pred, ax=axs[k], x_label=x_label, y_label=y_label)
     k += 1
 plt.savefig(graphsDir + 'Deaths - ARIMA 2')
-
-graphsDir = './Results/Forecasting/SARIMA/'
-if not os.path.exists(graphsDir):
-    os.makedirs(graphsDir)
-
-print('Deaths - SARIMA')
-
-p, d, q, P, D, Q, S = 2, 0, 2, 2, 0, 2, 24
-fig, axs = plt.subplots(5, 1, figsize=(FIG_WIDTH, 5*FIG_HEIGHT))
-fig.suptitle(f'SARIMA predictions (p={p},d={d},q={q}) (P={P},D={D},Q={Q},S={S})')
-k = 0
-for S in (24*7,):
-    train = df[:n*i//10]
-    test = df[n*i//10+1:]
-
-    mod = SARIMAX(train, order=(p, d, q), seasonal_order=(P,D,Q,S))
-    mod = mod.fit()
-    pred = mod.predict(start = len(train), end = len(df)-1)
-    plot_forecasting(train, test, pred, ax=axs[k])
-    k += 1
-plt.savefig(graphsDir + 'Deaths - SARIMA')
