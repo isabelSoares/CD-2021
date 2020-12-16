@@ -33,12 +33,11 @@ if not os.path.exists(graphsDir):
 print('Covid19 - Matrix Profile')
 
 all_windows = [
-    ('8 Hours', 8),
-    ('12 Hours', 12),
-    ('Day', 24),
-    ('Week', 7 * 24),
-    ('Month', 30 * 24),
-    ('Quarter', 3 * 30 * 24),
+    ('4 Days', 4),
+    ('Week', 7),
+    ('2 Weeks', 2 * 7),
+    ('Month', 30),
+    ('Quarter', 3 * 30),
 ]
 
 def compute_matrix_profiles(df: pd.DataFrame, windows: list) :
@@ -72,17 +71,26 @@ def compute_all_profiles(profiles: dict, windows: list, k: int, type: str='motif
         key = '{} Profile'.format(label)
         profiles[key] = discover_function(profiles[key], k=k)
 
-compute_all_profiles(all_profiles, all_windows, k=5, type='motifs')
+
+graphsDir = './Results/Motif Discovery/Motifs/'
+if not os.path.exists(graphsDir):
+    os.makedirs(graphsDir)
+
+print('Covid19 - Motifs')
+
+
+compute_all_profiles(all_profiles, all_windows, k=3, type='motifs')
 
 def show_profile(profile, title, type):
     lst_figs = mp.visualize(profile)
     for i in range(len(lst_figs)-1):
         plt.close(lst_figs[i])
     plt.suptitle('Covid19 - ' + type + ' - ' + title)
-    plt.savefig('Covid19 - ' + type + ' - ' + title)
+    plt.savefig(graphsDir + 'Covid19 - ' + type + ' - ' + title)
 
 title = all_windows[0][0]+' Profile'
 show_profile(all_profiles[title], title, 'Motifs')
+#print(all_profiles[title])
 
 title = all_windows[2][0]+' Profile'
 show_profile(all_profiles[title], title, 'Motifs')
@@ -92,10 +100,7 @@ show_profile(all_profiles[title], title, 'Motifs')
 
 title = all_windows[4][0]+' Profile'
 show_profile(all_profiles[title], title, 'Motifs')
-
-title = all_windows[5][0]+' Profile'
-show_profile(all_profiles[title], title, 'Motifs')
-
+"""
 compute_all_profiles(all_profiles, all_windows, k=5, type='discords')
 
 title = all_windows[0][0]+' Profile'
@@ -103,3 +108,4 @@ show_profile(all_profiles[title], title, 'Discords')
 
 title = all_windows[3][0]+' Profile'
 show_profile(all_profiles[title], title, 'Discords')
+"""
