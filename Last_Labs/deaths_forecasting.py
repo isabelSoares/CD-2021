@@ -127,29 +127,52 @@ fig.suptitle(f'ARIMA predictions (p={p},d={d},q={q})')
 
 # PREDICT 2019
 print(df)
-train = df.loc[(df['start_date'] >= '2015-01-01') & (df['start_date'] < '2019-01-01')]
-test = df.loc[(df['start_date'] >= '2019-01-01') & (df['start_date'] < '2020-01-01')]
+train = df.loc[(df.index >= '2015-01-01') & (df.index < '2019-01-01')]
+test = df.loc[(df.index >= '2019-01-01') & (df.index < '2020-01-01')]
 mod = ARIMA(train, order=(p, d, q))
 mod = mod.fit()
 pred = mod.predict(start = '2019-01-01', end = '2020-01-01')
 plot_forecasting(train, test, pred, ax=axs[0], x_label=x_label, y_label=y_label)
 
 # PREDICT 2020
-train = data.loc[(df['start_date'] >= '2015-01-01') & (df['start_date'] < '2020-01-01')]
-test = data.loc[(df['start_date'] >= '2020-01-01') & (df['start_date'] < '2020-12-01')]
+train = data.loc[(df.index >= '2015-01-01') & (df.index < '2020-01-01')]
+test = data.loc[(df.index >= '2020-01-01') & (df.index < '2020-12-01')]
 mod = ARIMA(train, order=(p, d, q))
 mod = mod.fit()
 pred = mod.predict(start = '2020-01-01', end = '2020-12-01')
 plot_forecasting(train, test, pred, ax=axs[1], x_label=x_label, y_label=y_label)
 
-'''
+
 # PREDICT LAST WEEKS
-mask_train = (df['start_date'] >= '2015-01-01') & (df['start_date'] < '2020-12-01')
+
+'''
+mask_train = (df.index >= '2015-01-01') & (df.index < '2020-12-01')
 train = data.loc[mask_train]
 mod = ARIMA(train, order=(p, d, q))
 mod = mod.fit()
-pred = mod.predict(start = len(train))
-plot_forecasting(train, None, pred, ax=axs[2], x_label=x_label, y_label=y_label)
 '''
+pred = mod.predict(start = '2020-12-01', end = '2020-12-27')
+plot_forecasting(train, [], pred, ax=axs[2], x_label=x_label, y_label=y_label)
+
 
 plt.savefig(graphsDir + 'Deaths - ARIMA 2')
+
+'''
+2020-09-06 00:00:00
+2020-09-13 00:00:00
+2020-09-20 00:00:00
+2020-09-27 00:00:00
+2020-10-04 00:00:00
+2020-10-11 00:00:00
+2020-10-18 00:00:00
+2020-10-25 00:00:00
+2020-11-01 00:00:00
+2020-11-08 00:00:00
+2020-11-15 00:00:00
+2020-11-22 00:00:00
+2020-11-29 00:00:00
+2020-12-06 00:00:00
+2020-12-13 00:00:00
+2020-12-20 00:00:00
+2020-12-27 00:00:00
+'''
