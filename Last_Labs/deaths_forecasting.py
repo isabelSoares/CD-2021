@@ -121,7 +121,7 @@ plt.savefig(graphsDir + 'Deaths - Train vs Test vs Predicted')
 
 
 
-fig, axs = plt.subplots(3, 1, figsize=(FIG_WIDTH, 3*FIG_HEIGHT))
+fig, axs = plt.subplots(1, 1, figsize=(FIG_WIDTH, FIG_HEIGHT))
 fig.suptitle(f'ARIMA predictions (p={p},d={d},q={q})')
 
 
@@ -131,20 +131,29 @@ train = df.loc[(df.index >= '2015-01-01') & (df.index < '2019-01-01')]
 test = df.loc[(df.index >= '2019-01-01') & (df.index < '2020-01-01')]
 mod = ARIMA(train, order=(p, d, q))
 mod = mod.fit()
+print("2019: " + str(sqrt(mod.mse)))
 pred = mod.predict(start = '2019-01-01', end = '2020-01-01')
-plot_forecasting(train, test, pred, ax=axs[0], x_label=x_label, y_label=y_label)
+plot_forecasting(train, test, pred, ax=axs, x_label=x_label, y_label=y_label)
+plt.savefig(graphsDir + 'Deaths - ARIMA - 2019')
+
+
+fig, axs = plt.subplots(1, 1, figsize=(FIG_WIDTH, FIG_HEIGHT))
+fig.suptitle(f'ARIMA predictions (p={p},d={d},q={q})')
 
 # PREDICT 2020
 train = data.loc[(df.index >= '2015-01-01') & (df.index < '2020-01-01')]
 test = data.loc[(df.index >= '2020-01-01') & (df.index < '2020-12-01')]
 mod = ARIMA(train, order=(p, d, q))
 mod = mod.fit()
+print("2020: " + str(sqrt(mod.mse)))
 pred = mod.predict(start = '2020-01-01', end = '2020-12-01')
-plot_forecasting(train, test, pred, ax=axs[1], x_label=x_label, y_label=y_label)
+plot_forecasting(train, test, pred, ax=axs, x_label=x_label, y_label=y_label)
+plt.savefig(graphsDir + 'Deaths - ARIMA - 2020')
 
 
 # PREDICT LAST WEEKS
-
+fig, axs = plt.subplots(1, 1, figsize=(FIG_WIDTH, FIG_HEIGHT))
+fig.suptitle(f'ARIMA predictions (p={p},d={d},q={q})')
 '''
 mask_train = (df.index >= '2015-01-01') & (df.index < '2020-12-01')
 train = data.loc[mask_train]
@@ -152,7 +161,8 @@ mod = ARIMA(train, order=(p, d, q))
 mod = mod.fit()
 '''
 pred = mod.predict(start = '2020-12-01', end = '2020-12-27')
-plot_forecasting(train, [], pred, ax=axs[2], x_label=x_label, y_label=y_label)
+print(pred)
+plot_forecasting(train, [], pred, ax=axs, x_label=x_label, y_label=y_label)
 
 
 plt.savefig(graphsDir + 'Deaths - ARIMA 2')
