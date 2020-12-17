@@ -37,7 +37,7 @@ if not os.path.exists(graphsDir):
 print('Covid19 - Matrix Profile')
 
 all_windows = [
-    ('4 Days', 4),
+    ('6 Days', 6),
     ('Week', 7),
     ('2 Weeks', 2 * 7),
     ('Month', 30),
@@ -83,7 +83,7 @@ if not os.path.exists(graphsDir):
 print('Covid19 - Motifs')
 
 
-compute_all_profiles(all_profiles, all_windows, k=5, type='motifs')
+compute_all_profiles(all_profiles, all_windows, k=10, type='motifs')
 
 def show_profile(profile, title, type):
     lst_figs = mp.visualize(profile)
@@ -95,6 +95,9 @@ def show_profile(profile, title, type):
 title = all_windows[0][0]+' Profile'
 show_profile(all_profiles[title], title, 'Motifs')
 #print(all_profiles[title])
+
+title = all_windows[1][0]+' Profile'
+show_profile(all_profiles[title], title, 'Motifs')
 
 title = all_windows[2][0]+' Profile'
 show_profile(all_profiles[title], title, 'Motifs')
