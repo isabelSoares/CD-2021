@@ -6,6 +6,7 @@ import ts_functions as ts
 import matrixprofile as mp
 
 data = pd.read_csv('../Dataset/covid19_pt.csv')
+data = data.diff()
 
 graphsDir = './Results/Motif Discovery/Original/'
 if not os.path.exists(graphsDir):
