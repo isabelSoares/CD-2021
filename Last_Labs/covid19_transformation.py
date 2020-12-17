@@ -6,6 +6,7 @@ import ts_functions as ts
 data = pd.read_csv('../Dataset/covid19_pt.csv', index_col='Date', sep=',', decimal='.',
                    parse_dates=True, infer_datetime_format=True)
 data = data.diff()
+data['deaths'][0] = 0
 data = data.sort_values(by='Date') 
 
 graphsDir = './Results/Transformation/Smoothing/'

@@ -6,7 +6,7 @@ import ts_functions as ts
 import matrixprofile as mp
 
 data = pd.read_csv('../Dataset/covid19_pt.csv')
-data = data.diff()
+#data = data.sort_values(by='Date')
 
 graphsDir = './Results/Motif Discovery/Original/'
 if not os.path.exists(graphsDir):
@@ -17,7 +17,10 @@ print('Covid19 - Original')
 index_var = 'Date'
 variable = 'deaths'
 data[index_var] = pd.to_datetime(data[index_var])
-data = data.set_index(index_var).sort_index()
+data = data.set_index(index_var)
+data = data.diff()
+data['deaths'][0] = 0
+data = data.sort_index()
 
 FIG_WIDTH, FIG_HEIGHT = 3*ts.HEIGHT, ts.HEIGHT/2
 
@@ -68,9 +71,9 @@ def compute_all_profiles(profiles: dict, windows: list, k: int, type: str='motif
     if type == 'discords':
         discover_function = mp.discover.discords
 
-    for label, _ in windows:
+    for label, size in windows:
         key = '{} Profile'.format(label)
-        profiles[key] = discover_function(profiles[key], k=k)
+        profiles[key] = discover_function(profiles[key], k=k, exclusion_zone=size)
 
 
 graphsDir = './Results/Motif Discovery/Motifs/'
@@ -80,7 +83,7 @@ if not os.path.exists(graphsDir):
 print('Covid19 - Motifs')
 
 
-compute_all_profiles(all_profiles, all_windows, k=3, type='motifs')
+compute_all_profiles(all_profiles, all_windows, k=5, type='motifs')
 
 def show_profile(profile, title, type):
     lst_figs = mp.visualize(profile)
